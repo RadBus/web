@@ -1,6 +1,9 @@
 {
   "name": "radbot-web",
   "version": "1.0.0",
+  "engines": {
+    "node": "0.10.24"
+  },
   "description": "RadBus Web Client",
   "main": "app.js",
   "scripts": {
