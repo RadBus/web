@@ -6,6 +6,7 @@ const LOG_PREFIX = 'APP: ';
 var server = require('./server');
 
 // capabilities
+require('./web').register(server);
 
 // start server
 var port = process.env.PORT || 5000;

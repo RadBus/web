@@ -20,6 +20,7 @@
     "coffee-script": "~1.7.1",
     "express": "~4.0.0",
     "morgan": "~1.0.0",
-    "compression": "~1.0.1"
+    "compression": "~1.0.1",
+    "serve-static": "~1.0.4"
   }
 }
