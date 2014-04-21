@@ -1,0 +1,25 @@
+{
+  "name": "radbot-web",
+  "version": "1.0.0",
+  "description": "RadBus Web Client",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TargetRAD/radbus-web.git"
+  },
+  "author": "twistedstream",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TargetRAD/radbus-web/issues"
+  },
+  "homepage": "https://github.com/TargetRAD/radbus-web",
+  "dependencies": {
+    "coffee-script": "~1.7.1",
+    "express": "~4.0.0",
+    "morgan": "~1.0.0",
+    "compression": "~1.0.1"
+  }
+}
