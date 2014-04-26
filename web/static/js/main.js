@@ -23,15 +23,33 @@ function onAuthResult(authResult) {
     window.alert(message);
 
   } else {
-    authorizeButton.show();
-    authorizeButton.click(function () {
-      gapi.auth.authorize({
-        client_id: googleClientId,
-        scope: googleAuthScopes,
-        immediate: false
-      }, onAuthResult);
+    var authorizeButton = $('<a class="btn btn-primary btn-lg" role="button">Authorize!</a>');
+
+    $('#header')
+      .prepend($('<p></p>')
+        .prepend(authorizeButton));
+
+    authorizeButton.click(function() {
+      invokeOAuthAuthorization('online');
 
       return false;
     });
   }
+}
+
+function invokeOAuthAuthorization(accessType) {
+  var redirectUri = window.location.protocol + '//' + window.location.host + '/' + googleOAuth2CallbackUrl;
+
+  var oauthUrl = 'https://accounts.google.com/o/oauth2/auth' +
+    '?' +
+    '&client_id=' + encodeURI(googleClientId) +
+    '&scope=' + encodeURI(googleAuthScopes) +
+    '&immediate=false' +
+    '&response_type=code' +
+    '&redirect_uri=' + encodeURI(redirectUri) +
+    '&access_type=' + accessType +
+    '&state=' + accessType +
+    '&approval_prompt=force';
+
+  window.location = oauthUrl;
 }

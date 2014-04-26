@@ -1,11 +1,10 @@
 serveStatic = require 'serve-static'
 
 exports.register = (server) ->
-  server.get '/js/config.js', (req, res) ->
+  # serve up client-side config file that contains all the Google Analytics config values
+  server.get '/js/google-analytics-config.js', (req, res) ->
     res.set 'Content-Type', 'application/javascript'
-    res.send "var googleClientId = '#{process.env.BUS_API_GOOGLE_API_CLIENT_ID}';\n
-              var googleClientSecret = '#{process.env.BUS_API_GOOGLE_API_CLIENT_SECRET}';\n
-              var googleAuthScopes = '#{process.env.BUS_API_GOOGLE_API_AUTH_SCOPES}';\n
-              var googleAnalyticsId = '#{process.env.BUS_API_GOOGLE_ANALYTICS_ID}';"
+    res.send "var googleAnalyticsId = '#{process.env.BUS_API_GOOGLE_ANALYTICS_ID}';\n";
 
+  # serve up static client-side files (the web app)
   server.use serveStatic('web/static')

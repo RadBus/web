@@ -7,6 +7,7 @@ var server = require('./server');
 
 // capabilities
 require('./web').register(server);
+require('./oauth2').register(server);
 
 // start server
 var port = process.env.PORT || 5000;
