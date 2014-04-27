@@ -1,4 +1,5 @@
 request = require 'request'
+util = require 'util'
 
 LOG_PREFIX = 'OAUTH2:';
 
@@ -20,10 +21,41 @@ exports.register = (server) ->
 
       json = JSON.parse body
 
-      console.log "#{LOG_PREFIX} After token exchange: state = #{req.query.state}, access_token = #{json.access_token}, expires_in = #{json.expires_in}, token_type = #{json.token_type}"
+      inspectOptions = depth: null
+      console.log "#{LOG_PREFIX} After token exchange: state = #{req.query.state}, data = #{util.inspect(json, inspectOptions)}"
 
       if req.query.state is 'online'
         res.redirect '/'
+      else if req.query.state is 'offline'
+
+        console.log "FOO-1"
+
+        # res.send "#{json.refresh_token}"
+# res.send "<!DOCTYPE html>
+#           <html>
+#             <head>
+#               <title>Application Token</title>
+#             </head>
+#             <body>
+        res.send "<!DOCTYPE html>
+                  <html>
+                    <head>
+                      <title>Application Token</title>
+                    </head>
+                    <body>
+                      Here's your Application Token:
+                      <h1>#{json.refresh_token}</h1>
+                      Don't lose it, bro.
+                      <p><a href=\"/\">Back Home</a></p>
+                    </body>
+                  </html>"
+#
+#               <p><a href="/">Back Home</a></p>
+#             </body>
+#           </html>"
+
+        console.log "FOO-2"
+
       else
         res.send "You're in!  But not sure what to do with you (state = #{req.query.state})."
 

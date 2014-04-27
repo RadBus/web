@@ -8,6 +8,10 @@ function onClientLoad() {
       immediate: true
     }, onAuthResult);
   }, 1);
+
+  $('#appTokenButton').click(function () {
+    invokeOAuthAuthorization('offline');
+  });
 }
 
 function onAuthResult(authResult) {
