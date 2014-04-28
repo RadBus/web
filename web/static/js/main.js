@@ -31,7 +31,8 @@ function onAuthResult(authResult) {
       $('#departures').hide();
       $('#departures-list').empty();
 
-      checkSchedule();
+      checkSchedule()
+        .fail(onFirstCheckScheduleFail);
     });
 
   } else {
