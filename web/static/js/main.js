@@ -35,10 +35,8 @@ function onAuthResult(authResult) {
     });
 
   } else {
-    var authorizeButton = $('#authorize-button');
-
-    authorizeButton.show();
-    authorizeButton.click(function() {
+    $('#authorize').show();
+    $('#authorize-button').click(function() {
       invokeOAuthAuthorization('online');
 
       return false;
