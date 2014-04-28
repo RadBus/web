@@ -27,12 +27,9 @@ function onAuthResult(authResult) {
     window.alert(message);
 
   } else {
-    var authorizeButton = $('<a class="btn btn-primary btn-lg" role="button">Authorize!</a>');
+    var authorizeButton = $('#authorize-button');
 
-    $('#header')
-      .prepend($('<p></p>')
-        .prepend(authorizeButton));
-
+    authorizeButton.show();
     authorizeButton.click(function() {
       invokeOAuthAuthorization('online');
 
