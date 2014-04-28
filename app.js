@@ -6,6 +6,7 @@ const LOG_PREFIX = 'APP: ';
 var server = require('./server');
 
 // capabilities
+require('./api').register(server);
 require('./web').register(server);
 require('./oauth2').register(server);
 

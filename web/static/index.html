@@ -58,6 +58,20 @@
         <h1>Hello, world!</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
         <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+
+        <div id="authenticated" style="display: none">
+          <div id="no-bus-schedule" style="display: none">
+            <p>It looks like you haven't set up your bus schedule yet.</p>
+          </div>
+          <div id="departures" style="display: none">
+            <h2>Depatures</h2>
+            <ul id="departures-list">
+            </ul>
+          </div>
+          <div>
+            <p><a id="editScheduleButton" class="btn btn-default" role="button">Edit Your Schedule</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -90,11 +104,13 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/moment.min.js"></script>
 
         <script src="js/main.js"></script>
 
         <script src="js/oauth2-config.js"></script>
         <script src="js/google-analytics-config.js"></script>
+        <script src="js/api-config.js"></script>
 
         <script src="https://apis.google.com/js/client.js?onload=onClientLoad"></script>
 
