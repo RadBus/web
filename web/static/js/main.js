@@ -2,7 +2,14 @@ var googleOAuth2Result;
 
 function onClientLoad() {
   gapi.client.setApiKey(googleClientSecret);
+  authorize();
 
+  $('#appTokenButton').click(function () {
+    invokeOAuthAuthorization('offline');
+  });
+}
+
+function authorize() {
   setTimeout(function() {
     gapi.auth.authorize({
       client_id: googleClientId,
@@ -10,10 +17,6 @@ function onClientLoad() {
       immediate: true
     }, onAuthResult);
   }, 1);
-
-  $('#appTokenButton').click(function () {
-    invokeOAuthAuthorization('offline');
-  });
 }
 
 function onAuthResult(authResult) {
@@ -46,7 +49,12 @@ function onAuthResult(authResult) {
 }
 
 function onAjaxError(jqXHR, textStatus, errorThrown) {
-  alert("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+  if (jqXHR.status == 401) {
+    // token expired - authorize again
+    authorize();
+  } else {
+    alert("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+  }
 }
 
 function setAuthorizationHeader(jqXHR) {
