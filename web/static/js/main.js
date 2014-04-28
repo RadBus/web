@@ -26,6 +26,14 @@ function onAuthResult(authResult) {
     checkSchedule()
       .fail(onFirstCheckScheduleFail);
 
+    $('#refreshButton').click(function () {
+      $('#no-bus-schedule').hide();
+      $('#departures').hide();
+      $('#departures-list').empty();
+
+      checkSchedule();
+    });
+
   } else {
     var authorizeButton = $('#authorize-button');
 
