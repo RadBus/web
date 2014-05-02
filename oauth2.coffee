@@ -9,7 +9,6 @@ exports.register = (server) ->
     res.set 'Content-Type', 'application/javascript'
     res.send "var googleClientId = '#{process.env.RADBUS_GOOGLE_API_CLIENT_ID}';\n
               var googleClientSecret = '#{process.env.RADBUS_GOOGLE_API_CLIENT_SECRET}';\n
-              var googleAuthScopes = '#{process.env.RADBUS_GOOGLE_API_AUTH_SCOPES}';\n
               var googleOAuth2CallbackUrl = '#{process.env.RADBUS_GOOGLE_OAUTH2_CALLBACK_URL}'\n";
 
   # handler for the OAuth2 callback

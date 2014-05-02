@@ -1,6 +1,19 @@
+var googleAuthScopes;
 var googleOAuth2Result;
 
 function onClientLoad() {
+  $.ajax({
+    url: apiBaseUrl + '/oauth2-scopes',
+    type: 'GET',
+    dataType: 'json'
+  })
+  .fail(onAjaxError)
+  .done(onGetOAuth2Scopes);
+}
+
+function onGetOAuth2Scopes(data, textStatus, jqXHR) {
+  googleAuthScopes = data;
+
   gapi.client.setApiKey(googleClientSecret);
   authorize();
 
