@@ -28,15 +28,6 @@ exports.register = (server) ->
         res.redirect '/'
       else if req.query.state is 'offline'
 
-        console.log "FOO-1"
-
-        # res.send "#{json.refresh_token}"
-# res.send "<!DOCTYPE html>
-#           <html>
-#             <head>
-#               <title>Application Token</title>
-#             </head>
-#             <body>
         res.send "<!DOCTYPE html>
                   <html>
                     <head>
@@ -49,12 +40,6 @@ exports.register = (server) ->
                       <p><a href=\"/\">Back Home</a></p>
                     </body>
                   </html>"
-#
-#               <p><a href="/">Back Home</a></p>
-#             </body>
-#           </html>"
-
-        console.log "FOO-2"
 
       else
         res.send "You're in!  But not sure what to do with you (state = #{req.query.state})."
