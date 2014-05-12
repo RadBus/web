@@ -1,7 +1,7 @@
 express = require 'express'
 morgan = require 'morgan'
 compress = require 'compression'
-thisPackage = require './package'
+thisPackage = require '../package'
 
 LOG_PREFIX = 'SERVER: ';
 

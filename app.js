@@ -3,7 +3,7 @@ var thisPackage = require('./package');
 
 const LOG_PREFIX = 'APP: ';
 
-var server = require('./server');
+var server = require('./lib/server');
 
 // capabilities
 require('./api').register(server);
