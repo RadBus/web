@@ -8,6 +8,7 @@ LOG_PREFIX = 'SERVER: ';
 # create server
 server = express()
 server.set 'title', thisPackage.description
+server.set 'appVersion', thisPackage.version
 
 # configure logging
 loggingFormat = "#{LOG_PREFIX}:remote-addr \":method :url HTTP/:http-version\" :status :res[content-length] request-id=:req[X-Request-ID] \":referrer\" \":user-agent\""
