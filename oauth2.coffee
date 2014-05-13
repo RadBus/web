@@ -23,10 +23,13 @@ exports.register = (server) ->
       inspectOptions = depth: null
       console.log "#{LOG_PREFIX} After token exchange: state = #{req.query.state}, data = #{util.inspect(json, inspectOptions)}"
 
-      if req.query.state is 'online'
-        res.redirect '/'
-      else if req.query.state is 'offline'
+      if json.error
+        res.send "An error occurred aquiring the Google OAuth2 token: #{json.error}"
 
+      else if req.query.state is 'online'
+        res.redirect '/'
+
+      else if req.query.state is 'offline'
         res.send "<!DOCTYPE html>
                   <html>
                     <head>
@@ -43,9 +46,12 @@ exports.register = (server) ->
       else
         res.send "You're in!  But not sure what to do with you (state = #{req.query.state})."
 
+    isSecure = req.secure or (req.get('x-forwarded-proto') is 'https')
+    protocol = if isSecure then 'https' else 'http'
+
     r.form
       code: req.query.code
       client_id: process.env.RADBUS_GOOGLE_API_CLIENT_ID
       client_secret: process.env.RADBUS_GOOGLE_API_CLIENT_SECRET
-      redirect_uri: "#{req.protocol}://#{req.get('host')}/#{process.env.RADBUS_GOOGLE_OAUTH2_CALLBACK_URL}"
+      redirect_uri: "#{protocol}://#{req.get('host')}/#{process.env.RADBUS_GOOGLE_OAUTH2_CALLBACK_URL}"
       grant_type: 'authorization_code'
