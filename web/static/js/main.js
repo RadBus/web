@@ -133,7 +133,7 @@ function getDepartures() {
 
 function onGetDeparturesDone(data, textStatus, jqXHR) {
   $.each(data, function (index, departure) {
-    var route = departure.route.number;
+    var route = departure.route.id;
     if (departure.route.terminal) {
       route += ('-' + departure.route.terminal);
     }
@@ -142,7 +142,7 @@ function onGetDeparturesDone(data, textStatus, jqXHR) {
 
     var wait = time.diff(moment(), 'minutes');
 
-    var message = time.format('LT') + " (" + wait + " minutes): " + route + " @ " + departure.stop.name;
+    var message = time.format('LT') + " (" + wait + " minutes): " + route + " @ " + departure.stop.description;
     var item = $('<li>' + message + '</li>');
 
     $('#departures-list').append(item);
