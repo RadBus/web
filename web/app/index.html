@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RadBus!</title>
+
+    <link rel="stylesheet" href="styles/styles.css" />
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div id="header" class="container">
+        <h1>Check your bus</h1>
+        <p>Get the bus departure times that you need to know now.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Depatures</h2>
+
+          <div id="authorize" style="display: none">
+            <p>Get started by authorizing the RadBus API to access your Google Drive.</p>
+            <p><a id="authorize-button" class="btn btn-primary btn-lg" role="button">Authorize!</a></p>
+          </div>
+
+          <div id="authenticated" style="display: none">
+            <div>
+              <p><a id="refreshButton" class="btn btn-primary btn-lg" role="button">Refresh</a></p>
+            </div>
+            <div id="no-bus-schedule" style="display: none">
+              <p>It looks like you haven't set up your bus schedule yet.</p>
+            </div>
+            <div id="departures" style="display: none">
+              <ul id="departures-list">
+              </ul>
+            </div>
+            <div>
+              <p><a id="editScheduleButton" class="btn btn-default" role="button">Edit Your Schedule</a></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-4">
+
+          <h2>Application Token</h2>
+          <p>Want to enable your server app to use the RadBus API to get your bus times?</p>
+          <p><a id="appTokenButton" class="btn btn-default" role="button">Get an Application Token</a></p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- bower:js -->
+    <!-- endbower -->
+    <script type="text/javascript">
+      var onClientLoad = null;
+    </script>
+    <script src="scripts/oauth2-config.js"></script>
+    <script src="scripts/api-config.js"></script>
+    <script src="scripts/app.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=onClientLoad"></script>
+  </body>
+</html>

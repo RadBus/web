@@ -7,7 +7,8 @@
   "description": "RadBus Web Client",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node_modules/.bin/gulp build",
+    "test": "node_modules/.bin/gulp test"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,19 @@
     "morgan": "~1.0.0",
     "compression": "~1.0.1",
     "serve-static": "~1.0.4",
-    "request": "~2.34.0"
+    "request": "~2.34.0",
+
+    "gulp": "^3.6.0",
+    "gulp-clean": "~0.3.0",
+    "gulp-jshint": "~1.6.1",
+    "gulp-concat": "~2.2.0",
+    "gulp-uglify": "~0.3.0",
+    "gulp-imagemin": "~0.5.1",
+    "gulp-bower-files": "~0.2.4",
+    "gulp-less": "~1.2.3",
+    "bower": "~1.3.3",
+    "wiredep": "~1.7.2",
+    "jshint": "^2.5.0",
+    "jshint-stylish": "^0.1.5"
   }
 }
