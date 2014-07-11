@@ -20,7 +20,7 @@ var paths = {
   scripts: ['scripts/**/*.js', '!scripts/libs/'],
   styles: ['styles/**/*.css'],
   html: ['index.html', '404.html'],
-  images: ['images/**/*.png'],
+  images: ['img/**/*.png'],
   extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
 };
 
@@ -46,9 +46,9 @@ gulp.task('scripts', ['clean'], function() {
 
 // Imagemin images and ouput them in dist
 gulp.task('imagemin', ['clean'], function() {
-  gulp.src(paths.images)
+  gulp.src(paths.images, { cwd: bases.app })
     .pipe(imagemin())
-    .pipe(gulp.dest(bases.dist));
+    .pipe(gulp.dest(bases.dist + 'img/'));
 });
 
 // Copy bower components to dist
