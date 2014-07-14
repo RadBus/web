@@ -5,7 +5,11 @@
   var googleAuthScopes;
   var googleOAuth2Result;
 
-  onClientLoad = function () {
+  var onGoogleClientConfig;
+
+  window.onClientLoad = function () {
+    console.log("Getting OAuth2 scopes...");
+
     $.ajax({
       url: apiBaseUrl + '/oauth2-scopes',
       type: 'GET',
@@ -15,18 +19,9 @@
     .done(onGetOAuth2Scopes);
   };
 
-  function onGetOAuth2Scopes (data, textStatus, jqXHR) {
-    googleAuthScopes = data;
+  window.authorize = function () {
+    console.log("Checking to see if the user has already granted access to RadBus...");
 
-    gapi.client.setApiKey(googleClientSecret);
-    authorize();
-
-    $('#appTokenButton').click(function () {
-      invokeOAuthAuthorization('offline');
-    });
-  }
-
-  function authorize() {
     setTimeout(function() {
       gapi.auth.authorize({
         client_id: googleClientId,
@@ -34,12 +29,53 @@
         immediate: true
       }, onAuthResult);
     }, 1);
+  };
+
+  window.invokeOAuthAuthorization = function (accessType) {
+    console.log("Calling the Googles to get authorization...");
+
+    var redirectUri = window.location.protocol + '//' + window.location.host + '/' + googleOAuth2CallbackUrl;
+
+    var oauthUrl = 'https://accounts.google.com/o/oauth2/auth' +
+      '?' +
+      '&client_id=' + encodeURI(googleClientId) +
+      '&scope=' + encodeURI(googleAuthScopes) +
+      '&immediate=false' +
+      '&response_type=code' +
+      '&redirect_uri=' + encodeURI(redirectUri) +
+      '&access_type=' + accessType +
+      '&state=' + accessType +
+      '&approval_prompt=force';
+
+    window.location = oauthUrl;
+  };
+
+  function onAjaxError (jqXHR, textStatus, errorThrown) {
+    if (jqXHR.status == 401) {
+      // token expired - authorize again
+      authorize();
+    } else {
+      alert("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+    }
+  }
+
+  function onGetOAuth2Scopes (data, textStatus, jqXHR) {
+    console.log("Configuring the Google API client...");
+
+    googleAuthScopes = data;
+
+    gapi.client.setApiKey(googleClientSecret);
+
+    // needs to implemented by the host page
+    window.onGoogleClientConfig();
   }
 
   function onAuthResult (authResult) {
     var authorizeButton = $('#authorize-button');
 
     if (authResult && !authResult.error) {
+      console.log("User has already granted access.");
+
       googleOAuth2Result = authResult;
       authorizeButton.hide();
 
@@ -56,6 +92,8 @@
       });
 
     } else {
+      console.log("User needs to grant access.");
+
       $('#authorize').show();
       $('#authorize-button').click(function() {
         invokeOAuthAuthorization('online');
@@ -65,20 +103,13 @@
     }
   }
 
-  function onAjaxError (jqXHR, textStatus, errorThrown) {
-    if (jqXHR.status == 401) {
-      // token expired - authorize again
-      authorize();
-    } else {
-      alert("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
-    }
-  }
-
   function setAuthorizationHeader (jqXHR) {
     jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
   }
 
   function checkSchedule() {
+    console.log("Getting the user's schedule to make sure they've set one up...");
+
     return $.ajax({
       url: apiBaseUrl + '/schedule',
       type: 'GET',
@@ -89,7 +120,8 @@
 
   function onFirstCheckScheduleFail (jqXHR, textStatus, errorThrown) {
     if (jqXHR.status === 404) {
-      // user hasn't created their schedule yet
+      console.log("User hasn't created their schedule yet.");
+
       createEmptySchedule()
         .done(function () {
           // attempt to get schedule again
@@ -108,15 +140,19 @@
     });
 
     if ($.isEmptyObject(data.routes)) {
-      // nothing defined in the schedule - prompt user to edit their schedule
+      console.log("User has an empty schedule.  Prompt them to edit their schedule.");
+
       $('#no-bus-schedule').show();
     } else {
-      // a schedule exists - get departures
+      console.log("User has items in their schedule.");
+
       getDepartures();
     }
   }
 
   function createEmptySchedule () {
+    console.log("Creating a new empty schedule for the user...");
+
     return $.ajax({
       url: apiBaseUrl + '/schedule',
       type: 'POST',
@@ -125,6 +161,8 @@
   }
 
   function getDepartures () {
+    console.log("Getting the user's departures...");
+
     return $.ajax({
       url: apiBaseUrl + '/departures',
       type: 'GET',
@@ -136,40 +174,31 @@
   }
 
   function onGetDeparturesDone (data, textStatus, jqXHR) {
-    $.each(data, function (index, departure) {
-      var route = departure.route.id;
-      if (departure.route.terminal) {
-        route += ('-' + departure.route.terminal);
-      }
+    if (data.length === 0) {
+      console.log("User has no upcoming departures.");
 
-      var time = moment(departure.time);
+      $('#no-departures').show();
+    } else {
+      console.log("User has departures!");
 
-      var wait = time.diff(moment(), 'minutes');
+      $.each(data, function (index, departure) {
+        var route = departure.route.id;
+        if (departure.route.terminal) {
+          route += ('-' + departure.route.terminal);
+        }
 
-      var message = time.format('LT') + " (" + wait + " minutes): " + route + " @ " + departure.stop.description;
-      var item = $('<li>' + message + '</li>');
+        var time = moment(departure.time);
 
-      $('#departures-list').append(item);
-    });
+        var wait = time.diff(moment(), 'minutes');
 
-    $('#departures').show();
-  }
+        var message = time.format('LT') + " (" + wait + " minutes): " + route + " @ " + departure.stop.description;
+        var item = $('<li>' + message + '</li>');
 
-  function invokeOAuthAuthorization (accessType) {
-    var redirectUri = window.location.protocol + '//' + window.location.host + '/' + googleOAuth2CallbackUrl;
+        $('#departures-list').append(item);
+      });
 
-    var oauthUrl = 'https://accounts.google.com/o/oauth2/auth' +
-      '?' +
-      '&client_id=' + encodeURI(googleClientId) +
-      '&scope=' + encodeURI(googleAuthScopes) +
-      '&immediate=false' +
-      '&response_type=code' +
-      '&redirect_uri=' + encodeURI(redirectUri) +
-      '&access_type=' + accessType +
-      '&state=' + accessType +
-      '&approval_prompt=force';
-
-    window.location = oauthUrl;
+      $('#departures').show();
+    }
   }
 
 })();

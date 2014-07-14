@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RadBus!</title>
+    <title>RadBus Application Token</title>
 
     <link rel="stylesheet" href="styles/styles.css" />
     <!-- bower:css -->
@@ -20,39 +20,16 @@
   <body>
     <div class="jumbotron">
       <div id="header" class="container">
-        <h1>RadBus</h1>
-        <p>Because the best way to catch the bus is to be there.</p>
+        <h1>RadBus Application Token</h1>
+        <p>Want to enable your server app to use the RadBus API to get your bus times?</p>
       </div>
     </div>
 
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h2>Depatures</h2>
 
-          <div id="authorize" style="display: none">
-            <p>Get started by authorizing the RadBus API to access your Google Drive.</p>
-            <p><a id="authorize-button" class="btn btn-primary btn-lg" role="button">Authorize!</a></p>
-          </div>
-
-          <div id="authenticated" style="display: none">
-            <div>
-              <p><a id="refreshButton" class="btn btn-primary btn-lg" role="button">Refresh</a></p>
-            </div>
-            <div id="no-bus-schedule" style="display: none">
-              <p>It looks like you haven't set up your bus schedule yet.</p>
-            </div>
-            <div id="no-departures" style="display: none">
-              <p>It looks like you've got no upcoming departures.</p>
-            </div>
-            <div id="departures" style="display: none">
-              <ul id="departures-list">
-              </ul>
-            </div>
-            <div>
-              <p><a id="editScheduleButton" class="btn btn-default" role="button">Edit Your Schedule</a></p>
-            </div>
-          </div>
+          <p><a id="appTokenButton" class="btn btn-default" role="button">Get an Application Token</a></p>
 
         </div>
       </div>
@@ -63,7 +40,9 @@
     <script type="text/javascript">
 
       window.onGoogleClientConfig = function () {
-        authorize();
+        $('#appTokenButton').click(function () {
+          invokeOAuthAuthorization('offline');
+        });
       };
 
     </script>

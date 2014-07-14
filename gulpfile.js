@@ -19,7 +19,7 @@ var bases = {
 var paths = {
   scripts: ['scripts/**/*.js', '!scripts/libs/'],
   styles: ['styles/**/*.css'],
-  html: ['index.html', '404.html'],
+  html: ['index.html', 'app-token.html', '404.html'],
   images: ['img/**/*.png'],
   extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
 };
