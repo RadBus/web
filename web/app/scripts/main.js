@@ -2,21 +2,21 @@
 
   'use strict';
 
-  var googleAuthScopes;
+  var oAuth2Info;
   var googleOAuth2Result;
 
   var onGoogleClientConfig;
 
   window.onClientLoad = function () {
-    console.log("Getting OAuth2 scopes...");
+    console.log("Getting OAuth2 info...");
 
     $.ajax({
-      url: apiBaseUrl + '/oauth2-scopes',
+      url: apiBaseUrl + '/oauth2',
       type: 'GET',
       dataType: 'json'
     })
     .fail(onAjaxError)
-    .done(onGetOAuth2Scopes);
+    .done(onGetOAuth2Info);
   };
 
   window.authorize = function () {
@@ -24,8 +24,8 @@
 
     setTimeout(function() {
       gapi.auth.authorize({
-        client_id: googleClientId,
-        scope: googleAuthScopes,
+        client_id: oAuth2Info.client_id,
+        scope: oAuth2Info.scopes,
         immediate: true
       }, onAuthResult);
     }, 1);
@@ -34,15 +34,14 @@
   window.invokeOAuthAuthorization = function (accessType) {
     console.log("Calling the Googles to get authorization...");
 
-    var redirectUri = window.location.protocol + '//' + window.location.host + '/' + googleOAuth2CallbackUrl;
+    var redirectUri = window.location.protocol + '//' + window.location.host + '/oauth2callback';
 
     var oauthUrl = 'https://accounts.google.com/o/oauth2/auth' +
-      '?' +
-      '&client_id=' + encodeURI(googleClientId) +
-      '&scope=' + encodeURI(googleAuthScopes) +
+      '?client_id=' + encodeURIComponent(oAuth2Info.client_id) +
+      '&scope=' + encodeURIComponent(oAuth2Info.scopes) +
       '&immediate=false' +
       '&response_type=code' +
-      '&redirect_uri=' + encodeURI(redirectUri) +
+      '&redirect_uri=' + encodeURIComponent(redirectUri) +
       '&access_type=' + accessType +
       '&state=' + accessType +
       '&approval_prompt=force';
@@ -59,12 +58,12 @@
     }
   }
 
-  function onGetOAuth2Scopes (data, textStatus, jqXHR) {
+  function onGetOAuth2Info (data, textStatus, jqXHR) {
     console.log("Configuring the Google API client...");
 
-    googleAuthScopes = data;
+    oAuth2Info = data;
 
-    gapi.client.setApiKey(googleClientSecret);
+    gapi.client.setApiKey(oAuth2Info.client_secret);
 
     // needs to implemented by the host page
     window.onGoogleClientConfig();
