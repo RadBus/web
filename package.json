@@ -21,24 +21,23 @@
   },
   "homepage": "https://github.com/TargetRAD/radbus-web",
   "dependencies": {
+    "bower": "~1.3.3",
     "coffee-script": "~1.7.1",
-    "express": "~4.0.0",
-    "morgan": "~1.0.0",
     "compression": "~1.0.1",
-    "serve-static": "~1.0.4",
-    "request": "~2.34.0",
-
+    "express": "^4.0.0",
     "gulp": "^3.6.0",
     "gulp-clean": "~0.3.0",
-    "gulp-jshint": "~1.6.1",
-    "gulp-concat": "~2.2.0",
+    "gulp-concat": "^2.2.0",
+    "gulp-imagemin": "^0.5.1",
+    "gulp-inject": "^1.0.1",
+    "gulp-jshint": "^1.6.4",
+    "gulp-less": "^1.2.4",
     "gulp-uglify": "~0.3.0",
-    "gulp-imagemin": "~0.5.1",
-    "gulp-bower-files": "~0.2.4",
-    "gulp-less": "~1.2.3",
-    "bower": "~1.3.3",
-    "wiredep": "~1.7.2",
     "jshint": "^2.5.0",
-    "jshint-stylish": "^0.1.5"
+    "jshint-stylish": "^0.1.5",
+    "morgan": "^1.0.1",
+    "request": "^2.34.0",
+    "serve-static": "^1.0.4",
+    "wiredep": "^1.7.3"
   }
 }

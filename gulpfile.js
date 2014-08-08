@@ -7,8 +7,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var stylish = require('jshint-stylish');
-var bowerFiles = require('gulp-bower-files');
-var wiredep = require('wiredep').stream;
+var bowerFiles = require('main-bower-files');
+var inject = require('gulp-inject');
 var less = require('gulp-less');
 
 var bases = {
@@ -32,7 +32,7 @@ gulp.task('clean', function() {
 
 // Process frontend scripts and concatenate them into one output file
 gulp.task('scripts', ['clean'], function() {
-  gulp.src(paths.scripts, { cwd: bases.app })
+  return gulp.src(paths.scripts, { cwd: bases.app })
     .pipe(jshint({
       browser: true,
       jquery: true
@@ -46,34 +46,34 @@ gulp.task('scripts', ['clean'], function() {
 
 // Imagemin images and ouput them in dist
 gulp.task('imagemin', ['clean'], function() {
-  gulp.src(paths.images, { cwd: bases.app })
+  return gulp.src(paths.images, { cwd: bases.app })
     .pipe(imagemin())
     .pipe(gulp.dest(bases.dist + 'img/'));
 });
 
 // Copy bower components to dist
 gulp.task('bower', ['clean'], function() {
-  bowerFiles()
+  return gulp.src(bowerFiles(), { base: bases.app + 'components' })
     .pipe(gulp.dest(bases.dist + 'components'));
 });
 
-// Wire dependencies
-gulp.task('deps', ['clean', 'bower'], function() {
-  gulp.src(paths.html, { cwd: bases.app })
-    .pipe(wiredep())
+// Inject dependencies
+gulp.task('deps', ['bower'], function() {
+  return gulp.src(paths.html, { cwd: bases.app })
+    .pipe(inject(gulp.src('components/**/*.*', { read: false, cwd: bases.dist })))
     .pipe(gulp.dest(bases.dist));
 });
 
 // Less the CSS's
 gulp.task('less', ['clean'], function(){
-  gulp.src(bases.app + 'styles.less')
+  return gulp.src(bases.app + 'styles.less')
     .pipe(less())
     .pipe(gulp.dest(bases.dist + 'styles'));
 });
 
 // Copy extra html5bp files
 gulp.task('extras', ['clean'], function() {
-  gulp.src(paths.extras, { cwd: bases.app })
+  return gulp.src(paths.extras, { cwd: bases.app })
    .pipe(gulp.dest(bases.dist));
 });
 
