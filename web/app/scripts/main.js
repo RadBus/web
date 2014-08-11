@@ -76,14 +76,16 @@
       console.log("User has already granted access.");
 
       googleOAuth2Result = authResult;
-      authorizeButton.hide();
+      authorizeButton.removeClass('show').addClass('hidden');
 
+      $('#getting-departures').removeClass('hidden').addClass('show');
       checkSchedule()
         .fail(onFirstCheckScheduleFail);
 
       $('#refreshButton').click(function () {
-        $('#no-bus-schedule').hide();
-        $('#departures').hide();
+        $('#getting-departures').removeClass('hidden').addClass('show');
+        $('#no-bus-schedule').removeClass('show').addClass('hidden');
+        $('#departures').removeClass('show').addClass('hidden');
         $('#departures-list').empty();
 
         checkSchedule()
@@ -93,7 +95,7 @@
     } else {
       console.log("User needs to grant access.");
 
-      $('#authorize').show();
+      $('#authorize').removeClass('hidden').addClass('show');
       $('#authorize-button').click(function() {
         invokeOAuthAuthorization('online');
 
@@ -133,7 +135,7 @@
   }
 
   function onCheckScheduleDone (data, textStatus, jqXHR) {
-    $('#authenticated').show();
+    $('#authenticated').removeClass('hidden').addClass('show');
     $('#editScheduleButton').click(function () {
       window.open(data.editUrl, '_blank');
     });
@@ -141,7 +143,7 @@
     if ($.isEmptyObject(data.routes)) {
       console.log("User has an empty schedule.  Prompt them to edit their schedule.");
 
-      $('#no-bus-schedule').show();
+      $('#no-bus-schedule').removeClass('hidden').addClass('show');
     } else {
       console.log("User has items in their schedule.");
 
@@ -169,14 +171,17 @@
       beforeSend: setAuthorizationHeader,
     })
     .fail(onAjaxError)
-    .done(onGetDeparturesDone);
+    .done(onGetDeparturesDone)
+    .always(function() {
+      $('#getting-departures').removeClass('show').addClass('hidden');
+    });
   }
 
   function onGetDeparturesDone (data, textStatus, jqXHR) {
     if (data.length === 0) {
       console.log("User has no upcoming departures.");
 
-      $('#no-departures').show();
+      $('#no-departures').removeClass('hidden').addClass('show');
     } else {
       console.log("User has departures!");
 
@@ -196,7 +201,8 @@
         $('#departures-list').append(item);
       });
 
-      $('#departures').show();
+      $('#departures').removeClass('hidden').addClass('show');
+      $('#schedule').removeClass('hidden').addClass('show');
     }
   }
 

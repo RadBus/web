@@ -27,33 +27,37 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
-          <div id="authorize" style="display: none">
+        <div class="col-md-6">
+          <div id="authorize" class="hidden">
             <p>Get started by authorizing the RadBus API to uniquely identify you and your schedule.</p>
             <p><a id="authorize-button" class="btn btn-primary btn-lg" role="button">Authorize!</a></p>
           </div>
 
-          <div id="authenticated" style="display: none">
+          <div id="authenticated" class="hidden">
             <h2>Depatures</h2>
 
             <div>
               <p><a id="refreshButton" class="btn btn-primary btn-lg" role="button">Refresh</a></p>
             </div>
-            <div id="no-bus-schedule" style="display: none">
+            <div id="getting-departures" class="hidden">
+              <p>Getting departures...</p>
+            </div>
+            <div id="no-bus-schedule" class="hidden">
               <p>It looks like you haven't set up your bus schedule yet.</p>
             </div>
-            <div id="no-departures" style="display: none">
+            <div id="no-departures" class="hidden">
               <p>It looks like you've got no upcoming departures.</p>
             </div>
-            <div id="departures" style="display: none">
+            <div id="departures" class="hidden">
               <ul id="departures-list">
               </ul>
             </div>
-            <div>
-              <p><a id="editScheduleButton" class="btn btn-default" role="button">Edit Your Schedule</a></p>
-            </div>
           </div>
 
+        </div>
+        <div id="schedule" class="col-md-6 hidden">
+          <h2>Schedule</h2>
+          <p><a id="editScheduleButton" class="btn btn-default" role="button">Edit</a></p>
         </div>
       </div>
     </div>
