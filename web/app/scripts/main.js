@@ -70,6 +70,8 @@
   }
 
   function onAuthResult (authResult) {
+    hide($('#welcome'));
+
     var authorizeButton = $('#authorize-button');
 
     if (authResult && !authResult.error) {
