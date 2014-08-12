@@ -80,13 +80,11 @@
       googleOAuth2Result = authResult;
       hide(authorizeButton);
 
-      show($('#getting-departures'));
       checkSchedule()
         .fail(onFirstCheckScheduleFail);
 
       // refresh depatures
       $('#refreshButton').click(function () {
-        show($('#getting-departures'));
         hide($('#no-bus-schedule'));
         hide($('#departures'));
         hide($('#no-departures'));
@@ -235,6 +233,8 @@
 
   function getDepartures () {
     console.log("Getting the user's departures...");
+
+    show($('#getting-departures'));
 
     return $.ajax({
       url: apiBaseUrl + '/departures',
