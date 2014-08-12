@@ -87,6 +87,7 @@
         show($('#getting-departures'));
         hide($('#no-bus-schedule'));
         hide($('#departures'));
+        hide($('#no-departures'));
         $('#departures-list').empty();
 
         checkSchedule()
