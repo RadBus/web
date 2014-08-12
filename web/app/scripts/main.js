@@ -76,26 +76,85 @@
       console.log("User has already granted access.");
 
       googleOAuth2Result = authResult;
-      authorizeButton.removeClass('show').addClass('hidden');
+      hide(authorizeButton);
 
-      $('#getting-departures').removeClass('hidden').addClass('show');
+      show($('#getting-departures'));
       checkSchedule()
         .fail(onFirstCheckScheduleFail);
 
+      // refresh depatures
       $('#refreshButton').click(function () {
-        $('#getting-departures').removeClass('hidden').addClass('show');
-        $('#no-bus-schedule').removeClass('show').addClass('hidden');
-        $('#departures').removeClass('show').addClass('hidden');
+        show($('#getting-departures'));
+        hide($('#no-bus-schedule'));
+        hide($('#departures'));
         $('#departures-list').empty();
 
         checkSchedule()
           .fail(onFirstCheckScheduleFail);
       });
 
+      // edit scheduels
+      $('#toggle-schedule-button').click(function () {
+        $('#edit-schedule').toggleClass('hidden').toggleClass('show');
+      });
+
+      // upsert schedule route
+      var upsertScheduleRouteButton = $('#upsert-schedule-route-button');
+      var upsertScheduleRouteError = $('#upsert-schedule-route-error');
+
+      upsertScheduleRouteButton.click(function () {
+        upsertScheduleRouteButton.text('Working...');
+        upsertScheduleRouteButton.prop('disabled', true);
+        hide(upsertScheduleRouteError);
+
+        var requestJson = $('#upsert-schedule-route-input').val();
+
+        upsertScheduleRoute(requestJson)
+          .fail(function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status == 400) {
+              // show error
+              upsertScheduleRouteError.text(jqXHR.responseJSON.message);
+              show(upsertScheduleRouteError);
+            } else {
+              onAjaxError(jqXHR, textStatus, errorThrown);
+            }
+          })
+          .always(function() {
+            upsertScheduleRouteButton.text('Create/Update');
+            upsertScheduleRouteButton.prop('disabled', false);
+          });
+      });
+
+      // delete schedule route
+      var deleteScheduleRouteButton = $('#delete-schedule-route-button');
+      var deleteScheduleRouteError = $('#delete-schedule-route-error');
+
+      deleteScheduleRouteButton.click(function () {
+        deleteScheduleRouteButton.text('Working...');
+        deleteScheduleRouteButton.prop('disabled', true);
+        hide(deleteScheduleRouteError);
+
+        var routeId = $('#delete-schedule-route-input').val();
+
+        deleteScheduleRoute(routeId)
+          .fail(function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status == 400) {
+              // show error
+              deleteScheduleRouteError.text(jqXHR.responseJSON.message);
+              show(deleteScheduleRouteError);
+            } else {
+              onAjaxError(jqXHR, textStatus, errorThrown);
+            }
+          })
+          .always(function() {
+            deleteScheduleRouteButton.text('Delete');
+            deleteScheduleRouteButton.prop('disabled', false);
+          });
+      });
     } else {
       console.log("User needs to grant access.");
 
-      $('#authorize').removeClass('hidden').addClass('show');
+      show($('#authorize'));
       $('#authorize-button').click(function() {
         invokeOAuthAuthorization('online');
 
@@ -108,15 +167,27 @@
     jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
   }
 
-  function checkSchedule() {
-    console.log("Getting the user's schedule to make sure they've set one up...");
+  function getSchedule() {
+    var existingSchedule = $('#existing-schedule');
+    existingSchedule.text("Fetching...");
 
     return $.ajax({
       url: apiBaseUrl + '/schedule',
       type: 'GET',
       dataType: 'json',
       beforeSend: setAuthorizationHeader,
-    }).done(onCheckScheduleDone);
+    }).done(function (data, textStatus, jqXHR) {
+      var json = JSON.stringify(data, undefined, 2);
+      existingSchedule.text(json);
+      existingSchedule.highlight();
+    });
+  }
+
+  function checkSchedule() {
+    console.log("Getting the user's schedule to make sure they've set one up...");
+
+    return getSchedule()
+      .done(onCheckScheduleDone);
   }
 
   function onFirstCheckScheduleFail (jqXHR, textStatus, errorThrown) {
@@ -135,15 +206,13 @@
   }
 
   function onCheckScheduleDone (data, textStatus, jqXHR) {
-    $('#authenticated').removeClass('hidden').addClass('show');
-    $('#editScheduleButton').click(function () {
-      window.open(data.editUrl, '_blank');
-    });
+    show($('#authenticated'));
 
     if ($.isEmptyObject(data.routes)) {
       console.log("User has an empty schedule.  Prompt them to edit their schedule.");
 
-      $('#no-bus-schedule').removeClass('hidden').addClass('show');
+      show($('#no-bus-schedule'));
+      show($('#schedule'));
     } else {
       console.log("User has items in their schedule.");
 
@@ -173,7 +242,7 @@
     .fail(onAjaxError)
     .done(onGetDeparturesDone)
     .always(function() {
-      $('#getting-departures').removeClass('show').addClass('hidden');
+      hide($('#getting-departures'));
     });
   }
 
@@ -181,7 +250,8 @@
     if (data.length === 0) {
       console.log("User has no upcoming departures.");
 
-      $('#no-departures').removeClass('hidden').addClass('show');
+      show($('#no-departures'));
+      show($('#schedule'));
     } else {
       console.log("User has departures!");
 
@@ -201,9 +271,64 @@
         $('#departures-list').append(item);
       });
 
-      $('#departures').removeClass('hidden').addClass('show');
-      $('#schedule').removeClass('hidden').addClass('show');
+      show($('#departures'));
+      show($('#schedule'));
     }
   }
 
+  function upsertScheduleRoute (requestJson) {
+    console.log("Creating/updating user's schedule route...");
+
+    return $.ajax({
+      url: apiBaseUrl + '/schedule/routes',
+      type: 'POST',
+      data: requestJson,
+      contentType: 'application/json',
+      beforeSend: setAuthorizationHeader,
+    })
+    .done(onScheduleChanged);
+  }
+
+  function deleteScheduleRoute (routeId) {
+    console.log("Deleting user's schedule route '" + routeId + "'...");
+
+    return $.ajax({
+      url: apiBaseUrl + '/schedule/routes/' + routeId,
+      type: 'DELETE',
+      beforeSend: setAuthorizationHeader,
+    })
+    .done(onScheduleChanged);
+  }
+
+  function onScheduleChanged () {
+    console.log("Schedule has been successfully changed.  Fetching latest schedule...");
+
+    getSchedule()
+      .fail(onAjaxError);
+  }
+
+  function show(element) {
+    element.addClass('show').removeClass('hidden');
+  }
+
+  function hide(element) {
+    element.addClass('hidden').removeClass('show');
+  }
+
+  jQuery.fn.highlight = function() {
+    $(this).each(function () {
+      var el = $(this);
+      $("<div/>")
+      .width(el.outerWidth())
+      .height(el.outerHeight())
+      .css({
+        "position": "absolute",
+        "left": el.offset().left,
+        "top": el.offset().top,
+        "background-color": "#ffff99",
+        "opacity": ".7",
+        "z-index": "9999999"
+      }).appendTo('body').fadeOut(1500).queue(function () { $(this).remove(); });
+    });
+  };
 })();

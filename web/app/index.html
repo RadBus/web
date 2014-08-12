@@ -30,7 +30,7 @@
         <div class="col-md-6">
           <div id="authorize" class="hidden">
             <p>Get started by authorizing the RadBus API to uniquely identify you and your schedule.</p>
-            <p><a id="authorize-button" class="btn btn-primary btn-lg" role="button">Authorize!</a></p>
+            <button type="button" id="authorize-button" class="btn btn-primary btn-lg">Authorize!</button>
           </div>
 
           <div id="authenticated" class="hidden">
@@ -56,10 +56,50 @@
 
         </div>
         <div id="schedule" class="col-md-6 hidden">
-          <h2>Schedule</h2>
-          <p><a id="editScheduleButton" class="btn btn-default" role="button">Edit</a></p>
+          <button type="button" id="toggle-schedule-button" class="btn btn-default btn-lg">Schedule</button>
+          <div id="edit-schedule" class="hidden">
+            <h4>Your Current Schedule Data:</h4>
+            <textarea id="existing-schedule" class="form-control" style="font-family:monospace;" rows="8" readonly></textarea>
+
+            <h4>Create/Update Schedule Route:</h4>
+            <form role="form">
+              <div class="form-group">
+                <textarea id="upsert-schedule-route-input" class="form-control" style="font-family:monospace;" rows="5" placeholder="Add/Update Route request body (JSON)"></textarea>
+                <p id="upsert-schedule-route-error" class="bg-danger hidden">bad stuff</p>
+                <button type="button" id="upsert-schedule-route-button" class="btn btn-success">Create/Update</button>
+              </div>
+            </form>
+
+            <h4>Delete Existing Schedule Route:</h4>
+            <form role="form" class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" id="delete-schedule-route-input" placeholder="Route Id">
+                <button type="button" id="delete-schedule-route-button" class="btn btn-warning">Delete</button>
+              </div>
+              <p id="delete-schedule-route-error" class="bg-danger hidden">bad stuff</p>
+            </form>
+
+            <br>
+            <div class="bg-warning">
+              <p>
+                Yes, we're working on a much better UI!
+              </p>
+              <p>
+                In the meantime:
+                <ul>
+                  <li>Check out the <a href="http://docs.api.radbus.io/#addupdate-route-post-v1scheduleroutes" target="_blank">API docs</a> for info on how to correctly structure your Create/Update Schedule Route request body below.</li>
+                  <li>For all avaiable route Id's, you can manually call the <a href="https://api.radbus.io/v1/routes" target="_blank">Route List</a> API resource.</li>
+                  <li>Then you can call the <a href="https://api.radbus.io/v1/routes/4" target="_blank">Route Detail</a> resource to see all the stops for a specific route.</li>
+                </ul>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div id="footer">
+      <br>
     </div>
 
     <!-- inject:js -->
