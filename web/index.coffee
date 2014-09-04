@@ -13,4 +13,5 @@ exports.register = (server) ->
     res.send "Application Version = #{thisPackage.version}"
 
   # serve up static client-side files (the web app)
-  server.use serveStatic('web/dist')
+  server.use '/', serveStatic('web/dist')
+  server.use '/beta', serveStatic('web/beta')

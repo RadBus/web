@@ -22,8 +22,6 @@
 
   // main-edit.js
 
-  var apiBaseUrl = 'https://api.radbus.io/v1';
-
   (function () {
 
     'use strict';
