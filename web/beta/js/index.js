@@ -32,6 +32,8 @@
     var onGoogleClientConfig;
 
     window.onClientLoad = function () {
+      $('#loginPrompt').hide();
+
       console.log("Getting OAuth2 info...");
 
       $.ajax({
@@ -96,15 +98,10 @@
     function onAuthResult (authResult) {
       hide($('#welcome'));
 
-      $('#loginPrompt').hide();
-
-      var authorizeButton = $('#authorize-button');
-
       if (authResult && !authResult.error) {
         console.log("User has already granted access.");
 
         googleOAuth2Result = authResult;
-        hide(authorizeButton);
 
         checkSchedule()
           .fail(onFirstCheckScheduleFail);
@@ -181,7 +178,7 @@
       } else {
         console.log("User needs to grant access.");
 
-        show($('#authorize'));
+        $('#loginPrompt').show();
         $('#authorize-button').click(function() {
           invokeOAuthAuthorization('online');
 
