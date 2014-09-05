@@ -67,7 +67,7 @@
         '&response_type=code' +
         '&redirect_uri=' + encodeURIComponent(redirectUri) +
         '&access_type=' + accessType +
-        '&state=' + accessType +
+        '&state=' + 'beta' +
         '&approval_prompt=force';
 
       window.location = oauthUrl;

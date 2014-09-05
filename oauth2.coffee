@@ -32,6 +32,9 @@ exports.register = (server) ->
         else if req.query.state is 'online'
           res.redirect '/'
 
+        else if req.query.state is 'beta'
+          res.redirect '/beta'
+
         else if req.query.state is 'offline'
           res.send "<!DOCTYPE html>
                     <html>
