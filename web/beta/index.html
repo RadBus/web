@@ -4,16 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>RADBus: </title>
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,600,500,900,400,800|Arvo:400" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Raleway:600,500,900,400,400,800|Arvo:400" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
-  <link rel="stylesheet" href="css/index-grid.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/index.css">
   <!-- <title> and other generated code will appear above your static head code. -->
-
+  
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>  
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
-
+  
 <style>
 .selectedButton {
   border-right-color: rgb(29, 39, 43)!important;
@@ -23,58 +22,100 @@
   font-style: normal!important;
   font-weight: 600!important;
   color: rgb(29, 39, 43)!important;
-}
+}  
 </style>
 </head>
 <body class="body index clearfix">
-  <div id="menu" class="menu clearfix js-menu">
-    <button id="buttonDepartures" class="_button _button-1 js-button-departures" type="button">Departures</button>
-    <button id="buttonRoutes" class="_button _button-2 js-button-routes" type="button">Routes</button>
-    <button id="buttonSettings" class="_button _button-3 js-button-settings" type="button">Settings</button>
-    <button id="buttonAbout" class="_button _button-4 js-button-about" type="button">About</button>
-  </div>
   <div id="authenticated" class="screens clearfix js-screens">
-    <img id="headerBus" class="headerbus js-header-bus" src="images/bus.svg">
-    <button id="refreshButton" class="refresh js-refresh-button">refresh</button>
-    <div id="about" class="about clearfix js-about">
-      <p class="text _text">about placeholder</p>
+    <div id="selectFromListModal" class="selectfromlistmodal js-select-from-list-modal">
+      <div class="container">
+        <button id="selectFromListCancelButton" class="selectfromlistcancelbutton js-select-from-list-cancel-button">cancel</button>
+        <button id="selectFromListAddButton" class="selectfromlistaddbutton js-select-from-list-add-button">add</button>
+      </div>
+      <select id="selectFromList" class="selectfromlist js-select-from-list" name="selectRoute">
+        <option value="choose">choose</option>
+      </select>
     </div>
+    <button id="aboutRADBusButton" class="aboutradbus js-about-r-a-d-bus-button">About RADBus</button>
+    <div id="about" class="about clearfix js-about">
+      <div class="text _text">
+        <p>Welcome to RadBus!</p>
+        <p>For bus riders: thank you for using this free utility to track your bus schedule!&nbsp;</p>
+        <p>If you have questions, issues, or comments, please visit our GitHub project to provide feedback.&nbsp;</p>
+        <p>For programmers and anyone enthusiastic about open source software, we'd love to hear from you. RadBus is not one but two applicataions, the RadBus Web Client and the RadBus API. &nbsp;The RadBus API&nbsp;helps apps to easily access Twin Cities Metro Transit departure data against a user's personalized schedule stored in the cloud.</p>
+</div>
+      <div class="container">
+        <button onClick="window.location='https://github.com/TargetRAD/radbus-api';" class="_button-1">RadBus API on GitHub</button>
+        <button onClick="window.location='https://github.com/TargetRAD/radbus-web';" class="_button-2">RadBus Web Client on GitHub</button>
+      </div>
+    </div>
+    <button id="refreshButton" class="refresh js-refresh-button">Departures</button>
+    <button id="manageRoutesButton" class="manageroutesbutton js-manage-routes-button">Routes</button>
     <div id="routes" class="routes clearfix js-routes">
-      <p class="text _text">routes placeholder</p>
+      <p class="text _text">Routes</p>
+      <button id="addRouteButton" class="addroutebutton js-add-route-button">Add Route</button>
+      <div id="routes-list" class="chosenroutes js-routes-list">
+        <div id="placeholder-route" class="route js-placeholder-route">
+          <div class="routedetail">
+            <button class="doneroute">done<br></button>
+            <button class="removeroute">delete this route</button>
+            <button class="routename">(selected route name)</button>
+            <div class="pm">PM</div>
+            <div class="pmdirection">South</div>
+            <button class="addstop addstop-1">add stop</button>
+            <div class="pmstops clearfix">
+              <div class="stop">
+                <button class="removestop">delete</button>
+                <button class="stopname">(selected stop name)</button>
+              </div>
+            </div>
+            <div class="am">AM</div>
+            <div class="amdirection">North</div>
+            <button class="addstop addstop-2">add stop</button>
+            <div class="amstops clearfix">
+              <div class="stop">
+                <button class="removestop">delete</button>
+                <button class="stopname">(selected stop name)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="departures" class="departures clearfix js-departures">
-      <div id="no-bus-schedule" class="text _text text-3 js-message-no-routes">
+      <div id="departures-list" class="list js-departures-list"></div>
+      <div id="no-departures" class="text text-3 js-message-no-departures">No departures found.</div>
+      <div id="no-bus-schedule" class="text _text text-4 js-message-no-routes">
         <p>We need to know what bus stops and schedule to show you.&nbsp;</p>
         <p>It's time to <a>setup your routes</a>.</p>
 </div>
       <div id="placeholder-departure" class="departure clearfix js-placeholder-departure">
         <div class="departure-background"></div>
-        <p class="time-label">Departure Time</p>
-        <div class="time">12:45 PM</div>
         <p class="bus-detail">Bus, Express</p>
-        <div class="bus">156</div>
+        <p class="time-label">Departure Time</p>
         <div class="stop-detail">10th &amp; Marquette</div>
-        <div class="stop">Stop C</div>
+        <div class="bus">156</div>
+        <div class="time">12:45 PM</div>
+        <p class="stop">Stop C</p>
         <button class="departure-directions">directions</button>
       </div>
-      <div id="departures-list" class="list js-departures-list"></div>
-      <div id="getting-departures" class="text text-4">Getting departures...</div>
-      <div id="no-departures" class="text text-5 js-message-no-departures">No departures found.</div>
+      <div id="getting-departures" class="text text-5">Getting departures...</div>
     </div>
+    <img id="headerBus" class="headerbus js-header-bus" src="images/bus.svg">
   </div>
+  <img id="busStopSign" class="busstopsign js-bus-stop-sign" src="images/bus-stop-leftside.svg">
   <div id="header" class="header clearfix js-header">
-    <button class="_button _button-5">RAD Bus</button>
-    <button class="_button _button-6">the best way to catch the bus is to be there</button>
+    <button class="_button-3">RAD Bus</button>
+    <button class="_button-4">the best way to catch the bus is to be there</button>
   </div>
   <div id="loginPrompt" class="loginprompt clearfix js-login-prompt">
     <div class="_text">Use your Google ID to begin</div>
-    <button id="authorize-button" class="_button">log in</button>
+    <button id="authorize-button">log in</button>
   </div>
   <img id="bus" class="bus bus-2 js-bus" src="images/bus.svg">
   <img id="background" class="background js-background" src="images/background.svg">
 
   <script src="js/jquery-min.js"></script>
-  <script src="/scripts/api-config.js"></script>
   <script src="js/index.js"></script>
   <!-- Page content will appear above your static tail code. This is a good place for analytics code, etc. -->
 
@@ -86,7 +127,7 @@
 
   </script>
 	<script src="https://apis.google.com/js/client.js?onload=onClientLoad"></script>
-
+  
 <script id="departure-template" type="text/x-handlebars-template">
       <div class="departure clearfix">
         <div class="departure-background"></div>
@@ -96,8 +137,56 @@
         <div class="bus">{{bus}} Bus</div>
         <div class="stop-detail">{{stopDetail}}</div>
         <div class="stop">Stop {{stop}}</div>
-      </div>
+				<button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-cityzip="{{cityzip}}">directions</button>
+      </div>  
 </script>
 
+<script id="route-template" type="text/x-handlebars-template">
+  <div class="route js-placeholder-route">
+    <div class="routedetail clearfix">
+      <button class="routename" data-route-id="{{routeId}}">{{route}}</button>
+      <button class="removeroute" data-route-id="{{routeId}}">delete this route</button>
+      <button class="doneroute" data-route-id="{{routeId}}">done</button>
+
+      <button class="am">AM</button>
+      <button class="amdirection" data-direction-id="{{am.direction.id}}">{{am.direction.description}}</button>
+      <button class="addstop addstop-2" data-route-id="{{routeId}}" data-am="true">add stop</button>
+      <div class="amstops clearfix">
+      {{#each am.stops}}
+        <div class="stop">
+          <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="true" data-direction-id="{{am.direction.id}}">delete</button>
+          <button class="stopname" data-stop-id="{{id}}">{{description}}</button>
+        </div>
+      {{/each}}
+      </div>
+
+      <div class="amstops-removed" style="display:none;"></div>
+
+      <button class="pm">PM</button>
+      <button class="pmdirection" data-direction-id="{{pm.direction.id}}">{{pm.direction.description}}</button>
+      <button class="addstop addstop-1" data-route-id="{{routeId}}" data-am="false">add stop</button>
+      <div class="pmstops clearfix">
+      {{#each pm.stops}}
+        <div class="stop">
+          <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="false" data-direction-id="{{pm.direction.id}}">delete</button>
+          <button class="stopname" data-stop-id="{{id}}">{{description}}</button>
+        </div>
+      {{/each}}
+      </div>
+
+      <div class="pmstops-removed" style="display:none;"></div>
+
+    </div>
+  </div>
+</script>
+
+<script id="stop-template" type="text/x-handlebars-template">
+        <div class="stop">
+          <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="{{am}}" data-direction-id="{{directionId}}">delete</button>
+          <button class="stopname newdata" data-stop-id="{{id}}">{{description}}</button>
+        </div>
+</script>
+  
+  
 </body>
 </html>

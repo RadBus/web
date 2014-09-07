@@ -1,0 +1,724 @@
+body {
+  background-color: rgb(134, 71, 71);
+  font: 400 1em/1.38 Helvetica;
+  color: rgb(0, 0, 0);
+}
+
+.about button {
+  height: 50px;
+  background-color: rgb(227, 79, 77);
+  font-weight: 700;
+  color: rgb(255, 253, 251);
+}
+
+.container button {
+  display: block;
+  position: absolute;
+  top: 0;
+  font-size: 1em;
+  text-align: center;
+}
+
+.departure button {
+  display: block;
+  position: relative;
+  float: left;
+  z-index: 20;
+  width: 19.152367607%;
+  height: 35px;
+  background-color: rgb(222, 222, 222);
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.header button {
+  display: block;
+  position: relative;
+  float: left;
+  text-align: left;
+  color: rgb(255, 255, 255);
+}
+
+.loginprompt button {
+  display: block;
+  position: relative;
+  float: left;
+  clear: both;
+  z-index: 3;
+  width: 59.9744245524%;
+  height: 62px;
+  margin: -7px 0 0 -1.417%;
+  border: 3px solid rgb(255, 255, 255);
+  background-color: rgb(134, 71, 71);
+  font-family: Raleway;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.loginprompt button:hover {
+  background-color: rgb(227, 168, 77);
+}
+
+.loginprompt button:active {
+  border-color: rgb(227, 168, 77);
+  background-color: rgb(255, 253, 251);
+  color: rgb(29, 39, 43);
+}
+
+.loginprompt button:focus {
+  border-color: rgb(227, 168, 77);
+  color: rgb(227, 168, 77);
+}
+
+.selectfromlistmodal button {
+  height: 47px;
+  background-color: rgb(222, 222, 222);
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+}
+
+.stop button {
+  position: absolute;
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+button {
+  border-radius: 3px;
+  line-height: 1.38;
+}
+
+div img {
+  float: left;
+  width: 163px;
+  margin: 9152px 0 0 81.42034%;
+}
+
+img {
+  display: block;
+  height: auto;
+  overflow: hidden;
+}
+
+select {
+  display: block;
+  position: absolute;
+  top: 154px;
+  left: 25.3439465408%;
+  z-index: 55;
+  width: 48.7421383647%;
+  height: 98px;
+  padding-left: 10px;
+  border: 1px solid rgb(119, 119, 119);
+  border-radius: 3px;
+  background: url('../images/select-arrows.svg') rgb(242, 242, 242);
+  background-repeat: no-repeat;
+  background-size: auto auto;
+  background-position: right center;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.38;
+  color: rgb(0, 0, 0);
+}
+
+.about p,
+.text-4 p {
+  margin-bottom: 1em;
+}
+
+.about {
+  display: none;
+  position: absolute;
+  top: 146px;
+  left: 8.4375%;
+  z-index: 53;
+  width: 83.0208333333%;
+  height: 382px;
+  overflow: scroll;
+}
+
+.about .container {
+  position: relative;
+  float: left;
+  z-index: 52;
+  width: 100%;
+  height: 49px;
+}
+
+.about .text {
+  position: relative;
+  float: left;
+  z-index: 49;
+  width: 99.8745294855%;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.aboutradbus {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 59.5597484276%;
+  z-index: 54;
+  width: 14.9993448637%;
+  height: 39px;
+  background-color: rgb(222, 222, 222);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.addroutebutton {
+  display: block;
+  position: relative;
+  float: left;
+  z-index: 45;
+  width: 143px;
+  height: 28px;
+  margin: 7px 0 0 17px;
+  background-color: rgb(222, 222, 222);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.addstop {
+  display: block;
+  position: absolute;
+  top: 79px;
+  width: 100px;
+  height: 35px;
+  border: 1px solid rgb(227, 168, 77);
+  background-color: rgba(255, 253, 251, 0.53);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.am {
+  position: absolute;
+  top: 79px;
+  left: 63px;
+  z-index: 30;
+  width: 113px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 2.28;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.amdirection {
+  position: absolute;
+  top: 79px;
+  left: 176px;
+  z-index: 29;
+  width: 113px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 2.28;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.amstops {
+  position: absolute;
+  top: 116px;
+  left: 63px;
+  z-index: 27;
+  width: 326px;
+  height: 80px;
+  background-color: rgb(77, 187, 227);
+  overflow: scroll;
+}
+
+.amstops .removestop {
+  z-index: 25;
+}
+
+.amstops .stop,
+.pmstops .stop {
+  width: 326px;
+  height: 80px;
+}
+
+.amstops .stopname {
+  z-index: 24;
+}
+
+.background {
+  position: fixed;
+  top: -653px;
+  left: -22.0807291667%;
+  width: 1720px;
+}
+
+.bus-detail {
+  position: relative;
+  float: left;
+  z-index: 14;
+  font: 400 1em/1.38 Raleway;
+  color: rgb(0, 0, 0);
+}
+
+.busstopsign {
+  position: fixed;
+  top: 14px;
+  left: -0.3658854167%;
+  z-index: 8;
+  width: 206px;
+}
+
+.chosenroutes {
+  position: relative;
+  float: left;
+  clear: both;
+  width: 797px;
+  height: 330px;
+  margin: 28px 0 0 -0.12563%;
+  overflow: scroll;
+}
+
+.departure {
+  position: relative;
+  float: left;
+  z-index: 21;
+  width: 100%;
+  height: 118px;
+}
+
+.departure .bus {
+  position: relative;
+  float: left;
+  z-index: 17;
+  width: 16.074875076%;
+  font: 600 1.375em/1.38 Raleway;
+  color: rgb(0, 0, 0);
+}
+
+.departure .stop {
+  z-index: 19;
+  width: 18.6130132459%;
+  font: 600 1.375em/1.38 Raleway;
+  color: rgb(0, 0, 0);
+}
+
+.departure-background {
+  position: relative;
+  float: left;
+  z-index: 13;
+  width: 99.8995320307%;
+  height: 118px;
+  background-color: rgb(77, 187, 227);
+}
+
+.departures {
+  display: none;
+  position: absolute;
+  top: 43px;
+  left: 8.4375%;
+  z-index: 23;
+  width: 83.0208333333%;
+  height: 475px;
+  overflow: scroll;
+}
+
+.departures .text {
+  position: absolute;
+  top: 102px;
+  left: 0;
+  font-family: Raleway;
+  font-size: 2.5em;
+}
+
+.doneroute {
+  display: none;
+  position: absolute;
+  top: -8px;
+  left: 650px;
+  z-index: 40;
+  width: 144px;
+  height: 44px;
+  background-color: rgb(255, 255, 255);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.header {
+  position: fixed;
+  top: 324px;
+  left: 10%;
+  z-index: 7;
+  width: 40.8333333333%;
+  height: 104px;
+}
+
+.list {
+  position: relative;
+  float: left;
+  z-index: 10;
+  width: 100%;
+  height: 475px;
+}
+
+.loginprompt {
+  display: none;
+  position: fixed;
+  top: 464px;
+  left: 28.8333333333%;
+  z-index: 4;
+  width: 42.3333333333%;
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.manageroutesbutton {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 241px;
+  z-index: 47;
+  width: 143px;
+  height: 39px;
+  background-color: rgb(222, 222, 222);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.pm {
+  position: absolute;
+  top: 79px;
+  left: 408px;
+  z-index: 37;
+  width: 113px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 2.28;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.pmdirection {
+  position: absolute;
+  top: 79px;
+  left: 521px;
+  z-index: 36;
+  width: 112px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 2.28;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.pmstops {
+  position: absolute;
+  top: 116px;
+  left: 408px;
+  z-index: 34;
+  width: 326px;
+  height: 80px;
+  background-color: rgb(77, 187, 227);
+  overflow: scroll;
+}
+
+.pmstops .removestop {
+  z-index: 32;
+}
+
+.pmstops .stopname {
+  z-index: 31;
+}
+
+.refresh {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 8.5%;
+  z-index: 48;
+  width: 15%;
+  height: 39px;
+  background-color: rgb(222, 222, 222);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.removeroute {
+  display: none;
+  position: absolute;
+  top: -8px;
+  left: 0;
+  z-index: 39;
+  width: 144px;
+  height: 44px;
+  background-color: rgb(227, 79, 77);
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.removestop {
+  display: none;
+  top: 24px;
+  left: 244px;
+  width: 62px;
+  height: 35px;
+  background-color: rgb(222, 222, 222);
+}
+
+.route {
+  position: relative;
+  float: left;
+  width: 797px;
+  min-height: 210px;
+  margin-top: 15px;
+  background-color: rgba(77, 187, 227, 0.44);
+}
+
+.routedetail {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 41;
+  width: 797px;
+}
+
+.routename {
+  display: block;
+  position: absolute;
+  top: -6px;
+  left: 63px;
+  z-index: 38;
+  width: 671px;
+  height: 77px;
+  background-color: rgba(255, 253, 251, 0.43);
+  font-size: 1.25em;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.routes {
+  position: absolute;
+  top: 86px;
+  left: 82px;
+  z-index: 46;
+  width: 796px;
+  height: 450px;
+  overflow: visible;
+}
+
+.routes .text {
+  position: relative;
+  float: left;
+  z-index: 44;
+  width: 18.0904522613%;
+  margin-left: -0.12563%;
+  font-size: 1.875em;
+  font-weight: 700;
+}
+
+.screens {
+  position: fixed;
+  top: 0;
+  left: 10%;
+  z-index: 60;
+  width: 80%;
+  height: 544px;
+  border-right: 3px solid rgb(227, 168, 77);
+  border-bottom: 3px solid rgb(227, 168, 77);
+  border-left: 3px solid rgb(227, 168, 77);
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.selectfromlistaddbutton {
+  left: 52.3285323489%;
+  z-index: 56;
+  width: 47.575887413%;
+}
+
+.selectfromlistcancelbutton {
+  left: 0;
+  z-index: 57;
+  width: 30.3154147852%;
+}
+
+.selectfromlistmodal {
+  display: none;
+  position: relative;
+  float: left;
+  z-index: 59;
+  width: 100%;
+  height: 100px;
+  min-height: 538px;
+  background-color: rgba(255, 253, 251, 0.8);
+}
+
+.selectfromlistmodal .container {
+  position: absolute;
+  top: 273px;
+  left: 25.3455843815%;
+  z-index: 58;
+  width: 49.6937237945%;
+  height: 47px;
+}
+
+.stop {
+  position: relative;
+  float: left;
+}
+
+.stop-detail {
+  position: relative;
+  float: left;
+  z-index: 16;
+  font: 400 1em/1.38 Raleway;
+  color: rgb(0, 0, 0);
+}
+
+.stopname {
+  display: block;
+  top: 0;
+  left: 0;
+  width: 326px;
+  height: 80px;
+  background-color: rgb(255, 253, 251);
+}
+
+.text {
+  line-height: 1.38;
+  color: rgb(0, 0, 0);
+}
+
+.time {
+  position: relative;
+  float: left;
+  z-index: 18;
+  width: 20.4743145704%;
+  font: 600 1.375em/1.38 Raleway;
+  color: rgb(0, 0, 0);
+}
+
+.time-label {
+  position: relative;
+  float: left;
+  z-index: 15;
+  font: 400 1em/1.38 Raleway;
+  color: rgb(0, 0, 0);
+}
+
+.departures ._text {
+  z-index: 11;
+  font-weight: 400;
+}
+
+.loginprompt ._text {
+  position: relative;
+  float: left;
+  z-index: 2;
+  width: 59.8465473145%;
+  height: 42px;
+  margin: -7px 0 0 -1.417%;
+  border-radius: 3px;
+  font: 500 1.25em/1.38 Raleway;
+  text-align: center;
+  color: rgb(66, 65, 67);
+}
+
+.addstop-1 {
+  left: 634px;
+  z-index: 35;
+}
+
+.addstop-2 {
+  left: 289px;
+  z-index: 28;
+}
+
+.bus-2 {
+  position: fixed;
+  top: 19px;
+  left: 49.5494791666%;
+  z-index: 1;
+  width: 483px;
+}
+
+.text-3 {
+  z-index: 12;
+  font-weight: 400;
+}
+
+.text-5 {
+  z-index: 22;
+  width: 59.0201537013%;
+  min-height: 35px;
+}
+
+.container ._button-1 {
+  right: 0;
+  z-index: 51;
+  width: 40%;
+}
+
+.container ._button-2 {
+  left: 0;
+  z-index: 50;
+  width: 39.9988163112%;
+}
+
+.header ._button-3 {
+  z-index: 5;
+  width: 56.3768115942%;
+  height: 88px;
+  font-family: Raleway;
+  font-size: 3.125em;
+  font-weight: 900;
+}
+
+.header ._button-4 {
+  clear: both;
+  z-index: 6;
+  width: 100%;
+  height: 42px;
+  margin-top: -26px;
+  font-family: Arvo;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.text a {
+  font-weight: 800;
+}
+
+.text span {
+  font-weight: 800;
+  text-transform: inherit;
+}

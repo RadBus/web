@@ -3,37 +3,51 @@
   var $bus = $('.js-bus');
   var $loginPrompt = $('.js-login-prompt');
   var $header = $('.js-header');
-  var $messageNoDepartures = $('.js-message-no-departures');
-  var $departuresList = $('.js-departures-list');
+  var $busStopSign = $('.js-bus-stop-sign');
+  var $headerBus = $('.js-header-bus');
   var $placeholderDeparture = $('.js-placeholder-departure');
   var $messageNoRoutes = $('.js-message-no-routes');
+  var $messageNoDepartures = $('.js-message-no-departures');
+  var $departuresList = $('.js-departures-list');
   var $departures = $('.js-departures');
+  var $placeholderRoute = $('.js-placeholder-route');
+  var $routesList = $('.js-routes-list');
+  var $addRouteButton = $('.js-add-route-button');
   var $routes = $('.js-routes');
-  var $about = $('.js-about');
+  var $manageRoutesButton = $('.js-manage-routes-button');
   var $refreshButton = $('.js-refresh-button');
-  var $headerBus = $('.js-header-bus');
+  var $about = $('.js-about');
+  var $aboutRADBusButton = $('.js-about-r-a-d-bus-button');
+  var $selectFromList = $('.js-select-from-list');
+  var $selectFromListAddButton = $('.js-select-from-list-add-button');
+  var $selectFromListCancelButton = $('.js-select-from-list-cancel-button');
+  var $selectFromListModal = $('.js-select-from-list-modal');
   var $screens = $('.js-screens');
-  var $buttonAbout = $('.js-button-about');
-  var $buttonSettings = $('.js-button-settings');
-  var $buttonRoutes = $('.js-button-routes');
-  var $buttonDepartures = $('.js-button-departures');
-  var $menu = $('.js-menu');
 
 
-  // main-edit.js
+  //
+  //
+  // RADBus Web Client for radbus.io
+  //
+  //
+
+  var apiBaseUrl = 'https://api.radbus.io/v1';
 
   (function () {
 
     'use strict';
 
+
+    // ----------------
+    //
+    // Authorization via Google Id
+    //
+
     var oAuth2Info;
     var googleOAuth2Result;
-
     var onGoogleClientConfig;
 
     window.onClientLoad = function () {
-      $('#loginPrompt').hide();
-
       console.log("Getting OAuth2 info...");
 
       $.ajax({
@@ -69,7 +83,7 @@
         '&response_type=code' +
         '&redirect_uri=' + encodeURIComponent(redirectUri) +
         '&access_type=' + accessType +
-        '&state=' + 'beta' +
+        '&state=' + accessType +
         '&approval_prompt=force';
 
       window.location = oauthUrl;
@@ -80,7 +94,8 @@
         // token expired - authorize again
         authorize();
       } else {
-        alert("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+        console.log("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+        showNoDepartures();
       }
     }
 
@@ -96,7 +111,11 @@
     }
 
     function onAuthResult (authResult) {
-      hide($('#welcome'));
+      // hide($('#welcome'));
+
+      $('#loginPrompt').hide();
+
+      var authorizeButton = $('#authorize-button');
 
       if (authResult && !authResult.error) {
         console.log("User has already granted access.");
@@ -106,79 +125,11 @@
         checkSchedule()
           .fail(onFirstCheckScheduleFail);
 
-        // refresh departures
-        $('#refreshButton').click(function () {
-          hide($('#no-bus-schedule'));
-          hide($('#departures'));
-          hide($('#no-departures'));
-          $('#departures-list').empty();
-
-          checkSchedule()
-            .fail(onFirstCheckScheduleFail);
-        });
-
-        // edit schedules
-        $('#toggle-schedule-button').click(function () {
-          $('#edit-schedule').toggleClass('hidden').toggleClass('show');
-        });
-
-        // upsert schedule route
-        var upsertScheduleRouteButton = $('#upsert-schedule-route-button');
-        var upsertScheduleRouteError = $('#upsert-schedule-route-error');
-
-        upsertScheduleRouteButton.click(function () {
-          upsertScheduleRouteButton.text('Working...');
-          upsertScheduleRouteButton.prop('disabled', true);
-          hide(upsertScheduleRouteError);
-
-          var requestJson = $('#upsert-schedule-route-input').val();
-
-          upsertScheduleRoute(requestJson)
-            .fail(function (jqXHR, textStatus, errorThrown) {
-              if (jqXHR.status == 400) {
-                // show error
-                upsertScheduleRouteError.text(jqXHR.responseJSON.message);
-                show(upsertScheduleRouteError);
-              } else {
-                onAjaxError(jqXHR, textStatus, errorThrown);
-              }
-            })
-            .always(function() {
-              upsertScheduleRouteButton.text('Create/Update');
-              upsertScheduleRouteButton.prop('disabled', false);
-            });
-        });
-
-        // delete schedule route
-        var deleteScheduleRouteButton = $('#delete-schedule-route-button');
-        var deleteScheduleRouteError = $('#delete-schedule-route-error');
-
-        deleteScheduleRouteButton.click(function () {
-          deleteScheduleRouteButton.text('Working...');
-          deleteScheduleRouteButton.prop('disabled', true);
-          hide(deleteScheduleRouteError);
-
-          var routeId = $('#delete-schedule-route-input').val();
-
-          deleteScheduleRoute(routeId)
-            .fail(function (jqXHR, textStatus, errorThrown) {
-              if (jqXHR.status == 400) {
-                // show error
-                deleteScheduleRouteError.text(jqXHR.responseJSON.message);
-                show(deleteScheduleRouteError);
-              } else {
-                onAjaxError(jqXHR, textStatus, errorThrown);
-              }
-            })
-            .always(function() {
-              deleteScheduleRouteButton.text('Delete');
-              deleteScheduleRouteButton.prop('disabled', false);
-            });
-        });
       } else {
         console.log("User needs to grant access.");
 
         $('#loginPrompt').show();
+
         $('#authorize-button').click(function() {
           invokeOAuthAuthorization('online');
 
@@ -191,11 +142,18 @@
       jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
     }
 
+
+    // ----------------
+    //
+    // Schedule
+    //
+
+    var existingSchedule = null;
+
     function getSchedule() {
-      // var existingSchedule = $('#existing-schedule');
-      // existingSchedule.text("Fetching...");
 
       showAuthenticatedUI();
+
       showGettingDepartures();
 
       return $.ajax({
@@ -204,9 +162,7 @@
         dataType: 'json',
         beforeSend: setAuthorizationHeader,
       }).done(function (data, textStatus, jqXHR) {
-        var json = JSON.stringify(data, undefined, 2);
-        // existingSchedule.text(json);
-        // existingSchedule.highlight();
+        var existingSchedule = data;
       });
     }
 
@@ -232,13 +188,6 @@
       }
     }
 
-    function showAuthenticatedUI(){
-      show($('#authenticated'));
-      $("#authenticated").css("visibility", "visible")
-      $("#menu").css("visibility", "visible")
-      $menu.show();
-    }
-
     function onCheckScheduleDone (data, textStatus, jqXHR) {
 
       showAuthenticatedUI();
@@ -246,14 +195,10 @@
 
       if ($.isEmptyObject(data.routes)) {
         console.log("User has an empty schedule.  Prompt them to edit their schedule.");
-        $menu.show();
         showDepartures();
-        // show($('#no-bus-schedule'));
-        // show($('#schedule'));
         showNoBusSchedule();
       } else {
         console.log("User has items in their schedule.");
-        $menu.show();
         showDepartures();
         getDepartures();
       }
@@ -269,10 +214,47 @@
       }).fail(onAjaxError);
     }
 
+    function onScheduleChanged () {
+      console.log("Schedule has been successfully changed.  Fetching latest schedule...");
+
+      getSchedule()
+        .fail(onAjaxError);
+    }
+
+    function upsertScheduleRoute (requestJson) {
+      console.log("Creating/updating user's schedule route...");
+
+      return $.ajax({
+        url: apiBaseUrl + '/schedule/routes',
+        type: 'POST',
+        data: requestJson,
+        contentType: 'application/json',
+        beforeSend: setAuthorizationHeader,
+      })
+      .done(onScheduleChanged);
+    }
+
+    function deleteScheduleRoute (routeId) {
+      console.log("Deleting user's schedule route '" + routeId + "'...");
+
+      return $.ajax({
+        url: apiBaseUrl + '/schedule/routes/' + routeId,
+        type: 'DELETE',
+        beforeSend: setAuthorizationHeader,
+      })
+      .done(onScheduleChanged);
+    }
+
+
+    // ----------------
+    //
+    // Departures
+    //
+
     function getDepartures () {
       console.log("Getting the user's departures...");
 
-      show($('#getting-departures'));
+      showGettingDepartures();
 
       return $.ajax({
         url: apiBaseUrl + '/departures',
@@ -283,7 +265,6 @@
       .fail(onAjaxError)
       .done(onGetDeparturesDone)
       .always(function() {
-        hide($('#getting-departures'));
       });
     }
 
@@ -321,48 +302,25 @@
           $('#departures-list').append(item);
         });
 
-        show($('#departures'));
-        show($('#schedule'));
+        $(".departure-directions").click(function(e){
+          console.log(e);
+          var stop = $(e.target).attr("data-stop");
+          var location = $(e.target).attr("data-location");
+          var cityzip = $(e.target).attr("data-cityzip");
+          document.location.href =  "https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip);
+        });
+
       }
     }
 
-    function upsertScheduleRoute (requestJson) {
-      console.log("Creating/updating user's schedule route...");
+    // ----------------
+    //
+    // UI State
+    //
 
-      return $.ajax({
-        url: apiBaseUrl + '/schedule/routes',
-        type: 'POST',
-        data: requestJson,
-        contentType: 'application/json',
-        beforeSend: setAuthorizationHeader,
-      })
-      .done(onScheduleChanged);
-    }
-
-    function deleteScheduleRoute (routeId) {
-      console.log("Deleting user's schedule route '" + routeId + "'...");
-
-      return $.ajax({
-        url: apiBaseUrl + '/schedule/routes/' + routeId,
-        type: 'DELETE',
-        beforeSend: setAuthorizationHeader,
-      })
-      .done(onScheduleChanged);
-    }
-
-    function onScheduleChanged () {
-      console.log("Schedule has been successfully changed.  Fetching latest schedule...");
-
-      getSchedule()
-        .fail(onAjaxError);
-    }
-
-    function show(element) {
-      element.addClass('show').removeClass('hidden');
-    }
-
-    function hide(element) {
-      element.addClass('hidden').removeClass('show');
+    function showAuthenticatedUI(){
+      $("#authenticated").css("visibility", "visible")
+      $("#menu").css("visibility", "visible")
     }
 
     jQuery.fn.highlight = function() {
@@ -386,68 +344,377 @@
     //
     // initial render/state of the UI
     //
-    $menu.hide();
+    var selectFromListCallback = null;
     $screens.hide();
     $placeholderDeparture.remove();
-    $buttonSettings.remove();
-
+    $placeholderRoute.remove();
     hideMessages();
 
-    $buttonDepartures.click(function(){
-        showDepartures();
+
+    //
+    // UI events
+    //
+
+    $('#headerBus').click(refreshSchedule);
+    $('#refreshButton').click(refreshSchedule);
+    $('#aboutRADBusButton').click(showAbout);
+    $('#manageRoutesButton').click(showRoutes);
+
+    $('#selectFromListCancelButton').click(function(){$('#selectFromListModal').hide()});
+    $('#selectFromListAddButton').click(function(){
+      var result = {
+        name: $('#selectFromList option:selected').text(),
+        value: $('#selectFromList').val()
+      };
+
+      $('#selectFromListModal').hide();
+
+      if(selectFromListCallback)
+        selectFromListCallback(result);
     });
-    $buttonRoutes.click(function(){
-        showRoutes();
-    });
-    $buttonAbout.click(function(){
-        showAbout();
-    });
+
+    // add route
+
+    $('#addRouteButton').click(function(){
+
+      $('#selectFromListModal').show();
+
+      selectFromListCallback = function(result){
+
+        // get data about this route
+        $.ajax({
+          url: apiBaseUrl + '/routes/' + result.value,
+          type: 'GET',
+          dataType: 'json',
+          beforeSend: setAuthorizationHeader,
+        }).done(function (route, textStatus, jqXHR) {
+
+          // render new route
+          var source   = $('#route-template').html();
+          var template = Handlebars.compile(source);
+
+          var context = {
+            "routeId": route.id,
+            "route": route.description,
+            "am": {
+              stops: [],
+              direction:{
+                id:route.directions[0].id,
+                description:route.directions[0].description
+              }
+            },
+            "pm": {
+              stops: [],
+              direction:{
+                id:route.directions[1].id,
+                description:route.directions[1].description
+              }
+            }
+          };
+
+          console.log(context);
+
+          var item = template(context);
+          $('#routes-list').append(item);
+
+          // add events to the new DOM items
+
+          // route
+          $('.routename').click(routeNameClick);
+          $('.doneroute').click(doneRouteClick);
+          $('.removeroute').click(removeRouteClick);
+
+          // stops
+          $('.addstop').click(addStopClick);
+          $('.removestop').click(removeStopClick);
+          $('.stopname').click(stopNameClick);
+
+        }); // complete ajax call
+
+
+      };
+
+      // fetch routes
+      $.ajax({
+        url: apiBaseUrl + '/routes',
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: setAuthorizationHeader,
+      }).done(function (data, textStatus, jqXHR) {
+
+        $('#selectFromList').empty();
+
+        // render routes
+        var source   = '<option value="{{id}}">{{description}}</option>';
+        var template = Handlebars.compile(source);
+
+        $.each(data, function (index, route) {
+
+          var item = template(route);
+          $('#selectFromList').append(item);
+
+        });
+
+      });
+
+    }); // add route click
+
+    // remove stop
+    function removeStopClick(event){
+
+      var routeId = $(event.target).attr("data-route-id");
+      var directionId = $(event.target).attr("data-direction-id");
+      var am = String($(event.target).attr("data-am")).toLowerCase() === "true";
+
+      var listClassName = ".pmstops-removed";
+
+      console.log("am?", am);
+
+      if(am == true)
+        listClassName = ".amstops-removed";
+
+      // send to the removed list...
+      $(event.target).parent().parent().parent().find(listClassName).append($($(event.target).parent()));
+
+    }
+
+    // stop clicked
+    function stopNameClick(event){
+      showEditMode($(event.target).parent().parent().parent());
+      $(event.target).parent().find(".removestop").show();
+    }
+
+    // add stop
+    function addStopClick(event){
+
+      showEditMode(event.target);
+
+      var routeId = $(event.target).attr("data-route-id");
+      var directionId = $(event.target).attr("data-direction-id");
+      var am = String($(event.target).attr("data-am")).toLowerCase() === "true";
+
+      $('#selectFromListModal').show();
+
+      //
+      selectFromListCallback = function(result){
+
+        // render new stop
+        var source   = $('#stop-template').html();
+        var template = Handlebars.compile(source);
+
+        var context = {
+          routeId: routeId,
+          directionId: directionId,
+          am: am,
+          id: result.value,
+          description: result.name
+        };
+
+        var item = template(context);
+        var listClassName = ".pmstops";
+
+        console.log("am?", am);
+
+        if(am == true)
+          listClassName = ".amstops";
+
+        // add new stop to DOM
+        $(event.target).parent().parent().find(listClassName).append(item);
+
+        // stop's events
+        $('.removestop').click(removeStopClick);
+        $('.stopname').click(stopNameClick);
+
+      };
+
+      // fetch stops for given route
+      $.ajax({
+        url: apiBaseUrl + '/routes/' + routeId,
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: setAuthorizationHeader,
+      }).done(function (data, textStatus, jqXHR) {
+
+        $('#selectFromList').empty();
+
+        // determine the direction to list stops
+        var directionIndex = 0;
+        if(data.directions[0].id === directionId)
+          directionIndex = 0;
+        else
+          directionIndex = 1;
+
+        var stops = data.directions[directionIndex].stops;
+
+        // render stops
+        var source   = '<option value="{{id}}">{{description}}</option>';
+        var template = Handlebars.compile(source);
+
+        $.each(stops, function (index, stop) {
+
+          var item = template(stop);
+          $('#selectFromList').append(item);
+
+        });
+
+      });
+
+    } // add stop click
 
     //
     // screen management
     //
+
+    // show edit mode for a given route, makes it active for edit/delete
+    var showEditMode = function(target){
+      $(target).parent().find(".doneroute").show();
+      $(target).parent().find(".removeroute").show();
+    }
+
     function showRoutes(){
       $screens.show();
-      $menu.show();
 
       $departures.hide();
       $about.hide();
 
       $routes.show();
 
-      $buttonRoutes.addClass("selectedButton");
-      $buttonDepartures.removeClass("selectedButton");
-      $buttonAbout.removeClass("selectedButton");
+      // fetch routes for current user
+      $.ajax({
+        url: apiBaseUrl + '/schedule',
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: setAuthorizationHeader,
+      }).done(function (data, textStatus, jqXHR) {
+
+        $('#routes-list').empty();
+
+        existingSchedule = data;
+
+        // render routes
+        var source   = $("#route-template").html();
+        var template = Handlebars.compile(source);
+
+        $.each(data.routes, function (index, route) {
+
+          var context = {
+            "routeId": route.id,
+            "route": route.description,
+            "am": route.am,
+            "pm": route.pm
+          };
+
+          console.log(context);
+
+          var item = template(context);
+          $('#routes-list').append(item);
+
+        });
+
+        // add events to the new DOM items
+
+        // route
+        $('.routename').click(routeNameClick);
+        $('.doneroute').click(doneRouteClick);
+        $('.removeroute').click(removeRouteClick);
+
+        // stops
+        $('.addstop').click(addStopClick);
+        $('.removestop').click(removeStopClick);
+        $('.stopname').click(stopNameClick);
+      });
     }
     window.showRoutes = showRoutes;
 
+    function routeNameClick(event){
+      showEditMode(event.target);
+    }
+
+    function doneRouteClick(event){
+
+      $(event.target).hide();
+      $(event.target).parent().find(".removeroute").hide();
+      $(".removestop").hide();
+
+      var routeId = $(event.target).attr("data-route-id");
+
+      var amStops = [];
+      var amDirection = $(event.target).parent().find(".amdirection").attr("data-direction-id");
+      var pmStops = [];
+      var pmDirection = $(event.target).parent().find(".pmdirection").attr("data-direction-id");
+
+      $(event.target).parent().find(".amstops").children().each(function(index, element){
+        amStops.push($(element).find(".stopname").attr("data-stop-id"));
+      });
+
+      $(event.target).parent().find(".pmstops").children().each(function(index, element){
+        pmStops.push($(element).find(".stopname").attr("data-stop-id"));
+      });
+
+      // form a json object with the latest data for this route
+      var routeData = {
+        "id": routeId,
+        "am": {
+          "direction": amDirection,
+          "stops": amStops
+        },
+        "pm": {
+          "direction": pmDirection,
+          "stops": pmStops
+        }
+      };
+
+      console.log(routeData);
+
+      upsertScheduleRoute(JSON.stringify(routeData))
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          if (jqXHR.status == 400) {
+            // show error
+            console.log("todo: show error for failed route update");
+            console.log(jqXHR.responseJSON.message);
+          } else {
+            onAjaxError(jqXHR, textStatus, errorThrown);
+          }
+        })
+        .always(function() {
+          console.log("todo: after update/new route");
+          // refresh routes
+          showRoutes();
+        });
+
+
+    }
+
+    function removeRouteClick(event){
+
+      $(event.target).hide();
+      $(event.target).parent().find(".doneroute").hide();
+      $(".removestop").hide();
+
+      var routeId = $(event.target).attr("data-route-id");
+      if(confirm("delete route " + routeId + "?")){
+        deleteScheduleRoute(routeId);
+      }
+    }
+
     function showDepartures(){
       $screens.show();
-      $menu.show();
 
       $about.hide();
       $routes.hide();
 
       $departures.show();
-
-      $buttonDepartures.addClass("selectedButton");
-      $buttonAbout.removeClass("selectedButton");
-      $buttonRoutes.removeClass("selectedButton");
     }
     window.showDepartures = showDepartures;
 
     function showAbout(){
       $screens.show();
-      $menu.show();
 
       $departures.hide();
       $routes.hide();
 
       $about.show();
 
-      $buttonAbout.addClass("selectedButton");
-      $buttonDepartures.removeClass("selectedButton");
-      $buttonRoutes.removeClass("selectedButton");
     }
     window.showAbout = showAbout;
 
@@ -473,6 +740,18 @@
       $('#no-bus-schedule').css("visibility", "none");;
       $('#getting-departures').hide();
       $('#getting-departures').css("visibility", "none");;
+    }
+
+    function refreshSchedule(){
+      $('#no-bus-schedule').hide();
+      $('#departures').hide();
+      $('#no-departures').hide();
+      $('#departures-list').empty();
+
+      showGettingDepartures();
+
+      checkSchedule()
+        .fail(onFirstCheckScheduleFail);
     }
 
   })();
