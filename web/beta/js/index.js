@@ -95,6 +95,7 @@
         authorize();
       } else {
         console.log("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+        hideMessages();
         showNoDepartures();
       }
     }
@@ -152,6 +153,8 @@
 
     function getSchedule() {
 
+      hideMessages();
+
       showAuthenticatedUI();
 
       showGettingDepartures();
@@ -177,12 +180,9 @@
       if (jqXHR.status === 404) {
         console.log("User hasn't created their schedule yet.");
 
-        createEmptySchedule()
-          .done(function () {
-            // attempt to get schedule again
-            checkSchedule()
-              .fail(onAjaxError);
-          });
+        hideMessages();
+        showNoBusSchedule();
+
       } else {
         onAjaxError(jqXHR, textStatus, errorThrown);
       }
@@ -190,16 +190,18 @@
 
     function onCheckScheduleDone (data, textStatus, jqXHR) {
 
-      showAuthenticatedUI();
       hideMessages();
+      showAuthenticatedUI();
 
       if ($.isEmptyObject(data.routes)) {
         console.log("User has an empty schedule.  Prompt them to edit their schedule.");
         showDepartures();
+        hideMessages();
         showNoBusSchedule();
       } else {
         console.log("User has items in their schedule.");
         showDepartures();
+        hideMessages();
         getDepartures();
       }
     }
@@ -254,6 +256,7 @@
     function getDepartures () {
       console.log("Getting the user's departures...");
 
+      hideMessages();
       showGettingDepartures();
 
       return $.ajax({
@@ -274,6 +277,7 @@
 
       if (data.length === 0) {
         console.log("User has no upcoming departures.");
+        hideMessages();
         showNoDepartures();
       } else {
         console.log("User has departures!");
@@ -345,11 +349,12 @@
     // initial render/state of the UI
     //
     var selectFromListCallback = null;
-    $screens.hide();
+    $(".screens").hide();
     $placeholderDeparture.remove();
     $placeholderRoute.remove();
     hideMessages();
 
+    $(".screens").css("height", "99%");
 
     //
     // UI events
@@ -572,7 +577,9 @@
     }
 
     function showRoutes(){
-      $screens.show();
+      hideMessages();
+
+      $(".screens").show();
 
       $departures.hide();
       $about.hide();
@@ -672,6 +679,8 @@
             // show error
             console.log("todo: show error for failed route update");
             console.log(jqXHR.responseJSON.message);
+            alert("Error updating route. Please try again.");
+            showRoutes();
           } else {
             onAjaxError(jqXHR, textStatus, errorThrown);
           }
@@ -698,7 +707,7 @@
     }
 
     function showDepartures(){
-      $screens.show();
+      $(".screens").show();
 
       $about.hide();
       $routes.hide();
@@ -708,7 +717,7 @@
     window.showDepartures = showDepartures;
 
     function showAbout(){
-      $screens.show();
+      $(".screens").show();
 
       $departures.hide();
       $routes.hide();
@@ -743,9 +752,15 @@
     }
 
     function refreshSchedule(){
-      $('#no-bus-schedule').hide();
-      $('#departures').hide();
-      $('#no-departures').hide();
+
+      $(".screens").show();
+      $routes.hide();
+      $about.hide();
+
+      $departures.show();
+
+      hideMessages();
+
       $('#departures-list').empty();
 
       showGettingDepartures();
