@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>RADBus: </title>
-  <link href="http://fonts.googleapis.com/css?family=Raleway:600,500,900,400,400,800|Arvo:400" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Raleway:600,500,900,400,800,400|Arvo:400" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
   <link rel="stylesheet" href="css/index.css">
   <!-- <title> and other generated code will appear above your static head code. -->
@@ -61,9 +61,9 @@
             <button class="removeroute">delete this route</button>
             <button class="routename">(selected route name)</button>
             <div class="pm">PM</div>
-            <div class="pmdirection">South</div>
+            <p class="pmdirection">South</p>
             <button class="addstop addstop-1">add stop</button>
-            <div class="pmstops clearfix">
+            <div class="pmstops">
               <div class="stop">
                 <button class="removestop">delete</button>
                 <button class="stopname">(selected stop name)</button>
@@ -72,7 +72,7 @@
             <div class="am">AM</div>
             <div class="amdirection">North</div>
             <button class="addstop addstop-2">add stop</button>
-            <div class="amstops clearfix">
+            <div class="amstops">
               <div class="stop">
                 <button class="removestop">delete</button>
                 <button class="stopname">(selected stop name)</button>
@@ -84,22 +84,22 @@
     </div>
     <div id="departures" class="departures clearfix js-departures">
       <div id="departures-list" class="list js-departures-list"></div>
-      <div id="no-departures" class="text text-3 js-message-no-departures">No departures found.</div>
-      <div id="no-bus-schedule" class="text _text text-4 js-message-no-routes">
+      <p id="getting-departures" class="text text-3">Getting departures...</p>
+      <div id="no-departures" class="text text-4 js-message-no-departures">No departures found.</div>
+      <div id="no-bus-schedule" class="text _text text-5 js-message-no-routes">
         <p>We need to know what bus stops and schedule to show you.&nbsp;</p>
         <p>It's time to <a>setup your routes</a>.</p>
 </div>
       <div id="placeholder-departure" class="departure clearfix js-placeholder-departure">
         <div class="departure-background"></div>
-        <p class="bus-detail">Bus, Express</p>
-        <p class="time-label">Departure Time</p>
-        <div class="stop-detail">10th &amp; Marquette</div>
-        <div class="bus">156</div>
-        <div class="time">12:45 PM</div>
-        <p class="stop">Stop C</p>
         <button class="departure-directions">directions</button>
+        <p class="stop">Stop C</p>
+        <div class="time">12:45 PM</div>
+        <div class="bus">156</div>
+        <div class="stop-detail">10th &amp; Marquette</div>
+        <p class="time-label">Departure Time</p>
+        <p class="bus-detail">Bus, Express</p>
       </div>
-      <div id="getting-departures" class="text text-5">Getting departures...</div>
     </div>
     <img id="headerBus" class="headerbus js-header-bus" src="images/bus.svg">
   </div>
