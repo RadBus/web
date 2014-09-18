@@ -4,39 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>RADBus: </title>
-  <link href="http://fonts.googleapis.com/css?family=Raleway:600,500,900,400,800,400|Arvo:400" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100,500,900,400,600,800,400|Arvo:400" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
   <link rel="stylesheet" href="css/index.css">
   <!-- <title> and other generated code will appear above your static head code. -->
+
+  <link href='//fonts.googleapis.com/css?family=Arvo|Raleway:900,400' rel='stylesheet' type='text/css'>
   
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>  
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
   
-<style>
-.selectedButton {
-  border-right-color: rgb(29, 39, 43)!important;
-  border-bottom-color: rgb(29, 39, 43)!important;
-  border-left-color: rgb(29, 39, 43)!important;
-  background-color: rgb(255, 253, 251)!important;
-  font-style: normal!important;
-  font-weight: 600!important;
-  color: rgb(29, 39, 43)!important;
-}  
-</style>
+	<style>
+	.selectedButton {
+ 	 border-right-color: rgb(29, 39, 43)!important;
+ 	 border-bottom-color: rgb(29, 39, 43)!important;
+ 	 border-left-color: rgb(29, 39, 43)!important;
+ 	 background-color: rgb(255, 253, 251)!important;
+ 	 font-style: normal!important;
+ 	 font-weight: 600!important;
+ 	 color: rgb(29, 39, 43)!important;
+	}  
+	</style>
 </head>
 <body class="body index clearfix">
   <div id="authenticated" class="screens clearfix js-screens">
-    <div id="selectFromListModal" class="selectfromlistmodal js-select-from-list-modal">
-      <div class="container">
-        <button id="selectFromListCancelButton" class="selectfromlistcancelbutton js-select-from-list-cancel-button">cancel</button>
-        <button id="selectFromListAddButton" class="selectfromlistaddbutton js-select-from-list-add-button">add</button>
-      </div>
-      <select id="selectFromList" class="selectfromlist js-select-from-list" name="selectRoute">
-        <option value="choose">choose</option>
-      </select>
-    </div>
-    <button id="aboutRADBusButton" class="aboutradbus js-about-r-a-d-bus-button">About RADBus</button>
     <div id="about" class="about clearfix js-about">
       <div class="text _text">
         <p>Welcome to RadBus!</p>
@@ -49,11 +41,27 @@
         <button onClick="window.location='https://github.com/TargetRAD/radbus-web';" class="_button-2">RadBus Web Client on GitHub</button>
       </div>
     </div>
-    <button id="refreshButton" class="refresh js-refresh-button">Departures</button>
-    <button id="manageRoutesButton" class="manageroutesbutton js-manage-routes-button">Routes</button>
-    <div id="routes" class="routes clearfix js-routes">
+    <div id="selectFromListModal" class="selectfromlistmodal js-select-from-list-modal">
+      <div class="container">
+        <button id="selectFromListCancelButton" class="selectfromlistcancelbutton js-select-from-list-cancel-button">cancel</button>
+        <button id="selectFromListAddButton" class="selectfromlistaddbutton js-select-from-list-add-button">add</button>
+      </div>
+      <select id="selectFromList" class="selectfromlist js-select-from-list" name="selectRoute">
+        <option value="choose">choose</option>
+      </select>
+    </div>
+    <div id="headerDepartures" class="headerdepartures clearfix js-header-departures">
+      <p class="text _text">Departures</p>
+      <button id="refreshDeparturesButton" class="refreshdeparturesbutton js-refresh-departures-button">Refresh<br></button>
+    </div>
+    <div id="headerRoutes" class="headerroutes clearfix js-header-routes">
       <p class="text _text">Routes</p>
       <button id="addRouteButton" class="addroutebutton js-add-route-button">Add Route</button>
+    </div>
+    <button id="aboutRADBusButton" class="aboutradbus js-about-r-a-d-bus-button">About RADBus</button>
+    <button id="refreshButton" class="refresh js-refresh-button">Departures</button>
+    <button id="manageRoutesButton" class="manageroutesbutton js-manage-routes-button">Routes</button>
+    <div id="routes" class="routes js-routes">
       <div id="routes-list" class="chosenroutes js-routes-list">
         <div id="placeholder-route" class="route js-placeholder-route">
           <div class="routedetail">
@@ -63,7 +71,7 @@
             <div class="pm">PM</div>
             <p class="pmdirection">South</p>
             <button class="addstop addstop-1">add stop</button>
-            <div class="pmstops">
+            <div class="pmstops clearfix">
               <div class="stop">
                 <button class="removestop">delete</button>
                 <button class="stopname">(selected stop name)</button>
@@ -72,7 +80,7 @@
             <div class="am">AM</div>
             <div class="amdirection">North</div>
             <button class="addstop addstop-2">add stop</button>
-            <div class="amstops">
+            <div class="amstops clearfix">
               <div class="stop">
                 <button class="removestop">delete</button>
                 <button class="stopname">(selected stop name)</button>
@@ -84,9 +92,9 @@
     </div>
     <div id="departures" class="departures clearfix js-departures">
       <div id="departures-list" class="list js-departures-list"></div>
-      <p id="getting-departures" class="text text-3">Getting departures...</p>
-      <div id="no-departures" class="text text-4 js-message-no-departures">No departures found.</div>
-      <div id="no-bus-schedule" class="text _text text-5 js-message-no-routes">
+      <p id="getting-departures" class="text text-4">Getting departures...</p>
+      <div id="no-departures" class="text text-5 js-message-no-departures">No departures found.</div>
+      <div id="no-bus-schedule" class="text _text text-6 js-message-no-routes">
         <p>We need to know what bus stops and schedule to show you.&nbsp;</p>
         <p>It's time to <a>setup your routes</a>.</p>
 </div>

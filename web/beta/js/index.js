@@ -12,16 +12,19 @@
   var $departures = $('.js-departures');
   var $placeholderRoute = $('.js-placeholder-route');
   var $routesList = $('.js-routes-list');
-  var $addRouteButton = $('.js-add-route-button');
   var $routes = $('.js-routes');
   var $manageRoutesButton = $('.js-manage-routes-button');
   var $refreshButton = $('.js-refresh-button');
-  var $about = $('.js-about');
   var $aboutRADBusButton = $('.js-about-r-a-d-bus-button');
+  var $addRouteButton = $('.js-add-route-button');
+  var $headerRoutes = $('.js-header-routes');
+  var $refreshDeparturesButton = $('.js-refresh-departures-button');
+  var $headerDepartures = $('.js-header-departures');
   var $selectFromList = $('.js-select-from-list');
   var $selectFromListAddButton = $('.js-select-from-list-add-button');
   var $selectFromListCancelButton = $('.js-select-from-list-cancel-button');
   var $selectFromListModal = $('.js-select-from-list-modal');
+  var $about = $('.js-about');
   var $screens = $('.js-screens');
 
 
@@ -275,6 +278,8 @@
       hideMessages();
       $('#departures-list').empty();
 
+      $('#departures-list').css("height", "99%");
+
       if (data.length === 0) {
         console.log("User has no upcoming departures.");
         hideMessages();
@@ -311,7 +316,8 @@
           var stop = $(e.target).attr("data-stop");
           var location = $(e.target).attr("data-location");
           var cityzip = $(e.target).attr("data-cityzip");
-          document.location.href =  "https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip);
+          // document.location.href =  "https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip);
+          window.open("https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip), "directions");
         });
 
       }
@@ -362,6 +368,7 @@
 
     $('#headerBus').click(refreshSchedule);
     $('#refreshButton').click(refreshSchedule);
+    $('#refreshDeparturesButton').click(refreshSchedule);
     $('#aboutRADBusButton').click(showAbout);
     $('#manageRoutesButton').click(showRoutes);
 
@@ -381,6 +388,8 @@
     // add route
 
     $('#addRouteButton').click(function(){
+
+      showRoutes();
 
       $('#selectFromListModal').show();
 
@@ -586,6 +595,15 @@
 
       $routes.show();
 
+      $('#refreshButton').show();
+      $('#manageRoutesButton').hide();
+      $('#headerDepartures').hide();
+      $('#headerRoutes').show();
+
+
+
+      $(".chosenroutes").css("height", "99%");
+
       // fetch routes for current user
       $.ajax({
         url: apiBaseUrl + '/schedule',
@@ -713,6 +731,12 @@
       $routes.hide();
 
       $departures.show();
+
+      $('#refreshButton').hide();
+      $('#manageRoutesButton').show();
+      $('#headerDepartures').show();
+      $('#headerRoutes').hide();
+
     }
     window.showDepartures = showDepartures;
 
@@ -723,6 +747,11 @@
       $routes.hide();
 
       $about.show();
+
+      $('#refreshButton').show();
+      $('#manageRoutesButton').hide();
+      $('#headerDepartures').hide();
+      $('#headerRoutes').hide();
 
     }
     window.showAbout = showAbout;
