@@ -5,16 +5,17 @@
   var $header = $('.js-header');
   var $busStopSign = $('.js-bus-stop-sign');
   var $headerBus = $('.js-header-bus');
+  var $placeholderRoute = $('.js-placeholder-route');
+  var $routesList = $('.js-routes-list');
+  var $routes = $('.js-routes');
   var $placeholderDeparture = $('.js-placeholder-departure');
   var $messageNoRoutes = $('.js-message-no-routes');
   var $messageNoDepartures = $('.js-message-no-departures');
   var $departuresList = $('.js-departures-list');
   var $departures = $('.js-departures');
-  var $placeholderRoute = $('.js-placeholder-route');
-  var $routesList = $('.js-routes-list');
-  var $routes = $('.js-routes');
   var $manageRoutesButton = $('.js-manage-routes-button');
   var $refreshButton = $('.js-refresh-button');
+  var $about = $('.js-about');
   var $aboutRADBusButton = $('.js-about-r-a-d-bus-button');
   var $addRouteButton = $('.js-add-route-button');
   var $headerRoutes = $('.js-header-routes');
@@ -24,7 +25,6 @@
   var $selectFromListAddButton = $('.js-select-from-list-add-button');
   var $selectFromListCancelButton = $('.js-select-from-list-cancel-button');
   var $selectFromListModal = $('.js-select-from-list-modal');
-  var $about = $('.js-about');
   var $screens = $('.js-screens');
 
 
@@ -436,6 +436,7 @@
           // route
           $('.routename').click(routeNameClick);
           $('.doneroute').click(doneRouteClick);
+          $('.cancelroute').click(showRoutes);
           $('.removeroute').click(removeRouteClick);
 
           // stops
@@ -581,7 +582,16 @@
 
     // show edit mode for a given route, makes it active for edit/delete
     var showEditMode = function(target){
+      // console.log("showEditMode", target);
+      // console.log($(target).parent());
+      // console.log($(target).parent().find(".doneroute"));
+      $(target).parent().find(".doneroute").css("visibility", "visible");
       $(target).parent().find(".doneroute").show();
+
+      $(target).parent().find(".cancelroute").css("visibility", "visible");
+      $(target).parent().find(".cancelroute").show();
+
+      $(target).parent().find(".removeroute").css("visibility", "visible");
       $(target).parent().find(".removeroute").show();
     }
 
@@ -600,9 +610,8 @@
       $('#headerDepartures').hide();
       $('#headerRoutes').show();
 
-
-
-      $(".chosenroutes").css("height", "99%");
+      $("#routes").css("height", "99%");
+      $(".chosenroutes").css("height", "87%");
 
       // fetch routes for current user
       $.ajax({
@@ -641,6 +650,7 @@
         // route
         $('.routename').click(routeNameClick);
         $('.doneroute').click(doneRouteClick);
+        $('.cancelroute').click(showRoutes);
         $('.removeroute').click(removeRouteClick);
 
         // stops
@@ -659,6 +669,8 @@
 
       $(event.target).hide();
       $(event.target).parent().find(".removeroute").hide();
+      $(event.target).parent().find(".cancelroute").hide();
+      $(event.target).parent().find(".doneroute").hide();
       $(".removestop").hide();
 
       var routeId = $(event.target).attr("data-route-id");
@@ -716,6 +728,8 @@
 
       $(event.target).hide();
       $(event.target).parent().find(".doneroute").hide();
+      $(event.target).parent().find(".removeroute").hide();
+      $(event.target).parent().find(".cancelroute").hide();
       $(".removestop").hide();
 
       var routeId = $(event.target).attr("data-route-id");

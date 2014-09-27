@@ -29,6 +29,25 @@
 </head>
 <body class="body index clearfix">
   <div id="authenticated" class="screens clearfix js-screens">
+    <div id="selectFromListModal" class="selectfromlistmodal js-select-from-list-modal">
+      <div class="container">
+        <button id="selectFromListCancelButton" class="selectfromlistcancelbutton js-select-from-list-cancel-button">cancel</button>
+        <button id="selectFromListAddButton" class="selectfromlistaddbutton js-select-from-list-add-button">add</button>
+      </div>
+      <select id="selectFromList" class="selectfromlist js-select-from-list" name="selectRoute">
+        <option value="choose">choose</option>
+      </select>
+    </div>
+    <div class="headerbar"></div>
+    <div id="headerDepartures" class="headerdepartures clearfix js-header-departures">
+      <p class="text _text">Departures</p>
+      <button id="refreshDeparturesButton" class="refreshdeparturesbutton js-refresh-departures-button">Refresh<br></button>
+    </div>
+    <div id="headerRoutes" class="headerroutes clearfix js-header-routes">
+      <p class="text _text">Routes</p>
+      <button id="addRouteButton" class="addroutebutton js-add-route-button">Add Route</button>
+    </div>
+    <button id="aboutRADBusButton" class="aboutradbus js-about-r-a-d-bus-button">About RADBus</button>
     <div id="about" class="about clearfix js-about">
       <div class="text _text">
         <p>Welcome to RadBus!</p>
@@ -41,55 +60,8 @@
         <button onClick="window.location='https://github.com/TargetRAD/radbus-web';" class="_button-2">RadBus Web Client on GitHub</button>
       </div>
     </div>
-    <div id="selectFromListModal" class="selectfromlistmodal js-select-from-list-modal">
-      <div class="container">
-        <button id="selectFromListCancelButton" class="selectfromlistcancelbutton js-select-from-list-cancel-button">cancel</button>
-        <button id="selectFromListAddButton" class="selectfromlistaddbutton js-select-from-list-add-button">add</button>
-      </div>
-      <select id="selectFromList" class="selectfromlist js-select-from-list" name="selectRoute">
-        <option value="choose">choose</option>
-      </select>
-    </div>
-    <div id="headerDepartures" class="headerdepartures clearfix js-header-departures">
-      <p class="text _text">Departures</p>
-      <button id="refreshDeparturesButton" class="refreshdeparturesbutton js-refresh-departures-button">Refresh<br></button>
-    </div>
-    <div id="headerRoutes" class="headerroutes clearfix js-header-routes">
-      <p class="text _text">Routes</p>
-      <button id="addRouteButton" class="addroutebutton js-add-route-button">Add Route</button>
-    </div>
-    <button id="aboutRADBusButton" class="aboutradbus js-about-r-a-d-bus-button">About RADBus</button>
     <button id="refreshButton" class="refresh js-refresh-button">Departures</button>
     <button id="manageRoutesButton" class="manageroutesbutton js-manage-routes-button">Routes</button>
-    <div id="routes" class="routes js-routes">
-      <div id="routes-list" class="chosenroutes js-routes-list">
-        <div id="placeholder-route" class="route js-placeholder-route">
-          <div class="routedetail">
-            <button class="doneroute">done<br></button>
-            <button class="removeroute">delete this route</button>
-            <button class="routename">(selected route name)</button>
-            <div class="pm">PM</div>
-            <p class="pmdirection">South</p>
-            <button class="addstop addstop-1">add stop</button>
-            <div class="pmstops clearfix">
-              <div class="stop">
-                <button class="removestop">delete</button>
-                <button class="stopname">(selected stop name)</button>
-              </div>
-            </div>
-            <div class="am">AM</div>
-            <div class="amdirection">North</div>
-            <button class="addstop addstop-2">add stop</button>
-            <div class="amstops clearfix">
-              <div class="stop">
-                <button class="removestop">delete</button>
-                <button class="stopname">(selected stop name)</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div id="departures" class="departures clearfix js-departures">
       <div id="departures-list" class="list js-departures-list"></div>
       <p id="getting-departures" class="text text-4">Getting departures...</p>
@@ -107,6 +79,36 @@
         <div class="stop-detail">10th &amp; Marquette</div>
         <p class="time-label">Departure Time</p>
         <p class="bus-detail">Bus, Express</p>
+      </div>
+    </div>
+    <div id="routes" class="routes clearfix js-routes">
+      <div id="routes-list" class="chosenroutes js-routes-list">
+        <div id="placeholder-route" class="route js-placeholder-route">
+          <div class="routedetail">
+            <button class="cancelroute">cancel changes</button>
+            <button class="doneroute">save changes<br></button>
+            <button class="removeroute">delete</button>
+            <button class="routename">(selected route name)</button>
+            <div class="pm">PM</div>
+            <p class="pmdirection">South</p>
+            <button class="addstop addstop-1">add stop</button>
+            <div class="pmstops clearfix">
+              <div class="stop">
+                <button class="removestop">delete</button>
+                <button class="stopname">(selected stop name)</button>
+              </div>
+            </div>
+            <p class="am">AM</p>
+            <div class="amdirection">North</div>
+            <button class="addstop addstop-2">add stop</button>
+            <div class="amstops clearfix">
+              <div class="stop">
+                <button class="removestop">delete</button>
+                <button class="stopname">(selected stop name)</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <img id="headerBus" class="headerbus js-header-bus" src="images/bus.svg">
@@ -155,6 +157,7 @@
       <button class="routename" data-route-id="{{routeId}}">{{route}}</button>
       <button class="removeroute" data-route-id="{{routeId}}">delete this route</button>
       <button class="doneroute" data-route-id="{{routeId}}">done</button>
+      <button class="cancelroute">cancel changes</button>
 
       <button class="am">AM</button>
       <button class="amdirection" data-direction-id="{{am.direction.id}}">{{am.direction.description}}</button>

@@ -12,69 +12,63 @@ body {
 }
 
 .container button {
-  display: block;
   position: absolute;
   top: 0;
   font-size: 1em;
+  line-height: 1.38;
   text-align: center;
 }
 
 .departure button {
-  display: block;
   position: absolute;
-  top: 41px;
-  left: 569px;
-  z-index: 20;
-  width: 19.1520842786%;
+  top: 42px;
+  right: 9.1219096334%;
+  z-index: 42;
+  width: 12.2762148337%;
   height: 35px;
   background-color: rgb(222, 222, 222);
-  font-family: Raleway;
-  font-size: 1em;
-  font-weight: 400;
+  font: 400 1em/1.38 Raleway;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .header button {
-  display: block;
   position: relative;
   float: left;
+  line-height: 1.38;
   text-align: left;
   color: rgb(255, 255, 255);
 }
 
 .headerdepartures button {
-  display: block;
-  position: relative;
   float: left;
   clear: both;
-  z-index: 61;
   width: 92px;
   height: 36px;
-  margin: -38px 0 0 61.5995762711%;
-  background-color: rgb(222, 222, 222);
+  margin: -36px 0 0 69.82256%;
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .headerroutes button {
-  display: block;
   float: left;
   clear: both;
   width: 92px;
   height: 36px;
-  margin: -41px 0 0 62.44759%;
-  background-color: rgb(222, 222, 222);
+  margin: -36px 0 0 69.63056%;
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .loginprompt button {
-  display: block;
   position: relative;
   float: left;
   clear: both;
@@ -84,9 +78,7 @@ body {
   margin: -7px 0 0 -1.41068%;
   border: 3px solid rgb(255, 255, 255);
   background-color: rgb(134, 71, 71);
-  font-family: Raleway;
-  font-size: 1em;
-  font-weight: 100;
+  font: 100 1em/1.38 Raleway;
   text-align: center;
   color: rgb(255, 255, 255);
 }
@@ -106,6 +98,10 @@ body {
   color: rgb(227, 168, 77);
 }
 
+.pmstops button {
+  line-height: 1.38;
+}
+
 .selectfromlistmodal button {
   height: 47px;
   background-color: rgb(222, 222, 222);
@@ -122,14 +118,15 @@ body {
 }
 
 button {
+  display: block;
   border-radius: 3px;
-  line-height: 1.38;
 }
 
 div img {
   float: left;
+  clear: both;
   width: 163px;
-  margin: 9152px 0 0 81.47416%;
+  margin: 9086px 0 0 81.47416%;
 }
 
 img {
@@ -143,7 +140,7 @@ select {
   position: absolute;
   top: 154px;
   left: 25.3439465408%;
-  z-index: 53;
+  z-index: 55;
   width: 48.7421383647%;
   height: 98px;
   padding-left: 10px;
@@ -169,7 +166,7 @@ select {
   position: absolute;
   top: 146px;
   left: 8.4375%;
-  z-index: 51;
+  z-index: 53;
   width: 83.0208333333%;
   height: 382px;
   overflow: scroll;
@@ -178,7 +175,7 @@ select {
 .about .container {
   position: relative;
   float: left;
-  z-index: 50;
+  z-index: 52;
   width: 100%;
   height: 49px;
   margin-left: NaN;
@@ -187,7 +184,7 @@ select {
 .about .text {
   position: relative;
   float: left;
-  z-index: 47;
+  z-index: 49;
   width: 99.8745294855%;
   font-size: 1em;
   font-weight: 400;
@@ -195,55 +192,54 @@ select {
 }
 
 .aboutradbus {
-  display: block;
   position: absolute;
-  top: 17px;
-  right: 5.5005836162%;
-  z-index: 52;
+  top: 20px;
+  right: 2.3259762308%;
+  z-index: 54;
   width: 12.2241086587%;
   height: 39px;
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .addstop {
-  display: block;
   position: absolute;
-  top: 79px;
-  width: 10.3519668737%;
+  top: 156px;
   height: 35px;
   border: 1px solid rgb(227, 168, 77);
   background-color: rgba(255, 253, 251, 0.53);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .am {
   position: absolute;
-  top: 79px;
-  left: 6.5217391304%;
-  z-index: 30;
-  width: 11.6977225672%;
+  top: 81px;
+  left: 9.0366581415%;
+  z-index: 16;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: 700;
-  line-height: 2.28;
+  line-height: 1.88;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .amdirection {
   position: absolute;
-  top: 79px;
-  left: 18.2194616977%;
-  z-index: 29;
-  width: 11.6977225672%;
+  top: 118px;
+  left: 9.0366581415%;
+  z-index: 15;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
   font-size: 1em;
@@ -255,17 +251,16 @@ select {
 
 .amstops {
   position: absolute;
-  top: 116px;
-  left: 6.5217391304%;
-  z-index: 27;
-  width: 33.7474120082%;
+  top: 76px;
+  left: 18.073316283%;
+  z-index: 13;
+  width: 26.1722080136%;
   height: 80px;
-  background-color: rgb(77, 187, 227);
   overflow: scroll;
 }
 
 .amstops .removestop {
-  z-index: 25;
+  z-index: 11;
 }
 
 .amstops .stop,
@@ -274,12 +269,12 @@ select {
   float: left;
   width: 100.0394726454%;
   height: 80px;
-  margin-left: -0.03947%;
+  margin-left: -0.03563%;
 }
 
 .amstops .stopname {
   left: -1px;
-  z-index: 24;
+  z-index: 10;
 }
 
 .background {
@@ -293,7 +288,7 @@ select {
   position: absolute;
   top: 66px;
   left: 161px;
-  z-index: 14;
+  z-index: 36;
   font: 400 1em/1.38 Raleway;
   color: rgb(0, 0, 0);
 }
@@ -304,6 +299,23 @@ select {
   left: -0.3658854167%;
   z-index: 8;
   width: 17.1666666666%;
+}
+
+.cancelroute {
+  visibility: hidden;
+  position: absolute;
+  top: 199px;
+  left: 64.6019820971%;
+  z-index: 27;
+  width: 144px;
+  height: 44px;
+  border: 1px solid rgb(77, 187, 227);
+  background-color: rgb(255, 255, 255);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.38;
+  text-align: center;
+  color: rgb(0, 0, 0);
 }
 
 .chosenroutes {
@@ -320,14 +332,14 @@ select {
   clear: both;
   width: 100%;
   height: 118px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .departure .bus {
   position: absolute;
   top: 29px;
   left: 161px;
-  z-index: 17;
+  z-index: 39;
   width: 16.0744934798%;
   font: 600 1.375em/1.38 Raleway;
   color: rgb(0, 0, 0);
@@ -337,7 +349,7 @@ select {
   position: absolute;
   top: 29px;
   left: 305px;
-  z-index: 19;
+  z-index: 41;
   width: 18.6115330742%;
   font: 600 1.375em/1.38 Raleway;
   color: rgb(0, 0, 0);
@@ -346,19 +358,20 @@ select {
 .departure-background {
   position: relative;
   float: left;
-  z-index: 13;
+  z-index: 35;
   width: 99.8995320307%;
   height: 118px;
-  background-color: rgb(77, 187, 227);
+  border-bottom: 1px solid rgb(227, 168, 77);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .departures {
   display: none;
   position: absolute;
-  top: 68px;
-  left: 8.4040747028%;
-  z-index: 23;
-  width: 83.0220713073%;
+  top: 84px;
+  left: 0.2546689303%;
+  z-index: 45;
+  width: 99.5755517826%;
   height: 454px;
   overflow: scroll;
 }
@@ -370,16 +383,18 @@ select {
 }
 
 .doneroute {
-  display: none;
+  visibility: hidden;
   position: absolute;
-  top: -8px;
-  left: 650px;
-  z-index: 40;
-  width: 144px;
+  top: 199px;
+  right: 2.251172208%;
+  z-index: 26;
+  width: 226px;
   height: 44px;
+  border: 2px solid rgb(227, 168, 77);
   background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
@@ -393,52 +408,50 @@ select {
   height: 104px;
 }
 
+.headerbar {
+  position: relative;
+  float: left;
+  z-index: 46;
+  width: 99.5755517826%;
+  height: 347px;
+  margin: -263px 0 0 0.25467%;
+  border-bottom: 2px solid rgb(227, 79, 77);
+  background-color: rgb(222, 222, 222);
+}
+
 .headerdepartures {
   position: absolute;
   top: 20px;
-  left: 43.8879456706%;
-  z-index: 63;
+  left: 43.8030560271%;
+  z-index: 65;
   width: 20.0339558573%;
   height: 41px;
-}
-
-.headerdepartures .text {
-  position: relative;
-  float: left;
-  z-index: 62;
-  width: 61.3296067079%;
-  min-height: 41px;
-  margin-left: 1.1179876222%;
-  font-size: 1.25em;
-  font-weight: 700;
-  line-height: 2.08;
-  text-align: center;
 }
 
 .headerroutes {
   position: absolute;
   top: 20px;
-  left: 43.6651103565%;
-  z-index: 60;
+  left: 43.8348896434%;
+  z-index: 62;
   width: 20.0339558573%;
   height: 41px;
 }
 
+.headerdepartures .text,
 .headerroutes .text {
   float: left;
   width: 61.3296067079%;
   min-height: 41px;
-  margin-left: 1.1179876222%;
+  margin-left: 1.11229%;
   font-size: 1.25em;
   font-weight: 700;
   line-height: 2.08;
-  text-align: center;
 }
 
 .list {
   position: relative;
   float: left;
-  z-index: 10;
+  z-index: 32;
   width: 100%;
   height: 468px;
 }
@@ -454,41 +467,41 @@ select {
 }
 
 .manageroutesbutton {
-  display: block;
   position: absolute;
   top: 20px;
-  left: 8.5%;
-  z-index: 45;
-  width: 177px;
+  left: 9.2529711375%;
+  z-index: 47;
+  width: 163px;
   height: 39px;
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .pm {
   position: absolute;
-  top: 79px;
-  left: 60.8695652173%;
-  z-index: 37;
-  width: 11.6977225672%;
+  top: 81px;
+  left: 55.5666560102%;
+  z-index: 23;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: 700;
-  line-height: 2.28;
+  line-height: 1.88;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .pmdirection {
   position: absolute;
-  top: 79px;
-  left: 72.5672877846%;
-  z-index: 36;
-  width: 11.5942028985%;
+  top: 116px;
+  left: 55.5839727195%;
+  z-index: 22;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
   font-size: 1em;
@@ -500,61 +513,63 @@ select {
 
 .pmstops {
   position: absolute;
-  top: 116px;
-  left: 60.8695652173%;
-  z-index: 34;
-  width: 33.7474120082%;
+  top: 76px;
+  left: 64.7058823529%;
+  z-index: 20;
+  width: 26.1722080136%;
   height: 80px;
-  background-color: rgb(77, 187, 227);
   overflow: scroll;
 }
 
 .pmstops .removestop {
-  z-index: 32;
+  z-index: 18;
 }
 
 .pmstops .stopname {
   left: 0;
-  z-index: 31;
+  z-index: 17;
 }
 
 .refresh {
-  display: block;
   position: absolute;
   top: 20px;
-  left: 8.4040747028%;
-  z-index: 46;
-  width: 15%;
+  left: 9.2516447368%;
+  z-index: 48;
+  width: 19.1850594227%;
   height: 39px;
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 253, 251);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .removeroute {
-  display: none;
+  visibility: hidden;
   position: absolute;
-  top: -8px;
-  left: 0;
-  z-index: 39;
+  top: 15px;
+  right: 2.1659207161%;
+  z-index: 25;
   width: 144px;
   height: 44px;
-  background-color: rgb(227, 79, 77);
+  border: 2px solid rgb(227, 79, 77);
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .removestop {
-  display: none;
+  visibility: hidden;
   top: 24px;
-  left: 244px;
+  left: 238px;
   width: 62px;
   height: 35px;
   background-color: rgb(222, 222, 222);
+  line-height: 1.38;
 }
 
 .route {
@@ -564,36 +579,36 @@ select {
   min-height: 210px;
   margin-top: 15px;
   padding-bottom: 250px;
-  background-color: rgba(77, 187, 227, 0.44);
+  border-bottom: 1px solid rgb(77, 187, 227);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .routedetail {
   position: absolute;
   left: 0;
-  z-index: 41;
+  z-index: 28;
   width: 100%;
 }
 
 .routename {
-  display: block;
   position: absolute;
   top: 0;
-  left: 6.5217391304%;
-  z-index: 38;
-  width: 88.0952380952%;
+  left: 9.0366581415%;
+  z-index: 24;
+  width: 81.841432225%;
   height: 77px;
   font-size: 1.25em;
   font-weight: 700;
-  text-align: center;
+  line-height: 1.38;
+  text-align: left;
   color: rgb(0, 0, 0);
 }
 
 .routes {
-  display: none;
   position: absolute;
   top: 86px;
   left: 0.2546689303%;
-  z-index: 44;
+  z-index: 31;
   width: 99.5755517826%;
   height: 450px;
   overflow: visible;
@@ -603,7 +618,7 @@ select {
   position: fixed;
   top: 0;
   left: 0.6666666666%;
-  z-index: 64;
+  z-index: 66;
   width: 98.6666666666%;
   height: 576px;
   border-right: 3px solid rgb(227, 168, 77);
@@ -617,13 +632,13 @@ select {
 
 .selectfromlistaddbutton {
   left: 52.3285323489%;
-  z-index: 54;
+  z-index: 56;
   width: 47.575887413%;
 }
 
 .selectfromlistcancelbutton {
   left: 0;
-  z-index: 55;
+  z-index: 57;
   width: 30.3154147852%;
 }
 
@@ -631,7 +646,7 @@ select {
   display: none;
   position: relative;
   float: left;
-  z-index: 57;
+  z-index: 59;
   width: 100%;
   height: 100px;
   min-height: 538px;
@@ -642,7 +657,7 @@ select {
   position: absolute;
   top: 273px;
   left: 25.3455843815%;
-  z-index: 56;
+  z-index: 58;
   width: 49.6937237945%;
   height: 47px;
 }
@@ -651,17 +666,17 @@ select {
   position: absolute;
   top: 66px;
   left: 305px;
-  z-index: 16;
+  z-index: 38;
   font: 400 1em/1.38 Raleway;
   color: rgb(0, 0, 0);
 }
 
 .stopname {
-  display: block;
   top: 0;
   width: 100%;
   height: 80px;
   background-color: rgb(255, 253, 251);
+  line-height: 1.28;
 }
 
 .text {
@@ -672,7 +687,7 @@ select {
   position: absolute;
   top: 29px;
   left: 10px;
-  z-index: 18;
+  z-index: 40;
   width: 20.4738700704%;
   font: 600 1.375em/1.38 Raleway;
   color: rgb(0, 0, 0);
@@ -682,13 +697,13 @@ select {
   position: absolute;
   top: 66px;
   left: 10px;
-  z-index: 15;
+  z-index: 37;
   font: 400 1em/1.38 Raleway;
   color: rgb(0, 0, 0);
 }
 
 .departures ._text {
-  z-index: 11;
+  z-index: 33;
   font-weight: 400;
 }
 
@@ -706,13 +721,15 @@ select {
 }
 
 .addstop-1 {
-  left: 84.2229554865%;
-  z-index: 35;
+  left: 64.7058823529%;
+  z-index: 21;
+  width: 26.1722080136%;
 }
 
 .addstop-2 {
-  left: 29.917184265%;
-  z-index: 28;
+  left: 18.073316283%;
+  z-index: 14;
+  width: 26.2574595055%;
 }
 
 .bus-2 {
@@ -724,25 +741,25 @@ select {
 }
 
 .text-4 {
-  z-index: 22;
+  z-index: 44;
   width: 59.0201537013%;
   min-height: 35px;
 }
 
 .text-5 {
-  z-index: 12;
+  z-index: 34;
   font-weight: 400;
 }
 
 .container ._button-1 {
   right: 0;
-  z-index: 49;
+  z-index: 51;
   width: 40%;
 }
 
 .container ._button-2 {
   left: 0;
-  z-index: 48;
+  z-index: 50;
   width: 39.9988163112%;
 }
 
