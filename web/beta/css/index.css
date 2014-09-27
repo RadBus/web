@@ -12,51 +12,73 @@ body {
 }
 
 .container button {
-  display: block;
   position: absolute;
   top: 0;
   font-size: 1em;
+  line-height: 1.38;
   text-align: center;
 }
 
 .departure button {
-  display: block;
   position: absolute;
-  top: 41px;
-  left: 569px;
-  z-index: 20;
-  width: 19.1520842786%;
+  top: 42px;
+  right: 9.1219096334%;
+  z-index: 42;
+  width: 12.2762148337%;
   height: 35px;
   background-color: rgb(222, 222, 222);
-  font-family: Raleway;
-  font-size: 1em;
-  font-weight: 400;
+  font: 400 1em/1.38 Raleway;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .header button {
-  display: block;
   position: relative;
   float: left;
+  line-height: 1.38;
   text-align: left;
   color: rgb(255, 255, 255);
 }
 
+.headerdepartures button {
+  float: left;
+  clear: both;
+  width: 92px;
+  height: 36px;
+  margin: -36px 0 0 69.82256%;
+  background-color: rgb(255, 255, 255);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.38;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.headerroutes button {
+  float: left;
+  clear: both;
+  width: 92px;
+  height: 36px;
+  margin: -36px 0 0 69.63056%;
+  background-color: rgb(255, 255, 255);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.38;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
 .loginprompt button {
-  display: block;
   position: relative;
   float: left;
   clear: both;
   z-index: 3;
   width: 59.9744245524%;
   height: 62px;
-  margin: -7px 0 0 -1.417%;
+  margin: -7px 0 0 -1.41068%;
   border: 3px solid rgb(255, 255, 255);
   background-color: rgb(134, 71, 71);
-  font-family: Raleway;
-  font-size: 1em;
-  font-weight: 600;
+  font: 100 1em/1.38 Raleway;
   text-align: center;
   color: rgb(255, 255, 255);
 }
@@ -76,6 +98,10 @@ body {
   color: rgb(227, 168, 77);
 }
 
+.pmstops button {
+  line-height: 1.38;
+}
+
 .selectfromlistmodal button {
   height: 47px;
   background-color: rgb(222, 222, 222);
@@ -92,14 +118,15 @@ body {
 }
 
 button {
+  display: block;
   border-radius: 3px;
-  line-height: 1.38;
 }
 
 div img {
   float: left;
+  clear: both;
   width: 163px;
-  margin: 9152px 0 0 81.41978%;
+  margin: 9086px 0 0 81.47416%;
 }
 
 img {
@@ -130,7 +157,7 @@ select {
 }
 
 .about p,
-.text-5 p {
+.text-6 p {
   margin-bottom: 1em;
 }
 
@@ -151,6 +178,7 @@ select {
   z-index: 52;
   width: 100%;
   height: 49px;
+  margin-left: NaN;
 }
 
 .about .text {
@@ -160,73 +188,58 @@ select {
   width: 99.8745294855%;
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
 }
 
 .aboutradbus {
-  display: block;
   position: absolute;
   top: 20px;
-  right: 23.8367466044%;
+  right: 2.3259762308%;
   z-index: 54;
   width: 12.2241086587%;
   height: 39px;
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
-  text-align: center;
-  color: rgb(0, 0, 0);
-}
-
-.addroutebutton {
-  display: block;
-  position: relative;
-  float: left;
-  z-index: 45;
-  width: 143px;
-  height: 28px;
-  margin: 7px 0 0 17px;
-  background-color: rgb(222, 222, 222);
-  font-size: 1em;
-  font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .addstop {
-  display: block;
   position: absolute;
-  top: 79px;
-  width: 10.3519668737%;
+  top: 156px;
   height: 35px;
   border: 1px solid rgb(227, 168, 77);
   background-color: rgba(255, 253, 251, 0.53);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .am {
   position: absolute;
-  top: 79px;
-  left: 6.5217391304%;
-  z-index: 30;
-  width: 11.6977225672%;
+  top: 81px;
+  left: 9.0366581415%;
+  z-index: 16;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: 700;
-  line-height: 2.28;
+  line-height: 1.88;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .amdirection {
   position: absolute;
-  top: 79px;
-  left: 18.2194616977%;
-  z-index: 29;
-  width: 11.6977225672%;
+  top: 118px;
+  left: 9.0366581415%;
+  z-index: 15;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
   font-size: 1em;
@@ -238,29 +251,30 @@ select {
 
 .amstops {
   position: absolute;
-  top: 116px;
-  left: 6.5217391304%;
-  z-index: 27;
-  width: 33.7474120082%;
+  top: 76px;
+  left: 18.073316283%;
+  z-index: 13;
+  width: 26.1722080136%;
   height: 80px;
-  background-color: rgb(77, 187, 227);
   overflow: scroll;
 }
 
 .amstops .removestop {
-  z-index: 25;
+  z-index: 11;
 }
 
 .amstops .stop,
 .pmstops .stop {
   position: relative;
   float: left;
-  width: 326px;
+  width: 100.0394726454%;
   height: 80px;
+  margin-left: -0.03563%;
 }
 
 .amstops .stopname {
-  z-index: 24;
+  left: -1px;
+  z-index: 10;
 }
 
 .background {
@@ -274,7 +288,7 @@ select {
   position: absolute;
   top: 66px;
   left: 161px;
-  z-index: 14;
+  z-index: 36;
   font: 400 1em/1.38 Raleway;
   color: rgb(0, 0, 0);
 }
@@ -284,16 +298,31 @@ select {
   top: 14px;
   left: -0.3658854167%;
   z-index: 8;
-  width: 206px;
+  width: 17.1666666666%;
+}
+
+.cancelroute {
+  visibility: hidden;
+  position: absolute;
+  top: 199px;
+  left: 64.6019820971%;
+  z-index: 27;
+  width: 144px;
+  height: 44px;
+  border: 1px solid rgb(77, 187, 227);
+  background-color: rgb(255, 255, 255);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.38;
+  text-align: center;
+  color: rgb(0, 0, 0);
 }
 
 .chosenroutes {
   position: relative;
   float: left;
-  clear: both;
-  width: 100.103626943%;
+  width: 100%;
   height: 330px;
-  margin: 28px 0 0 -0.10363%;
   overflow: scroll;
 }
 
@@ -303,14 +332,14 @@ select {
   clear: both;
   width: 100%;
   height: 118px;
-  margin-top: 22px;
+  margin-top: 10px;
 }
 
 .departure .bus {
   position: absolute;
   top: 29px;
   left: 161px;
-  z-index: 17;
+  z-index: 39;
   width: 16.0744934798%;
   font: 600 1.375em/1.38 Raleway;
   color: rgb(0, 0, 0);
@@ -320,7 +349,7 @@ select {
   position: absolute;
   top: 29px;
   left: 305px;
-  z-index: 19;
+  z-index: 41;
   width: 18.6115330742%;
   font: 600 1.375em/1.38 Raleway;
   color: rgb(0, 0, 0);
@@ -329,19 +358,20 @@ select {
 .departure-background {
   position: relative;
   float: left;
-  z-index: 13;
+  z-index: 35;
   width: 99.8995320307%;
   height: 118px;
-  background-color: rgb(77, 187, 227);
+  border-bottom: 1px solid rgb(227, 168, 77);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .departures {
   display: none;
   position: absolute;
-  top: 68px;
-  left: 8.4040747028%;
-  z-index: 23;
-  width: 83.0220713073%;
+  top: 84px;
+  left: 0.2546689303%;
+  z-index: 45;
+  width: 99.5755517826%;
   height: 454px;
   overflow: scroll;
 }
@@ -350,21 +380,21 @@ select {
   position: absolute;
   top: 102px;
   left: 0;
-  font-family: Raleway;
-  font-size: 2.5em;
 }
 
 .doneroute {
-  display: none;
+  visibility: hidden;
   position: absolute;
-  top: -8px;
-  left: 650px;
-  z-index: 40;
-  width: 144px;
+  top: 199px;
+  right: 2.251172208%;
+  z-index: 26;
+  width: 226px;
   height: 44px;
+  border: 2px solid rgb(227, 168, 77);
   background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
@@ -378,16 +408,55 @@ select {
   height: 104px;
 }
 
+.headerbar {
+  position: relative;
+  float: left;
+  z-index: 46;
+  width: 99.5755517826%;
+  height: 347px;
+  margin: -263px 0 0 0.25467%;
+  border-bottom: 2px solid rgb(227, 79, 77);
+  background-color: rgb(222, 222, 222);
+}
+
+.headerdepartures {
+  position: absolute;
+  top: 20px;
+  left: 43.8030560271%;
+  z-index: 65;
+  width: 20.0339558573%;
+  height: 41px;
+}
+
+.headerroutes {
+  position: absolute;
+  top: 20px;
+  left: 43.8348896434%;
+  z-index: 62;
+  width: 20.0339558573%;
+  height: 41px;
+}
+
+.headerdepartures .text,
+.headerroutes .text {
+  float: left;
+  width: 61.3296067079%;
+  min-height: 41px;
+  margin-left: 1.11229%;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 2.08;
+}
+
 .list {
   position: relative;
   float: left;
-  z-index: 10;
+  z-index: 32;
   width: 100%;
   height: 468px;
 }
 
 .loginprompt {
-  display: none;
   position: fixed;
   top: 464px;
   left: 28.8333333333%;
@@ -398,41 +467,41 @@ select {
 }
 
 .manageroutesbutton {
-  display: block;
   position: absolute;
   top: 20px;
-  left: 25.3455843815%;
+  left: 9.2529711375%;
   z-index: 47;
-  width: 143px;
+  width: 163px;
   height: 39px;
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .pm {
   position: absolute;
-  top: 79px;
-  left: 60.8695652173%;
-  z-index: 37;
-  width: 11.6977225672%;
+  top: 81px;
+  left: 55.5666560102%;
+  z-index: 23;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: 700;
-  line-height: 2.28;
+  line-height: 1.88;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .pmdirection {
   position: absolute;
-  top: 79px;
-  left: 72.5672877846%;
-  z-index: 36;
-  width: 11.5942028985%;
+  top: 116px;
+  left: 55.5839727195%;
+  z-index: 22;
+  width: 9.0366581415%;
   height: 35px;
   border-radius: 3px;
   font-size: 1em;
@@ -444,60 +513,63 @@ select {
 
 .pmstops {
   position: absolute;
-  top: 116px;
-  left: 60.8695652173%;
-  z-index: 34;
-  width: 33.7474120082%;
+  top: 76px;
+  left: 64.7058823529%;
+  z-index: 20;
+  width: 26.1722080136%;
   height: 80px;
-  background-color: rgb(77, 187, 227);
   overflow: scroll;
 }
 
 .pmstops .removestop {
-  z-index: 32;
+  z-index: 18;
 }
 
 .pmstops .stopname {
-  z-index: 31;
+  left: 0;
+  z-index: 17;
 }
 
 .refresh {
-  display: block;
   position: absolute;
   top: 20px;
-  left: 8.5%;
+  left: 9.2516447368%;
   z-index: 48;
-  width: 15%;
+  width: 19.1850594227%;
   height: 39px;
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 253, 251);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .removeroute {
-  display: none;
+  visibility: hidden;
   position: absolute;
-  top: -8px;
-  left: 0;
-  z-index: 39;
+  top: 15px;
+  right: 2.1659207161%;
+  z-index: 25;
   width: 144px;
   height: 44px;
-  background-color: rgb(227, 79, 77);
+  border: 2px solid rgb(227, 79, 77);
+  background-color: rgb(255, 255, 255);
   font-size: 1em;
   font-weight: 400;
+  line-height: 1.38;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .removestop {
-  display: none;
+  visibility: hidden;
   top: 24px;
-  left: 244px;
+  left: 238px;
   width: 62px;
   height: 35px;
   background-color: rgb(222, 222, 222);
+  line-height: 1.38;
 }
 
 .route {
@@ -506,58 +578,47 @@ select {
   width: 100%;
   min-height: 210px;
   margin-top: 15px;
-  background-color: rgba(77, 187, 227, 0.44);
+  padding-bottom: 250px;
+  border-bottom: 1px solid rgb(77, 187, 227);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .routedetail {
   position: absolute;
-  top: NaN;
   left: 0;
-  z-index: 41;
+  z-index: 28;
   width: 100%;
 }
 
 .routename {
-  display: block;
   position: absolute;
-  top: -6px;
-  left: 6.5217391304%;
-  z-index: 38;
-  width: 88.0952380952%;
+  top: 0;
+  left: 9.0366581415%;
+  z-index: 24;
+  width: 81.841432225%;
   height: 77px;
-  background-color: rgba(255, 253, 251, 0.43);
   font-size: 1.25em;
   font-weight: 700;
-  text-align: center;
+  line-height: 1.38;
+  text-align: left;
   color: rgb(0, 0, 0);
 }
 
 .routes {
-  display: none;
   position: absolute;
   top: 86px;
-  left: 8.5738539898%;
-  z-index: 46;
-  width: 81.9185059422%;
+  left: 0.2546689303%;
+  z-index: 31;
+  width: 99.5755517826%;
   height: 450px;
   overflow: visible;
-}
-
-.routes .text {
-  position: relative;
-  float: left;
-  z-index: 44;
-  width: 18.0904522613%;
-  margin-left: -0.12468%;
-  font-size: 1.875em;
-  font-weight: 700;
 }
 
 .screens {
   position: fixed;
   top: 0;
   left: 0.6666666666%;
-  z-index: 60;
+  z-index: 66;
   width: 98.6666666666%;
   height: 576px;
   border-right: 3px solid rgb(227, 168, 77);
@@ -605,22 +666,20 @@ select {
   position: absolute;
   top: 66px;
   left: 305px;
-  z-index: 16;
+  z-index: 38;
   font: 400 1em/1.38 Raleway;
   color: rgb(0, 0, 0);
 }
 
 .stopname {
-  display: block;
   top: 0;
-  left: 0;
-  width: 326px;
+  width: 100%;
   height: 80px;
   background-color: rgb(255, 253, 251);
+  line-height: 1.28;
 }
 
 .text {
-  line-height: 1.38;
   color: rgb(0, 0, 0);
 }
 
@@ -628,7 +687,7 @@ select {
   position: absolute;
   top: 29px;
   left: 10px;
-  z-index: 18;
+  z-index: 40;
   width: 20.4738700704%;
   font: 600 1.375em/1.38 Raleway;
   color: rgb(0, 0, 0);
@@ -638,13 +697,13 @@ select {
   position: absolute;
   top: 66px;
   left: 10px;
-  z-index: 15;
+  z-index: 37;
   font: 400 1em/1.38 Raleway;
   color: rgb(0, 0, 0);
 }
 
 .departures ._text {
-  z-index: 11;
+  z-index: 33;
   font-weight: 400;
 }
 
@@ -654,7 +713,7 @@ select {
   z-index: 2;
   width: 59.8465473145%;
   height: 42px;
-  margin: -7px 0 0 -1.417%;
+  margin: -7px 0 0 -1.41068%;
   border-radius: 3px;
   font: 500 1.25em/1.38 Raleway;
   text-align: center;
@@ -662,13 +721,15 @@ select {
 }
 
 .addstop-1 {
-  left: 84.2229554865%;
-  z-index: 35;
+  left: 64.7058823529%;
+  z-index: 21;
+  width: 26.1722080136%;
 }
 
 .addstop-2 {
-  left: 29.917184265%;
-  z-index: 28;
+  left: 18.073316283%;
+  z-index: 14;
+  width: 26.2574595055%;
 }
 
 .bus-2 {
@@ -679,14 +740,14 @@ select {
   width: 483px;
 }
 
-.text-3 {
-  z-index: 22;
+.text-4 {
+  z-index: 44;
   width: 59.0201537013%;
   min-height: 35px;
 }
 
-.text-4 {
-  z-index: 12;
+.text-5 {
+  z-index: 34;
   font-weight: 400;
 }
 
