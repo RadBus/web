@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/TargetRAD/radbus-web.git"
+    "url": "git://github.com/RadBus/web.git"
   },
   "author": "twistedstream",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TargetRAD/radbus-web/issues"
+    "url": "https://github.com/RadBus/web/issues"
   },
-  "homepage": "https://github.com/TargetRAD/radbus-web",
+  "homepage": "https://www.radbus.io",
   "dependencies": {
     "bower": "~1.3.3",
     "coffee-script": "~1.7.1",
