@@ -1,10 +1,12 @@
 (function() {
   var $background = $('.js-background');
   var $bus = $('.js-bus');
+  var $loading = $('.js-loading');
   var $loginPrompt = $('.js-login-prompt');
   var $header = $('.js-header');
   var $busStopSign = $('.js-bus-stop-sign');
   var $headerBus = $('.js-header-bus');
+  var $loadingRoutes = $('.js-loading-routes');
   var $placeholderRoute = $('.js-placeholder-route');
   var $routesList = $('.js-routes-list');
   var $routes = $('.js-routes');
@@ -118,6 +120,7 @@
       // hide($('#welcome'));
 
       $('#loginPrompt').hide();
+      $('#loading').fadeOut();
 
       var authorizeButton = $('#authorize-button');
 
@@ -292,11 +295,20 @@
 
         $.each(data, function (index, departure) {
 
-          console.log(data);
+          console.log("departure", departure);
 
           var route = departure.route.id;
           var time = moment(departure.time);
           var wait = time.diff(moment(), 'minutes');
+          var lat = null;
+          var _long = null;
+
+          if(departure.location && departure.location.lat){
+            lat = departure.location.lat;
+          }
+          if(departure.location && departure.location.long){
+            _long = departure.location.long;
+          }
 
           var context = {
             "time": time.format('LT'),
@@ -304,9 +316,11 @@
             "stop": departure.route.terminal,
             "bus": route,
             "stopDetail": departure.stop.description,
+            "locationLat": lat,
+            "locationLong": _long
           };
-          console.log(context);
-          var item = template(context );
+          console.log("context", context);
+          var item = template(context);
 
           $('#departures-list').append(item);
         });
@@ -319,6 +333,15 @@
           // document.location.href =  "https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip);
           window.open("https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip), "directions");
         });
+
+        $(".bus-location").click(function(e){
+          console.log(e);
+          var lat = $(e.target).attr("data-lat");
+          var _long = $(e.target).attr("data-long");
+          window.open("https://www.google.com/maps/place/Current+Location/" + encodeURIComponent(lat) + "," + encodeURIComponent(_long));
+        });
+
+
 
       }
     }
@@ -333,34 +356,26 @@
       $("#menu").css("visibility", "visible")
     }
 
-    jQuery.fn.highlight = function() {
-      $(this).each(function () {
-        var el = $(this);
-        $("<div/>")
-        .width(el.outerWidth())
-        .height(el.outerHeight())
-        .css({
-          "position": "absolute",
-          "left": el.offset().left,
-          "top": el.offset().top,
-          "background-color": "#ffff99",
-          "opacity": ".7",
-          "z-index": "9999999"
-        }).appendTo('body').fadeOut(1500).queue(function () { $(this).remove(); });
-      });
-    };
-
-
     //
     // initial render/state of the UI
     //
-    var selectFromListCallback = null;
-    $(".screens").hide();
-    $placeholderDeparture.remove();
-    $placeholderRoute.remove();
-    hideMessages();
 
-    $(".screens").css("height", "99%");
+    var selectFromListCallback = null;
+
+    $(document).ready(function(){
+      $(".screens").hide();
+      $placeholderDeparture.remove();
+      $placeholderRoute.remove();
+      hideMessages();
+      $(".screens").css("height", "99%");
+      $('#loading').fadeIn();
+      $('#loginPrompt').hide();
+
+      $("#bus").transition({ "x": "500%" }, 0, function(){
+        $("#bus").transition({ "x": "0%" }, 2000);
+      });
+    });
+
 
     //
     // UI events
@@ -371,6 +386,7 @@
     $('#refreshDeparturesButton').click(refreshSchedule);
     $('#aboutRADBusButton').click(showAbout);
     $('#manageRoutesButton').click(showRoutes);
+    $("#no-bus-schedule").click(showRoutes);
 
     $('#selectFromListCancelButton').click(function(){$('#selectFromListModal').hide()});
     $('#selectFromListAddButton').click(function(){
@@ -613,6 +629,10 @@
       $("#routes").css("height", "99%");
       $(".chosenroutes").css("height", "87%");
 
+      $('#routes-list').empty();
+
+      $("#loadingRoutes").fadeIn();
+
       // fetch routes for current user
       $.ajax({
         url: apiBaseUrl + '/schedule',
@@ -620,6 +640,8 @@
         dataType: 'json',
         beforeSend: setAuthorizationHeader,
       }).done(function (data, textStatus, jqXHR) {
+
+        $("#loadingRoutes").fadeOut();
 
         $('#routes-list').empty();
 
