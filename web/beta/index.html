@@ -3,17 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
-  <title>RADBus: </title>
-  <link href="http://fonts.googleapis.com/css?family=Raleway:100,500,900,400,600,800,400|Arvo:400" rel="stylesheet" type="text/css">
+  <title>RADBus - Bus Schedule for Commuters</title>
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100,500,900,200,400,600,800|Arvo:400" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
   <link rel="stylesheet" href="css/index.css">
   <!-- <title> and other generated code will appear above your static head code. -->
 
-  <link href='//fonts.googleapis.com/css?family=Arvo|Raleway:900,400' rel='stylesheet' type='text/css'>
-  
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>  
-	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+  <link href='//fonts.googleapis.com/css?family=Arvo|Raleway:900,400' rel='stylesheet' type='text/css'>  
   
 	<style>
 	.selectedButton {
@@ -39,11 +35,11 @@
       </select>
     </div>
     <div class="headerbar"></div>
-    <div id="headerDepartures" class="headerdepartures clearfix js-header-departures">
+    <div id="headerDepartures" class="headerdepartures js-header-departures">
       <p class="text _text">Departures</p>
       <button id="refreshDeparturesButton" class="refreshdeparturesbutton js-refresh-departures-button">Refresh<br></button>
     </div>
-    <div id="headerRoutes" class="headerroutes clearfix js-header-routes">
+    <div id="headerRoutes" class="headerroutes js-header-routes">
       <p class="text _text">Routes</p>
       <button id="addRouteButton" class="addroutebutton js-add-route-button">Add Route</button>
     </div>
@@ -56,29 +52,28 @@
         <p>For programmers and anyone enthusiastic about open source software, we'd love to hear from you. RadBus is not one but two applicataions, the RadBus Web Client and the RadBus API. &nbsp;The RadBus API&nbsp;helps apps to easily access Twin Cities Metro Transit departure data against a user's personalized schedule stored in the cloud.</p>
 </div>
       <div class="container">
-        <button onClick="window.location='https://github.com/TargetRAD/radbus-api';" class="_button-1">RadBus API on GitHub</button>
-        <button onClick="window.location='https://github.com/TargetRAD/radbus-web';" class="_button-2">RadBus Web Client on GitHub</button>
+        <button onClick="window.location='https://github.com/RADBus/api';" class="_button-1">RadBus API on GitHub</button>
+        <button onClick="window.location='https://github.com/RADBus/web';" class="_button-2">RadBus Web Client on GitHub</button>
       </div>
     </div>
     <button id="refreshButton" class="refresh js-refresh-button">Departures</button>
     <button id="manageRoutesButton" class="manageroutesbutton js-manage-routes-button">Routes</button>
     <div id="departures" class="departures clearfix js-departures">
       <div id="departures-list" class="list js-departures-list"></div>
-      <p id="getting-departures" class="text text-4">Getting departures...</p>
-      <div id="no-departures" class="text text-5 js-message-no-departures">No departures found.</div>
-      <div id="no-bus-schedule" class="text _text text-6 js-message-no-routes">
+      <p id="getting-departures" class="gettingdepartures">Getting departures</p>
+      <p id="no-departures" class="nodepartures js-message-no-departures">No departures found.</p>
+      <div id="no-bus-schedule" class="setuproutes js-message-no-routes">
         <p>We need to know what bus stops and schedule to show you.&nbsp;</p>
-        <p>It's time to <a>setup your routes</a>.</p>
+        <p>It's time to <span>setup your routes</span>.</p>
 </div>
       <div id="placeholder-departure" class="departure clearfix js-placeholder-departure">
         <div class="departure-background"></div>
-        <button class="departure-directions">directions</button>
-        <p class="stop">Stop C</p>
-        <div class="time">12:45 PM</div>
-        <div class="bus">156</div>
-        <div class="stop-detail">10th &amp; Marquette</div>
+        <button class="bus-location">where is the bus?</button>
+        <button class="departure-directions">directions to the stop</button>
+        <p class="time">12:45 PM</p>
+        <p class="bus">156</p>
+        <p class="stop-detail">10th &amp; Marquette</p>
         <p class="time-label">Departure Time</p>
-        <p class="bus-detail">Bus, Express</p>
       </div>
     </div>
     <div id="routes" class="routes clearfix js-routes">
@@ -110,19 +105,21 @@
           </div>
         </div>
       </div>
+      <p id="loadingRoutes" class="text _text js-loading-routes">Loading your Routes</p>
     </div>
     <img id="headerBus" class="headerbus js-header-bus" src="images/bus.svg">
   </div>
-  <img id="busStopSign" class="busstopsign js-bus-stop-sign" src="images/bus-stop-leftside.svg">
   <div id="header" class="header clearfix js-header">
     <button class="_button-3">RAD Bus</button>
     <button class="_button-4">the best way to catch the bus is to be there</button>
   </div>
   <div id="loginPrompt" class="loginprompt clearfix js-login-prompt">
-    <div class="_text">Use your Google ID to begin</div>
+    <p class="_text">Use your Google ID to begin</p>
     <button id="authorize-button">log in</button>
   </div>
+  <div id="loading" class="loading js-loading">Loading...</div>
   <img id="bus" class="bus bus-2 js-bus" src="images/bus.svg">
+  <img id="busStopSign" class="busstopsign js-bus-stop-sign" src="images/bus-stop-leftside.svg">
   <img id="background" class="background js-background" src="images/background.svg">
 
   <script src="js/jquery-min.js"></script>
@@ -137,18 +134,19 @@
 
   </script>
 	<script src="https://apis.google.com/js/client.js?onload=onClientLoad"></script>
-  
+
 <script id="departure-template" type="text/x-handlebars-template">
       <div class="departure clearfix">
         <div class="departure-background"></div>
-        <div class="time-label">Departure Time ({{wait}} minutes)</div>
+        <div class="time-label">({{wait}} minutes)</div>
         <div class="time">{{time}}</div>
-        {{!-- <div class="bus-detail">{{busDetail}}</div> --}}
-        <div class="bus">{{bus}} Bus</div>
+        <div class="bus">{{bus}} {{terminal}}</div>
         <div class="stop-detail">{{stopDetail}}</div>
-        <div class="stop">Stop {{stop}}</div>
-				<button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-cityzip="{{cityzip}}">directions</button>
-      </div>  
+        {{#if locationLat}}
+        <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">directions</button>
+        <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus location</button>
+        {{/if}}
+      </div>
 </script>
 
 <script id="route-template" type="text/x-handlebars-template">
@@ -197,6 +195,11 @@
           <button class="stopname newdata" data-stop-id="{{id}}">{{description}}</button>
         </div>
 </script>
+
+  
+	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>  
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+ 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
   
   
 </body>
