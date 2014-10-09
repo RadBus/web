@@ -337,17 +337,9 @@
           console.log(e);
           var lat = $(e.target).attr("data-lat");
           var _long = $(e.target).attr("data-long");
-<<<<<<< HEAD
           window.open("https://www.google.com/maps/place/" + encodeURIComponent(lat) + "," + encodeURIComponent(_long));
         });
 
-=======
-          window.open("https://www.google.com/maps/place/Current+Location/" + encodeURIComponent(lat) + "," + encodeURIComponent(_long));
-        });
-
-
-
->>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
       }
     }
 
@@ -633,10 +625,6 @@
 
       $("#routes").css("height", "99%");
       $(".chosenroutes").css("height", "80%");
-
-      $('#routes-list').empty();
-
-      $("#loadingRoutes").fadeIn();
 
       $('#routes-list').empty();
 
