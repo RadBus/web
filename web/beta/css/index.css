@@ -48,7 +48,11 @@ body {
   position: absolute;
   top: 27px;
   right: 0;
+<<<<<<< HEAD
   z-index: 59;
+=======
+  z-index: 61;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 92px;
   height: 36px;
   background-color: rgb(255, 255, 255);
@@ -64,7 +68,11 @@ body {
   position: absolute;
   top: 27px;
   right: 0;
+<<<<<<< HEAD
   z-index: 56;
+=======
+  z-index: 58;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 92px;
   height: 36px;
   background-color: rgb(255, 255, 255);
@@ -80,7 +88,11 @@ body {
   position: relative;
   float: left;
   clear: both;
+<<<<<<< HEAD
   z-index: 5;
+=======
+  z-index: 4;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 59.9744245524%;
   height: 62px;
   margin: -7px 0 0 -1.41068%;
@@ -146,7 +158,11 @@ select {
   position: absolute;
   top: 154px;
   left: 25.3439465408%;
+<<<<<<< HEAD
   z-index: 62;
+=======
+  z-index: 64;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 48.7421383647%;
   height: 98px;
   padding-left: 10px;
@@ -172,7 +188,11 @@ select {
   position: absolute;
   top: 102px;
   left: 9.2529711375%;
+<<<<<<< HEAD
   z-index: 54;
+=======
+  z-index: 56;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 81.4940577249%;
   height: 382px;
   overflow: scroll;
@@ -181,7 +201,11 @@ select {
 .about .container {
   position: relative;
   float: left;
+<<<<<<< HEAD
   z-index: 53;
+=======
+  z-index: 55;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 100%;
   height: 49px;
 }
@@ -189,7 +213,11 @@ select {
 .about .text {
   position: relative;
   float: left;
+<<<<<<< HEAD
   z-index: 50;
+=======
+  z-index: 52;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 99.8745294855%;
   font-size: 1em;
   line-height: 1.38;
@@ -200,7 +228,11 @@ select {
   position: absolute;
   top: 20px;
   right: 1.7%;
+<<<<<<< HEAD
   z-index: 55;
+=======
+  z-index: 57;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 12.2241086587%;
   height: 39px;
   background-color: rgb(255, 255, 255);
@@ -271,7 +303,16 @@ select {
 }
 
 .amstops .stop {
+<<<<<<< HEAD
   border-bottom-color: rgb(227, 168, 77);
+=======
+  position: relative;
+  float: left;
+  width: 100.0394726454%;
+  height: 40px;
+  margin-left: -0.03563%;
+  border-bottom: 1px solid rgb(227, 168, 77);
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
 }
 
 .amstops .stopname {
@@ -285,16 +326,37 @@ select {
   width: 1720px;
 }
 
+<<<<<<< HEAD
 .bus-location {
   right: 11.3046142369%;
   z-index: 43;
+=======
+.bus-detail {
+  position: absolute;
+  top: 66px;
+  left: 167px;
+  z-index: 38;
+  font-size: 0.762em;
+  font-weight: 400;
+  line-height: 1.38;
+  color: rgb(0, 0, 0);
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
+}
+
+.bus-location {
+  right: 11.3046142369%;
+  z-index: 45;
 }
 
 .busstopsign {
   position: fixed;
   top: 14px;
   left: -0.3658854167%;
+<<<<<<< HEAD
   z-index: 1;
+=======
+  z-index: 9;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 17.1666666666%;
 }
 
@@ -334,12 +396,33 @@ select {
 
 .departure .bus {
   position: absolute;
+<<<<<<< HEAD
   top: 28px;
   left: 168px;
   z-index: 40;
   width: 16.0744934798%;
   font-size: 1.048em;
   font-weight: 900;
+=======
+  top: 29px;
+  left: 167px;
+  z-index: 41;
+  width: 16.0744934798%;
+  font-size: 1.048em;
+  font-weight: 600;
+  line-height: 1.38;
+  color: rgb(0, 0, 0);
+}
+
+.departure .stop {
+  position: absolute;
+  top: 29px;
+  left: 311px;
+  z-index: 43;
+  width: 18.6115330742%;
+  font-size: 1.048em;
+  font-weight: 600;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   line-height: 1.38;
   color: rgb(0, 0, 0);
 }
@@ -356,14 +439,22 @@ select {
 
 .departure-directions {
   right: 32.1739130434%;
+<<<<<<< HEAD
   z-index: 42;
+=======
+  z-index: 44;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
 }
 
 .departures {
   position: absolute;
   top: 84px;
   left: 0.2546689303%;
+<<<<<<< HEAD
   z-index: 46;
+=======
+  z-index: 48;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 99.5755517826%;
   height: 454px;
   overflow: scroll;
@@ -390,7 +481,11 @@ select {
   position: absolute;
   top: 18px;
   left: 106px;
+<<<<<<< HEAD
   z-index: 45;
+=======
+  z-index: 47;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 54.0494458653%;
   min-height: 35px;
   font-size: 1em;
@@ -402,7 +497,11 @@ select {
   position: fixed;
   top: 324px;
   left: 10%;
+<<<<<<< HEAD
   z-index: 9;
+=======
+  z-index: 8;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 40.8333333333%;
   height: 104px;
 }
@@ -410,7 +509,11 @@ select {
 .headerbar {
   position: relative;
   float: left;
+<<<<<<< HEAD
   z-index: 47;
+=======
+  z-index: 49;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 99.5755517826%;
   height: 347px;
   margin: -263px 0 0 0.25467%;
@@ -422,6 +525,7 @@ select {
   position: absolute;
   top: 0;
   left: 23.1069609507%;
+<<<<<<< HEAD
   z-index: 61;
   width: 33.0220713073%;
   height: 83px;
@@ -437,13 +541,35 @@ select {
   font-size: 1.952em;
   font-weight: 900;
   line-height: 2.08;
+=======
+  z-index: 63;
+  width: 33.0220713073%;
+  height: 83px;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
+}
+
+.headerdepartures .text {
+  position: absolute;
+  top: 0;
+<<<<<<< HEAD
+  left: 23.089983022%;
+  z-index: 58;
+=======
+  left: 0;
+  z-index: 62;
+  width: 61.3271208226%;
+  min-height: 41px;
+  font-size: 1.952em;
+  font-weight: 900;
+  line-height: 2.08;
 }
 
 .headerroutes {
   position: absolute;
   top: 0;
   left: 23.089983022%;
-  z-index: 58;
+  z-index: 60;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 33.0220713073%;
   height: 85px;
 }
@@ -452,7 +578,11 @@ select {
   position: absolute;
   top: 0;
   left: 0;
+<<<<<<< HEAD
   z-index: 57;
+=======
+  z-index: 59;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 127.0358306188%;
   min-height: 41px;
   font-size: 1.952em;
@@ -470,15 +600,25 @@ select {
 
 .loading {
   position: fixed;
+<<<<<<< HEAD
   top: 461px;
   left: 10.25%;
   z-index: 3;
+=======
+  top: 463px;
+  left: 23.5833333333%;
+  z-index: 2;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 32.4166666666%;
   height: 36px;
   border-radius: 3px;
   font-size: 1em;
   font-weight: 500;
   line-height: 1.38;
+<<<<<<< HEAD
+=======
+  text-align: center;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   color: rgb(255, 253, 251);
 }
 
@@ -486,7 +626,11 @@ select {
   position: fixed;
   top: 464px;
   left: 28.8333333333%;
+<<<<<<< HEAD
   z-index: 6;
+=======
+  z-index: 5;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 42.3333333333%;
   padding: 7px;
   border-radius: 8px;
@@ -497,7 +641,11 @@ select {
   position: absolute;
   top: 20px;
   left: 1.6977928692%;
+<<<<<<< HEAD
   z-index: 48;
+=======
+  z-index: 50;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 163px;
   height: 39px;
   background-color: rgb(255, 255, 255);
@@ -562,7 +710,16 @@ select {
 }
 
 .pmstops .stop {
+<<<<<<< HEAD
   border-bottom-color: rgb(0, 0, 0);
+=======
+  position: relative;
+  float: left;
+  width: 100.0394726454%;
+  height: 40px;
+  margin-left: -0.03563%;
+  border-bottom: 1px solid rgb(0, 0, 0);
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
 }
 
 .pmstops .stopname {
@@ -574,7 +731,11 @@ select {
   position: absolute;
   top: 20px;
   left: 1.6977928692%;
+<<<<<<< HEAD
   z-index: 49;
+=======
+  z-index: 51;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 19.1850594227%;
   height: 39px;
   background-color: rgb(255, 253, 251);
@@ -670,7 +831,11 @@ select {
   position: fixed;
   top: 0;
   left: 0.6666666666%;
+<<<<<<< HEAD
   z-index: 67;
+=======
+  z-index: 69;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 98.6666666666%;
   height: 576px;
   border-right: 3px solid rgb(227, 168, 77);
@@ -684,13 +849,21 @@ select {
 
 .selectfromlistaddbutton {
   left: 52.3285323489%;
+<<<<<<< HEAD
   z-index: 63;
+=======
+  z-index: 65;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 47.575887413%;
 }
 
 .selectfromlistcancelbutton {
   left: 0;
+<<<<<<< HEAD
   z-index: 64;
+=======
+  z-index: 66;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 30.3154147852%;
 }
 
@@ -698,7 +871,11 @@ select {
   display: none;
   position: relative;
   float: left;
+<<<<<<< HEAD
   z-index: 66;
+=======
+  z-index: 68;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 100%;
   height: 100px;
   min-height: 538px;
@@ -709,7 +886,11 @@ select {
   position: absolute;
   top: 273px;
   left: 25.3455843815%;
+<<<<<<< HEAD
   z-index: 65;
+=======
+  z-index: 67;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 49.6937237945%;
   height: 47px;
 }
@@ -724,6 +905,7 @@ select {
   color: rgb(0, 0, 0);
 }
 
+<<<<<<< HEAD
 .stop {
   position: relative;
   float: left;
@@ -739,6 +921,13 @@ select {
   top: 65px;
   left: 168px;
   z-index: 39;
+=======
+.stop-detail {
+  position: absolute;
+  top: 66px;
+  left: 311px;
+  z-index: 40;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   font-size: 0.762em;
   font-weight: 400;
   line-height: 1.38;
@@ -762,10 +951,17 @@ select {
 
 .time {
   position: absolute;
+<<<<<<< HEAD
   top: 28px;
   left: 16px;
   z-index: 41;
   width: 12.9582267689%;
+=======
+  top: 29px;
+  left: 16px;
+  z-index: 42;
+  width: 20.4738700704%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   font-size: 1.048em;
   font-weight: 600;
   line-height: 1.38;
@@ -774,9 +970,15 @@ select {
 
 .time-label {
   position: absolute;
+<<<<<<< HEAD
   top: 65px;
   left: 16px;
   z-index: 38;
+=======
+  top: 66px;
+  left: 16px;
+  z-index: 39;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   font-size: 0.762em;
   font-weight: 400;
   line-height: 1.38;
@@ -786,7 +988,11 @@ select {
 .loginprompt ._text {
   position: relative;
   float: left;
+<<<<<<< HEAD
   z-index: 4;
+=======
+  z-index: 3;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 59.8465473145%;
   height: 42px;
   margin: -7px 0 0 -1.41068%;
@@ -820,18 +1026,31 @@ select {
 
 .container ._button-1 {
   right: 0;
+<<<<<<< HEAD
   z-index: 52;
+=======
+  z-index: 54;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 40%;
 }
 
 .container ._button-2 {
   left: 0;
+<<<<<<< HEAD
   z-index: 51;
+=======
+  z-index: 53;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 39.9988163112%;
 }
 
 .header ._button-3 {
+<<<<<<< HEAD
   z-index: 7;
+=======
+  z-index: 6;
+  width: 56.3768115942%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   height: 88px;
   font-size: 2.381em;
   font-weight: 900;
@@ -839,7 +1058,11 @@ select {
 
 .header ._button-4 {
   clear: both;
+<<<<<<< HEAD
   z-index: 8;
+=======
+  z-index: 7;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   width: 100%;
   height: 42px;
   margin-top: -26px;
@@ -858,6 +1081,7 @@ select {
 }
 
 @media(max-width: 900px) {
+<<<<<<< HEAD
   body {
     font-size: 1em;
   }
@@ -870,42 +1094,73 @@ select {
     top: 77px;
     width: 44.0414507772%;
     font-size: 0.75em;
+=======
+  .departure button {
+    top: 90px;
+    width: 44.0414507772%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .header button {
     position: relative;
+<<<<<<< HEAD
     text-align: right;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .headerdepartures button {
     top: 25px;
     right: 0.1342281879%;
     width: 58px;
+<<<<<<< HEAD
     font-size: 0.75em;
+=======
+    font-size: 0.571em;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .headerroutes button {
     width: 60px;
+<<<<<<< HEAD
     font-size: 0.75em;
+=======
+    font-size: 0.571em;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .loginprompt button {
     position: relative;
+<<<<<<< HEAD
     z-index: 5;
     width: 277px;
     margin-top: 0;
     margin-left: 0;
     font-size: 1em;
+=======
+    z-index: 4;
+    margin-left: -1.40966%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   div img {
     height: auto;
+<<<<<<< HEAD
     margin-left: 81.47008%;
   }
 
   .stop .stopname,
   div select {
     font-size: 0.75em;
+=======
+    margin-top: 9037px;
+    margin-left: 81.47321%;
+  }
+
+  .selectfromlistmodal button,
+  div select {
+    font-size: 0.571em;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   img {
@@ -914,12 +1169,17 @@ select {
 
   .about .container {
     position: relative;
+<<<<<<< HEAD
     z-index: 53;
     margin-left: NaN;
+=======
+    z-index: 55;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .about .text {
     position: relative;
+<<<<<<< HEAD
     z-index: 50;
     font-size: 16px;
   }
@@ -939,6 +1199,31 @@ select {
     left: 116px;
     width: 141px;
     font-size: 1.375em;
+=======
+    z-index: 52;
+  }
+
+  .amstops .stop,
+  .pmstops .stop {
+    margin-left: -0.03746%;
+  }
+
+  .busstopsign {
+    top: 6px;
+    left: -3.125%;
+    width: 44.0625%;
+  }
+
+  .departure .bus {
+    top: 10px;
+    left: 143px;
+    width: 95px;
+  }
+
+  .departure .bus-detail {
+    top: 46px;
+    left: 143px;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .departure .bus-location {
@@ -956,6 +1241,7 @@ select {
     right: 54.6632124352%;
   }
 
+<<<<<<< HEAD
   .departure .stop-detail {
     top: 48px;
     left: 116px;
@@ -977,6 +1263,36 @@ select {
   }
 
   .departures .departure {
+=======
+  .departure .stop {
+    top: 9px;
+    left: 223px;
+    width: 25.6832266585%;
+    text-align: right;
+  }
+
+  .departure .stop-detail {
+    top: 46px;
+    left: auto;
+    right: 5px;
+    width: 41.2882251346%;
+    text-align: right;
+  }
+
+  .departure .time {
+    top: 9px;
+    left: 6px;
+    width: 30.0518134715%;
+  }
+
+  .departure .time-label {
+    top: 46px;
+    left: 6px;
+  }
+
+  .departures .departure {
+    clear: none;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
     height: 130px;
   }
 
@@ -988,11 +1304,14 @@ select {
   .departures .gettingdepartures,
   .departures .nodepartures {
     left: 27px;
+<<<<<<< HEAD
     font-size: 16px;
   }
 
   .departures .setuproutes {
     font-size: 16px;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .header {
@@ -1000,6 +1319,7 @@ select {
     width: 79.6875%;
   }
 
+<<<<<<< HEAD
   .headerdepartures .text {
     top: 14px;
     font-size: 1.75em;
@@ -1015,34 +1335,57 @@ select {
     top: 280px;
     left: 13.75%;
     font-size: 16px;
+=======
+  .headerroutes .text {
+    width: 80%;
+  }
+
+  .loading {
+    top: 277px;
+    left: 10.3125%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .loginprompt {
     top: 278px;
     left: 10.9375%;
+<<<<<<< HEAD
     width: 79.0625%;
   }
 
   .pmstops .stop {
     margin-left: -0.03872%;
+=======
+    width: 151.5625%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .addstop {
     top: 183px;
     width: 48%;
+<<<<<<< HEAD
     font-size: 0.75em;
+=======
+    font-size: 0.571em;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .am {
     top: 97px;
     left: 1.251456655%;
+<<<<<<< HEAD
     font-size: 1.25em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .amdirection {
     top: 134px;
     left: 1.251456655%;
+<<<<<<< HEAD
     font-size: 1em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .amstops {
@@ -1054,25 +1397,37 @@ select {
   .routedetail .cancelroute {
     left: 55.7784871054%;
     width: 131px;
+<<<<<<< HEAD
     font-size: 1em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .doneroute {
     right: 48.9588083295%;
     width: 154px;
+<<<<<<< HEAD
     font-size: 1em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .pm {
     top: 98px;
     left: 51.6745199371%;
+<<<<<<< HEAD
     font-size: 1.25em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .pmdirection {
     top: 133px;
     left: 51.6897198155%;
+<<<<<<< HEAD
     font-size: 1em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .pmstops {
@@ -1085,11 +1440,14 @@ select {
     top: 4px;
     right: 1.0741247403%;
     width: 80px;
+<<<<<<< HEAD
     font-size: 1em;
   }
 
   .routedetail .routename {
     font-size: 1.25em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routes .chosenroutes {
@@ -1097,12 +1455,18 @@ select {
     z-index: 31;
   }
 
+<<<<<<< HEAD
   .routes .text {
     font-size: 1.313em;
   }
 
   .screens {
     left: 0.5555555555%;
+=======
+  .screens {
+    top: 6px;
+    left: 0;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .screens .about {
@@ -1114,9 +1478,14 @@ select {
 
   .screens .aboutradbus {
     top: 77px;
+<<<<<<< HEAD
     right: 1.667448283%;
     width: 39.6852691365%;
     font-size: 0.75em;
+=======
+    right: 1.8222177378%;
+    width: 41.973564726%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .screens .departures {
@@ -1128,10 +1497,17 @@ select {
 
   .screens .headerbar {
     position: relative;
+<<<<<<< HEAD
     z-index: 47;
     width: 99.5464852607%;
     height: 396px;
     margin-left: 0.2472%;
+=======
+    z-index: 49;
+    width: 99.5464852607%;
+    height: 396px;
+    margin-left: 0.22676%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .screens .headerdepartures {
@@ -1147,16 +1523,25 @@ select {
 
   .screens .manageroutesbutton {
     top: 77px;
+<<<<<<< HEAD
     left: 2.0009379396%;
     width: 123px;
     font-size: 0.75em;
+=======
+    left: 1.896882252%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .screens .refresh {
     top: 77px;
+<<<<<<< HEAD
     left: 1.667448283%;
     width: 36.0168829138%;
     font-size: 0.75em;
+=======
+    left: 1.5740086772%;
+    width: 41.0049440016%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .screens .routes {
@@ -1168,17 +1553,25 @@ select {
 
   .screens .selectfromlistmodal {
     position: relative;
+<<<<<<< HEAD
     z-index: 66;
+=======
+    z-index: 68;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .stop .removestop {
     left: auto;
     right: 0;
+<<<<<<< HEAD
     font-size: 1em;
+=======
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .loginprompt ._text {
     position: relative;
+<<<<<<< HEAD
     z-index: 4;
     width: 277px;
     height: auto;
@@ -1188,6 +1581,10 @@ select {
     font-size: 16px;
     text-align: left;
     text-indent: 30px;
+=======
+    z-index: 3;
+    margin-left: -1.40966%;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 
   .routedetail .addstop-1 {
@@ -1199,6 +1596,7 @@ select {
   }
 
   .header ._button-3 {
+<<<<<<< HEAD
     z-index: 7;
     width: 100%;
     height: auto;
@@ -1209,5 +1607,12 @@ select {
     z-index: 8;
     margin-top: 0;
     font-size: 1em;
+=======
+    z-index: 6;
+  }
+
+  .header ._button-4 {
+    z-index: 7;
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
   }
 }

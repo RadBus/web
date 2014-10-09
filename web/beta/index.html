@@ -70,13 +70,19 @@
         <div class="departure-background"></div>
         <button class="bus-location">where is the bus?</button>
         <button class="departure-directions">directions to the stop</button>
+<<<<<<< HEAD
         <p class="time">12:45 PM</p>
         <p class="bus">156</p>
+=======
+        <p class="stop">Stop C</p>
+        <div class="time">12:45 PM</div>
+        <div class="bus">156</div>
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
         <p class="stop-detail">10th &amp; Marquette</p>
         <p class="time-label">Departure Time</p>
       </div>
     </div>
-    <div id="routes" class="routes clearfix js-routes">
+    <div id="routes" class="routes js-routes">
       <div id="routes-list" class="chosenroutes js-routes-list">
         <div id="placeholder-route" class="route js-placeholder-route">
           <div class="routedetail">
@@ -142,9 +148,16 @@
         <div class="time">{{time}}</div>
         <div class="bus">{{bus}} {{terminal}}</div>
         <div class="stop-detail">{{stopDetail}}</div>
+<<<<<<< HEAD
         {{#if locationLat}}
         <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">directions</button>
         <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus location</button>
+=======
+        <div class="stop">Stop {{stop}}</div>
+        {{#if locationLat}}
+        <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus stop directions</button>
+        <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">where is the bus?</button>
+>>>>>>> 342536edac02ece52ea56ea868dd1e486bd5e526
         {{/if}}
       </div>
 </script>
