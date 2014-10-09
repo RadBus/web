@@ -70,15 +70,13 @@
         <div class="departure-background"></div>
         <button class="bus-location">where is the bus?</button>
         <button class="departure-directions">directions to the stop</button>
-        <p class="stop">Stop C</p>
-        <div class="time">12:45 PM</div>
-        <div class="bus">156</div>
+        <p class="time">12:45 PM</p>
+        <p class="bus">156</p>
         <p class="stop-detail">10th &amp; Marquette</p>
         <p class="time-label">Departure Time</p>
-        <p class="bus-detail">Bus, Express</p>
       </div>
     </div>
-    <div id="routes" class="routes js-routes">
+    <div id="routes" class="routes clearfix js-routes">
       <div id="routes-list" class="chosenroutes js-routes-list">
         <div id="placeholder-route" class="route js-placeholder-route">
           <div class="routedetail">
@@ -111,7 +109,6 @@
     </div>
     <img id="headerBus" class="headerbus js-header-bus" src="images/bus.svg">
   </div>
-  <img id="busStopSign" class="busstopsign js-bus-stop-sign" src="images/bus-stop-leftside.svg">
   <div id="header" class="header clearfix js-header">
     <button class="_button-3">RAD Bus</button>
     <button class="_button-4">the best way to catch the bus is to be there</button>
@@ -122,6 +119,7 @@
   </div>
   <div id="loading" class="loading js-loading">Loading...</div>
   <img id="bus" class="bus bus-2 js-bus" src="images/bus.svg">
+  <img id="busStopSign" class="busstopsign js-bus-stop-sign" src="images/bus-stop-leftside.svg">
   <img id="background" class="background js-background" src="images/background.svg">
 
   <script src="js/jquery-min.js"></script>
@@ -136,19 +134,17 @@
 
   </script>
 	<script src="https://apis.google.com/js/client.js?onload=onClientLoad"></script>
-  
+
 <script id="departure-template" type="text/x-handlebars-template">
       <div class="departure clearfix">
         <div class="departure-background"></div>
-        <div class="time-label">Departure Time ({{wait}} minutes)</div>
+        <div class="time-label">({{wait}} minutes)</div>
         <div class="time">{{time}}</div>
-        {{!-- <div class="bus-detail">{{busDetail}}</div> --}}
-        <div class="bus">{{bus}} Bus</div>
+        <div class="bus">{{bus}} {{terminal}}</div>
         <div class="stop-detail">{{stopDetail}}</div>
-        <div class="stop">Stop {{stop}}</div>
         {{#if locationLat}}
-        <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus stop directions</button>
-        <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">where is the bus?</button>
+        <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">directions</button>
+        <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus location</button>
         {{/if}}
       </div>
 </script>

@@ -1,10 +1,10 @@
 (function() {
   var $background = $('.js-background');
+  var $busStopSign = $('.js-bus-stop-sign');
   var $bus = $('.js-bus');
   var $loading = $('.js-loading');
   var $loginPrompt = $('.js-login-prompt');
   var $header = $('.js-header');
-  var $busStopSign = $('.js-bus-stop-sign');
   var $headerBus = $('.js-header-bus');
   var $loadingRoutes = $('.js-loading-routes');
   var $placeholderRoute = $('.js-placeholder-route');
@@ -313,7 +313,7 @@
           var context = {
             "time": time.format('LT'),
             "wait": wait,
-            "stop": departure.route.terminal,
+            "terminal": departure.route.terminal,
             "bus": route,
             "stopDetail": departure.stop.description,
             "locationLat": lat,
@@ -330,7 +330,6 @@
           var stop = $(e.target).attr("data-stop");
           var location = $(e.target).attr("data-location");
           var cityzip = $(e.target).attr("data-cityzip");
-          // document.location.href =  "https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip);
           window.open("https://www.google.com/maps/dir/Current+Location/" + encodeURIComponent(stop) + "+" + encodeURIComponent(location) + "+" + encodeURIComponent(cityzip), "directions");
         });
 
@@ -338,10 +337,8 @@
           console.log(e);
           var lat = $(e.target).attr("data-lat");
           var _long = $(e.target).attr("data-long");
-          window.open("https://www.google.com/maps/place/Current+Location/" + encodeURIComponent(lat) + "," + encodeURIComponent(_long));
+          window.open("https://www.google.com/maps/place/" + encodeURIComponent(lat) + "," + encodeURIComponent(_long));
         });
-
-
 
       }
     }
@@ -627,7 +624,7 @@
       $('#headerRoutes').show();
 
       $("#routes").css("height", "99%");
-      $(".chosenroutes").css("height", "87%");
+      $(".chosenroutes").css("height", "80%");
 
       $('#routes-list').empty();
 

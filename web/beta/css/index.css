@@ -48,7 +48,7 @@ body {
   position: absolute;
   top: 27px;
   right: 0;
-  z-index: 61;
+  z-index: 59;
   width: 92px;
   height: 36px;
   background-color: rgb(255, 255, 255);
@@ -64,7 +64,7 @@ body {
   position: absolute;
   top: 27px;
   right: 0;
-  z-index: 58;
+  z-index: 56;
   width: 92px;
   height: 36px;
   background-color: rgb(255, 255, 255);
@@ -80,7 +80,7 @@ body {
   position: relative;
   float: left;
   clear: both;
-  z-index: 4;
+  z-index: 5;
   width: 59.9744245524%;
   height: 62px;
   margin: -7px 0 0 -1.41068%;
@@ -146,7 +146,7 @@ select {
   position: absolute;
   top: 154px;
   left: 25.3439465408%;
-  z-index: 64;
+  z-index: 62;
   width: 48.7421383647%;
   height: 98px;
   padding-left: 10px;
@@ -172,7 +172,7 @@ select {
   position: absolute;
   top: 102px;
   left: 9.2529711375%;
-  z-index: 56;
+  z-index: 54;
   width: 81.4940577249%;
   height: 382px;
   overflow: scroll;
@@ -181,7 +181,7 @@ select {
 .about .container {
   position: relative;
   float: left;
-  z-index: 55;
+  z-index: 53;
   width: 100%;
   height: 49px;
 }
@@ -189,7 +189,7 @@ select {
 .about .text {
   position: relative;
   float: left;
-  z-index: 52;
+  z-index: 50;
   width: 99.8745294855%;
   font-size: 1em;
   line-height: 1.38;
@@ -200,7 +200,7 @@ select {
   position: absolute;
   top: 20px;
   right: 1.7%;
-  z-index: 57;
+  z-index: 55;
   width: 12.2241086587%;
   height: 39px;
   background-color: rgb(255, 255, 255);
@@ -271,12 +271,7 @@ select {
 }
 
 .amstops .stop {
-  position: relative;
-  float: left;
-  width: 100.0394726454%;
-  height: 40px;
-  margin-left: -0.03563%;
-  border-bottom: 1px solid rgb(227, 168, 77);
+  border-bottom-color: rgb(227, 168, 77);
 }
 
 .amstops .stopname {
@@ -290,27 +285,16 @@ select {
   width: 1720px;
 }
 
-.bus-detail {
-  position: absolute;
-  top: 66px;
-  left: 167px;
-  z-index: 38;
-  font-size: 0.762em;
-  font-weight: 400;
-  line-height: 1.38;
-  color: rgb(0, 0, 0);
-}
-
 .bus-location {
   right: 11.3046142369%;
-  z-index: 45;
+  z-index: 43;
 }
 
 .busstopsign {
   position: fixed;
   top: 14px;
   left: -0.3658854167%;
-  z-index: 9;
+  z-index: 1;
   width: 17.1666666666%;
 }
 
@@ -350,24 +334,12 @@ select {
 
 .departure .bus {
   position: absolute;
-  top: 29px;
-  left: 167px;
-  z-index: 41;
+  top: 28px;
+  left: 168px;
+  z-index: 40;
   width: 16.0744934798%;
   font-size: 1.048em;
-  font-weight: 600;
-  line-height: 1.38;
-  color: rgb(0, 0, 0);
-}
-
-.departure .stop {
-  position: absolute;
-  top: 29px;
-  left: 311px;
-  z-index: 43;
-  width: 18.6115330742%;
-  font-size: 1.048em;
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1.38;
   color: rgb(0, 0, 0);
 }
@@ -384,14 +356,14 @@ select {
 
 .departure-directions {
   right: 32.1739130434%;
-  z-index: 44;
+  z-index: 42;
 }
 
 .departures {
   position: absolute;
   top: 84px;
   left: 0.2546689303%;
-  z-index: 48;
+  z-index: 46;
   width: 99.5755517826%;
   height: 454px;
   overflow: scroll;
@@ -418,7 +390,7 @@ select {
   position: absolute;
   top: 18px;
   left: 106px;
-  z-index: 47;
+  z-index: 45;
   width: 54.0494458653%;
   min-height: 35px;
   font-size: 1em;
@@ -430,7 +402,7 @@ select {
   position: fixed;
   top: 324px;
   left: 10%;
-  z-index: 8;
+  z-index: 9;
   width: 40.8333333333%;
   height: 104px;
 }
@@ -438,7 +410,7 @@ select {
 .headerbar {
   position: relative;
   float: left;
-  z-index: 49;
+  z-index: 47;
   width: 99.5755517826%;
   height: 347px;
   margin: -263px 0 0 0.25467%;
@@ -450,7 +422,7 @@ select {
   position: absolute;
   top: 0;
   left: 23.1069609507%;
-  z-index: 63;
+  z-index: 61;
   width: 33.0220713073%;
   height: 83px;
 }
@@ -459,7 +431,7 @@ select {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 62;
+  z-index: 60;
   width: 61.3271208226%;
   min-height: 41px;
   font-size: 1.952em;
@@ -471,7 +443,7 @@ select {
   position: absolute;
   top: 0;
   left: 23.089983022%;
-  z-index: 60;
+  z-index: 58;
   width: 33.0220713073%;
   height: 85px;
 }
@@ -480,7 +452,7 @@ select {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 59;
+  z-index: 57;
   width: 127.0358306188%;
   min-height: 41px;
   font-size: 1.952em;
@@ -498,16 +470,15 @@ select {
 
 .loading {
   position: fixed;
-  top: 463px;
-  left: 23.5833333333%;
-  z-index: 2;
+  top: 461px;
+  left: 10.25%;
+  z-index: 3;
   width: 32.4166666666%;
   height: 36px;
   border-radius: 3px;
   font-size: 1em;
   font-weight: 500;
   line-height: 1.38;
-  text-align: center;
   color: rgb(255, 253, 251);
 }
 
@@ -515,7 +486,7 @@ select {
   position: fixed;
   top: 464px;
   left: 28.8333333333%;
-  z-index: 5;
+  z-index: 6;
   width: 42.3333333333%;
   padding: 7px;
   border-radius: 8px;
@@ -526,7 +497,7 @@ select {
   position: absolute;
   top: 20px;
   left: 1.6977928692%;
-  z-index: 50;
+  z-index: 48;
   width: 163px;
   height: 39px;
   background-color: rgb(255, 255, 255);
@@ -591,12 +562,7 @@ select {
 }
 
 .pmstops .stop {
-  position: relative;
-  float: left;
-  width: 100.0394726454%;
-  height: 40px;
-  margin-left: -0.03563%;
-  border-bottom: 1px solid rgb(0, 0, 0);
+  border-bottom-color: rgb(0, 0, 0);
 }
 
 .pmstops .stopname {
@@ -608,7 +574,7 @@ select {
   position: absolute;
   top: 20px;
   left: 1.6977928692%;
-  z-index: 51;
+  z-index: 49;
   width: 19.1850594227%;
   height: 39px;
   background-color: rgb(255, 253, 251);
@@ -700,10 +666,11 @@ select {
 }
 
 .screens {
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0.6666666666%;
-  z-index: 69;
+  z-index: 67;
   width: 98.6666666666%;
   height: 576px;
   border-right: 3px solid rgb(227, 168, 77);
@@ -717,13 +684,13 @@ select {
 
 .selectfromlistaddbutton {
   left: 52.3285323489%;
-  z-index: 65;
+  z-index: 63;
   width: 47.575887413%;
 }
 
 .selectfromlistcancelbutton {
   left: 0;
-  z-index: 66;
+  z-index: 64;
   width: 30.3154147852%;
 }
 
@@ -731,7 +698,7 @@ select {
   display: none;
   position: relative;
   float: left;
-  z-index: 68;
+  z-index: 66;
   width: 100%;
   height: 100px;
   min-height: 538px;
@@ -742,7 +709,7 @@ select {
   position: absolute;
   top: 273px;
   left: 25.3455843815%;
-  z-index: 67;
+  z-index: 65;
   width: 49.6937237945%;
   height: 47px;
 }
@@ -757,11 +724,21 @@ select {
   color: rgb(0, 0, 0);
 }
 
+.stop {
+  position: relative;
+  float: left;
+  width: 100.0394726454%;
+  height: 40px;
+  margin-left: -0.03563%;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
 .stop-detail {
   position: absolute;
-  top: 66px;
-  left: 311px;
-  z-index: 40;
+  top: 65px;
+  left: 168px;
+  z-index: 39;
   font-size: 0.762em;
   font-weight: 400;
   line-height: 1.38;
@@ -785,10 +762,10 @@ select {
 
 .time {
   position: absolute;
-  top: 29px;
+  top: 28px;
   left: 16px;
-  z-index: 42;
-  width: 20.4738700704%;
+  z-index: 41;
+  width: 12.9582267689%;
   font-size: 1.048em;
   font-weight: 600;
   line-height: 1.38;
@@ -797,9 +774,9 @@ select {
 
 .time-label {
   position: absolute;
-  top: 66px;
+  top: 65px;
   left: 16px;
-  z-index: 39;
+  z-index: 38;
   font-size: 0.762em;
   font-weight: 400;
   line-height: 1.38;
@@ -809,7 +786,7 @@ select {
 .loginprompt ._text {
   position: relative;
   float: left;
-  z-index: 3;
+  z-index: 4;
   width: 59.8465473145%;
   height: 42px;
   margin: -7px 0 0 -1.41068%;
@@ -837,25 +814,24 @@ select {
   position: fixed;
   top: 19px;
   left: 49.5494791666%;
-  z-index: 1;
+  z-index: 2;
   width: 483px;
 }
 
 .container ._button-1 {
   right: 0;
-  z-index: 54;
+  z-index: 52;
   width: 40%;
 }
 
 .container ._button-2 {
   left: 0;
-  z-index: 53;
+  z-index: 51;
   width: 39.9988163112%;
 }
 
 .header ._button-3 {
-  z-index: 6;
-  width: 56.3768115942%;
+  z-index: 7;
   height: 88px;
   font-size: 2.381em;
   font-weight: 900;
@@ -863,7 +839,7 @@ select {
 
 .header ._button-4 {
   clear: both;
-  z-index: 7;
+  z-index: 8;
   width: 100%;
   height: 42px;
   margin-top: -26px;
@@ -882,42 +858,54 @@ select {
 }
 
 @media(max-width: 900px) {
+  body {
+    font-size: 1em;
+  }
+
+  .container button {
+    font-size: 0.75em;
+  }
+
   .departure button {
-    top: 90px;
+    top: 77px;
     width: 44.0414507772%;
+    font-size: 0.75em;
   }
 
   .header button {
     position: relative;
+    text-align: right;
   }
 
   .headerdepartures button {
     top: 25px;
     right: 0.1342281879%;
     width: 58px;
-    font-size: 0.571em;
+    font-size: 0.75em;
   }
 
   .headerroutes button {
     width: 60px;
-    font-size: 0.571em;
+    font-size: 0.75em;
   }
 
   .loginprompt button {
     position: relative;
-    z-index: 4;
-    margin-left: -1.40966%;
+    z-index: 5;
+    width: 277px;
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 1em;
   }
 
   div img {
     height: auto;
-    margin-top: 9037px;
-    margin-left: 81.47321%;
+    margin-left: 81.47008%;
   }
 
-  .selectfromlistmodal button,
+  .stop .stopname,
   div select {
-    font-size: 0.571em;
+    font-size: 0.75em;
   }
 
   img {
@@ -926,34 +914,31 @@ select {
 
   .about .container {
     position: relative;
-    z-index: 55;
+    z-index: 53;
+    margin-left: NaN;
   }
 
   .about .text {
     position: relative;
-    z-index: 52;
+    z-index: 50;
+    font-size: 16px;
   }
 
-  .amstops .stop,
-  .pmstops .stop {
-    margin-left: -0.03746%;
+  .amstops .stop {
+    margin-left: -0.02667%;
   }
 
   .busstopsign {
-    top: 6px;
-    left: -3.125%;
-    width: 44.0625%;
+    top: 26px;
+    left: -5.3472222223%;
+    width: 35%;
   }
 
   .departure .bus {
-    top: 10px;
-    left: 143px;
-    width: 95px;
-  }
-
-  .departure .bus-detail {
-    top: 46px;
-    left: 143px;
+    top: 11px;
+    left: 116px;
+    width: 141px;
+    font-size: 1.375em;
   }
 
   .departure .bus-location {
@@ -971,34 +956,27 @@ select {
     right: 54.6632124352%;
   }
 
-  .departure .stop {
-    top: 9px;
-    left: 223px;
-    width: 25.6832266585%;
-    text-align: right;
-  }
-
   .departure .stop-detail {
-    top: 46px;
-    left: auto;
-    right: 5px;
+    top: 48px;
+    left: 116px;
     width: 41.2882251346%;
-    text-align: right;
+    font-size: 0.75em;
   }
 
   .departure .time {
-    top: 9px;
-    left: 6px;
-    width: 30.0518134715%;
+    top: 11px;
+    left: 12px;
+    width: 50%;
+    font-size: 1.375em;
   }
 
   .departure .time-label {
-    top: 46px;
-    left: 6px;
+    top: 48px;
+    left: 13px;
+    font-size: 0.75em;
   }
 
   .departures .departure {
-    clear: none;
     height: 130px;
   }
 
@@ -1010,6 +988,11 @@ select {
   .departures .gettingdepartures,
   .departures .nodepartures {
     left: 27px;
+    font-size: 16px;
+  }
+
+  .departures .setuproutes {
+    font-size: 16px;
   }
 
   .header {
@@ -1017,35 +1000,49 @@ select {
     width: 79.6875%;
   }
 
+  .headerdepartures .text {
+    top: 14px;
+    font-size: 1.75em;
+  }
+
   .headerroutes .text {
+    top: 15px;
     width: 80%;
+    font-size: 1.75em;
   }
 
   .loading {
-    top: 277px;
-    left: 10.3125%;
+    top: 280px;
+    left: 13.75%;
+    font-size: 16px;
   }
 
   .loginprompt {
     top: 278px;
     left: 10.9375%;
-    width: 151.5625%;
+    width: 79.0625%;
+  }
+
+  .pmstops .stop {
+    margin-left: -0.03872%;
   }
 
   .routedetail .addstop {
     top: 183px;
     width: 48%;
-    font-size: 0.571em;
+    font-size: 0.75em;
   }
 
   .routedetail .am {
     top: 97px;
     left: 1.251456655%;
+    font-size: 1.25em;
   }
 
   .routedetail .amdirection {
     top: 134px;
     left: 1.251456655%;
+    font-size: 1em;
   }
 
   .routedetail .amstops {
@@ -1057,21 +1054,25 @@ select {
   .routedetail .cancelroute {
     left: 55.7784871054%;
     width: 131px;
+    font-size: 1em;
   }
 
   .routedetail .doneroute {
     right: 48.9588083295%;
     width: 154px;
+    font-size: 1em;
   }
 
   .routedetail .pm {
     top: 98px;
     left: 51.6745199371%;
+    font-size: 1.25em;
   }
 
   .routedetail .pmdirection {
     top: 133px;
     left: 51.6897198155%;
+    font-size: 1em;
   }
 
   .routedetail .pmstops {
@@ -1084,6 +1085,11 @@ select {
     top: 4px;
     right: 1.0741247403%;
     width: 80px;
+    font-size: 1em;
+  }
+
+  .routedetail .routename {
+    font-size: 1.25em;
   }
 
   .routes .chosenroutes {
@@ -1091,9 +1097,12 @@ select {
     z-index: 31;
   }
 
+  .routes .text {
+    font-size: 1.313em;
+  }
+
   .screens {
-    top: 6px;
-    left: 0;
+    left: 0.5555555555%;
   }
 
   .screens .about {
@@ -1105,8 +1114,9 @@ select {
 
   .screens .aboutradbus {
     top: 77px;
-    right: 1.8222177378%;
-    width: 41.973564726%;
+    right: 1.667448283%;
+    width: 39.6852691365%;
+    font-size: 0.75em;
   }
 
   .screens .departures {
@@ -1118,10 +1128,10 @@ select {
 
   .screens .headerbar {
     position: relative;
-    z-index: 49;
+    z-index: 47;
     width: 99.5464852607%;
     height: 396px;
-    margin-left: 0.22676%;
+    margin-left: 0.2472%;
   }
 
   .screens .headerdepartures {
@@ -1137,13 +1147,16 @@ select {
 
   .screens .manageroutesbutton {
     top: 77px;
-    left: 1.896882252%;
+    left: 2.0009379396%;
+    width: 123px;
+    font-size: 0.75em;
   }
 
   .screens .refresh {
     top: 77px;
-    left: 1.5740086772%;
-    width: 41.0049440016%;
+    left: 1.667448283%;
+    width: 36.0168829138%;
+    font-size: 0.75em;
   }
 
   .screens .routes {
@@ -1155,18 +1168,26 @@ select {
 
   .screens .selectfromlistmodal {
     position: relative;
-    z-index: 68;
+    z-index: 66;
   }
 
   .stop .removestop {
     left: auto;
     right: 0;
+    font-size: 1em;
   }
 
   .loginprompt ._text {
     position: relative;
-    z-index: 3;
-    margin-left: -1.40966%;
+    z-index: 4;
+    width: 277px;
+    height: auto;
+    margin-top: 0;
+    margin-left: 0;
+    background-color: rgba(255, 253, 251, 0.37);
+    font-size: 16px;
+    text-align: left;
+    text-indent: 30px;
   }
 
   .routedetail .addstop-1 {
@@ -1178,10 +1199,15 @@ select {
   }
 
   .header ._button-3 {
-    z-index: 6;
+    z-index: 7;
+    width: 100%;
+    height: auto;
+    font-size: 3.125em;
   }
 
   .header ._button-4 {
-    z-index: 7;
+    z-index: 8;
+    margin-top: 0;
+    font-size: 1em;
   }
 }
