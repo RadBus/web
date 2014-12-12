@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="css/index.css">
   <!-- <title> and other generated code will appear above your static head code. -->
 
-  <link href='//fonts.googleapis.com/css?family=Arvo|Raleway:900,400' rel='stylesheet' type='text/css'>  
-  
+  <link href='//fonts.googleapis.com/css?family=Arvo|Raleway:900,400' rel='stylesheet' type='text/css'>
+
 	<style>
 	.selectedButton {
  	 border-right-color: rgb(29, 39, 43)!important;
@@ -20,7 +20,7 @@
  	 font-style: normal!important;
  	 font-weight: 600!important;
  	 color: rgb(29, 39, 43)!important;
-	}  
+	}
 	</style>
 </head>
 <body class="body index clearfix">
@@ -50,7 +50,7 @@
         <p>For bus riders: thank you for using this free utility to track your bus schedule!&nbsp;</p>
         <p>If you have questions, issues, or comments, please visit our GitHub project to provide feedback.&nbsp;</p>
         <p>For programmers and anyone enthusiastic about open source software, we'd love to hear from you. RadBus is not one but two applicataions, the RadBus Web Client and the RadBus API. &nbsp;The RadBus API&nbsp;helps apps to easily access Twin Cities Metro Transit departure data against a user's personalized schedule stored in the cloud.</p>
-</div>
+      </div>
       <div class="container">
         <button onClick="window.location='https://github.com/RADBus/api';" class="_button-1">RadBus API on GitHub</button>
         <button onClick="window.location='https://github.com/RADBus/web';" class="_button-2">RadBus Web Client on GitHub</button>
@@ -65,7 +65,7 @@
       <div id="no-bus-schedule" class="setuproutes js-message-no-routes">
         <p>We need to know what bus stops and schedule to show you.&nbsp;</p>
         <p>It's time to <span>setup your routes</span>.</p>
-</div>
+      </div>
       <div id="placeholder-departure" class="departure clearfix js-placeholder-departure">
         <div class="departure-background"></div>
         <button class="bus-location">where is the bus?</button>
@@ -123,6 +123,7 @@
   <img id="background" class="background js-background" src="images/background.svg">
 
   <script src="js/jquery-min.js"></script>
+  <script src="../scripts/api-config.js"></script>
   <script src="js/index.js"></script>
   <!-- Page content will appear above your static tail code. This is a good place for analytics code, etc. -->
 
@@ -135,72 +136,70 @@
   </script>
 	<script src="https://apis.google.com/js/client.js?onload=onClientLoad"></script>
 
-<script id="departure-template" type="text/x-handlebars-template">
-      <div class="departure clearfix">
-        <div class="departure-background"></div>
-        <div class="time-label">({{wait}} minutes)</div>
-        <div class="time">{{time}}</div>
-        <div class="bus">{{bus}} {{terminal}}</div>
-        <div class="stop-detail">{{stopDetail}}</div>
-        {{#if locationLat}}
-        <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">directions</button>
-        <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus location</button>
-        {{/if}}
-      </div>
-</script>
-
-<script id="route-template" type="text/x-handlebars-template">
-  <div class="route js-placeholder-route">
-    <div class="routedetail clearfix">
-      <button class="routename" data-route-id="{{routeId}}">{{route}}</button>
-      <button class="removeroute" data-route-id="{{routeId}}">delete this route</button>
-      <button class="doneroute" data-route-id="{{routeId}}">done</button>
-      <button class="cancelroute">cancel changes</button>
-
-      <button class="am">AM</button>
-      <button class="amdirection" data-direction-id="{{am.direction.id}}">{{am.direction.description}}</button>
-      <button class="addstop addstop-2" data-route-id="{{routeId}}" data-am="true">add stop</button>
-      <div class="amstops clearfix">
-      {{#each am.stops}}
-        <div class="stop">
-          <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="true" data-direction-id="{{am.direction.id}}">delete</button>
-          <button class="stopname" data-stop-id="{{id}}">{{description}}</button>
-        </div>
-      {{/each}}
-      </div>
-
-      <div class="amstops-removed" style="display:none;"></div>
-
-      <button class="pm">PM</button>
-      <button class="pmdirection" data-direction-id="{{pm.direction.id}}">{{pm.direction.description}}</button>
-      <button class="addstop addstop-1" data-route-id="{{routeId}}" data-am="false">add stop</button>
-      <div class="pmstops clearfix">
-      {{#each pm.stops}}
-        <div class="stop">
-          <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="false" data-direction-id="{{pm.direction.id}}">delete</button>
-          <button class="stopname" data-stop-id="{{id}}">{{description}}</button>
-        </div>
-      {{/each}}
-      </div>
-
-      <div class="pmstops-removed" style="display:none;"></div>
-
+  <script id="departure-template" type="text/x-handlebars-template">
+    <div class="departure clearfix">
+      <div class="departure-background"></div>
+      <div class="time-label">({{wait}} minutes)</div>
+      <div class="time">{{time}}</div>
+      <div class="bus">{{bus}} {{terminal}}</div>
+      <div class="stop-detail">{{stopDetail}}</div>
+      {{#if locationLat}}
+      <button class="departure-directions" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}"  data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">directions</button>
+      <button class="bus-location" data-stop="Bus stop {{stop}}" data-location="{{stopDetail}}" data-lat="{{locationLat}}" data-long="{{locationLong}}" data-cityzip="{{cityzip}}">bus location</button>
+      {{/if}}
     </div>
-  </div>
-</script>
+  </script>
 
-<script id="stop-template" type="text/x-handlebars-template">
-        <div class="stop">
-          <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="{{am}}" data-direction-id="{{directionId}}">delete</button>
-          <button class="stopname newdata" data-stop-id="{{id}}">{{description}}</button>
+  <script id="route-template" type="text/x-handlebars-template">
+    <div class="route js-placeholder-route">
+      <div class="routedetail clearfix">
+        <button class="routename" data-route-id="{{routeId}}">{{route}}</button>
+        <button class="removeroute" data-route-id="{{routeId}}">delete this route</button>
+        <button class="doneroute" data-route-id="{{routeId}}">done</button>
+        <button class="cancelroute">cancel changes</button>
+
+        <button class="am">AM</button>
+        <button class="amdirection" data-direction-id="{{am.direction.id}}">{{am.direction.description}}</button>
+        <button class="addstop addstop-2" data-route-id="{{routeId}}" data-am="true">add stop</button>
+        <div class="amstops clearfix">
+        {{#each am.stops}}
+          <div class="stop">
+            <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="true" data-direction-id="{{am.direction.id}}">delete</button>
+            <button class="stopname" data-stop-id="{{id}}">{{description}}</button>
+          </div>
+        {{/each}}
         </div>
-</script>
 
-  
-	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>  
+        <div class="amstops-removed" style="display:none;"></div>
+
+        <button class="pm">PM</button>
+        <button class="pmdirection" data-direction-id="{{pm.direction.id}}">{{pm.direction.description}}</button>
+        <button class="addstop addstop-1" data-route-id="{{routeId}}" data-am="false">add stop</button>
+        <div class="pmstops clearfix">
+        {{#each pm.stops}}
+          <div class="stop">
+            <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="false" data-direction-id="{{pm.direction.id}}">delete</button>
+            <button class="stopname" data-stop-id="{{id}}">{{description}}</button>
+          </div>
+        {{/each}}
+        </div>
+
+        <div class="pmstops-removed" style="display:none;"></div>
+
+      </div>
+    </div>
+  </script>
+
+  <script id="stop-template" type="text/x-handlebars-template">
+    <div class="stop">
+      <button class="removestop" data-route-id="{{routeId}}" data-stop-id="{{id}}" data-am="{{am}}" data-direction-id="{{directionId}}">delete</button>
+      <button class="stopname newdata" data-stop-id="{{id}}">{{description}}</button>
+    </div>
+  </script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
  	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
-  
-  
+
 </body>
 </html>
