@@ -56,7 +56,8 @@
       $.ajax({
         url: apiBaseUrl + '/oauth2',
         type: 'GET',
-        dataType: 'json'
+        dataType: 'json',
+        beforeSend: setAuthHeaders
       })
       .fail(onAjaxError)
       .done(onGetOAuth2Info);
@@ -149,10 +150,15 @@
       }
     }
 
-    function setAuthorizationHeader (jqXHR) {
-      jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
-    }
+    function setAuthHeaders (jqXHR) {
+      // client auth header
+      jqXHR.setRequestHeader('API-Key', apiKey);
 
+      // user auth header
+      if (googleOAuth2Result) {
+        jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
+      }
+    }
 
     // ----------------
     //
@@ -173,7 +179,7 @@
         url: apiBaseUrl + '/schedule',
         type: 'GET',
         dataType: 'json',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       }).done(function (data, textStatus, jqXHR) {
         var existingSchedule = data;
       });
@@ -222,7 +228,7 @@
       return $.ajax({
         url: apiBaseUrl + '/schedule',
         type: 'POST',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       }).fail(onAjaxError);
     }
 
@@ -241,7 +247,7 @@
         type: 'POST',
         data: requestJson,
         contentType: 'application/json',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       })
       .done(onScheduleChanged);
     }
@@ -252,7 +258,7 @@
       return $.ajax({
         url: apiBaseUrl + '/schedule/routes/' + routeId,
         type: 'DELETE',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       })
       .done(onScheduleChanged);
     }
@@ -273,7 +279,7 @@
         url: apiBaseUrl + '/departures',
         type: 'GET',
         dataType: 'json',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       })
       .fail(onAjaxError)
       .done(onGetDeparturesDone)
@@ -417,7 +423,7 @@
           url: apiBaseUrl + '/routes/' + result.value,
           type: 'GET',
           dataType: 'json',
-          beforeSend: setAuthorizationHeader,
+          beforeSend: setAuthHeaders,
         }).done(function (route, textStatus, jqXHR) {
 
           // render new route
@@ -471,7 +477,7 @@
         url: apiBaseUrl + '/routes',
         type: 'GET',
         dataType: 'json',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       }).done(function (data, textStatus, jqXHR) {
 
         $('#selectFromList').empty();
@@ -564,7 +570,7 @@
         url: apiBaseUrl + '/routes/' + routeId,
         type: 'GET',
         dataType: 'json',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       }).done(function (data, textStatus, jqXHR) {
 
         $('#selectFromList').empty();
@@ -639,7 +645,7 @@
         url: apiBaseUrl + '/schedule',
         type: 'GET',
         dataType: 'json',
-        beforeSend: setAuthorizationHeader,
+        beforeSend: setAuthHeaders,
       }).done(function (data, textStatus, jqXHR) {
 
         $("#loadingRoutes").fadeOut();
