@@ -174,7 +174,7 @@
 
   function setAuthHeaders (jqXHR) {
     // client auth header
-    jqXHR.setRequestHeader('API-Key1', apiKey);
+    jqXHR.setRequestHeader('API-Key', apiKey);
 
     // user auth header
     if (googleOAuth2Result) {
