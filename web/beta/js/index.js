@@ -93,11 +93,17 @@
     };
 
     function onAjaxError (jqXHR, textStatus, errorThrown) {
-      if (jqXHR.status == 401) {
+      if (jqXHR.status == 401 &&
+          jqXHR.responseJSON &&
+          jqXHR.responseJSON.message &&
+          jqXHR.responseJSON.message.match(/authorization token/i)) {
         // token expired - authorize again
         authorize();
       } else {
-        console.log("ERROR: " + jqXHR.status + ": " + textStatus + ": " + errorThrown);
+        var message = jqXHR.status > 0 ?
+          (jqXHR.status + ": " + jqXHR.statusText + ": " + jqXHR.responseText) :
+          "Check the JavaScript Console for details.";
+        console.log("ERROR: " + message);
         hideMessages();
         showNoDepartures();
       }
