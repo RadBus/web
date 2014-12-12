@@ -13,7 +13,8 @@
     $.ajax({
       url: apiBaseUrl + '/oauth2',
       type: 'GET',
-      dataType: 'json'
+      dataType: 'json',
+      beforeSend: setAuthHeaders
     })
     .fail(onAjaxError)
     .done(onGetOAuth2Info);
@@ -164,8 +165,14 @@
     }
   }
 
-  function setAuthorizationHeader (jqXHR) {
-    jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
+  function setAuthHeaders (jqXHR) {
+    // client auth header
+    jqXHR.setRequestHeader('API-Key1', apiKey);
+
+    // user auth header
+    if (googleOAuth2Result) {
+      jqXHR.setRequestHeader('Authorization', googleOAuth2Result.token_type + ' ' + googleOAuth2Result.access_token);
+    }
   }
 
   function getSchedule() {
@@ -176,7 +183,7 @@
       url: apiBaseUrl + '/schedule',
       type: 'GET',
       dataType: 'json',
-      beforeSend: setAuthorizationHeader,
+      beforeSend: setAuthHeaders,
     }).done(function (data, textStatus, jqXHR) {
       var json = JSON.stringify(data, undefined, 2);
       existingSchedule.text(json);
@@ -227,7 +234,7 @@
     return $.ajax({
       url: apiBaseUrl + '/schedule',
       type: 'POST',
-      beforeSend: setAuthorizationHeader,
+      beforeSend: setAuthHeaders,
     }).fail(onAjaxError);
   }
 
@@ -240,7 +247,7 @@
       url: apiBaseUrl + '/departures',
       type: 'GET',
       dataType: 'json',
-      beforeSend: setAuthorizationHeader,
+      beforeSend: setAuthHeaders,
     })
     .fail(onAjaxError)
     .done(onGetDeparturesDone)
@@ -287,7 +294,7 @@
       type: 'POST',
       data: requestJson,
       contentType: 'application/json',
-      beforeSend: setAuthorizationHeader,
+      beforeSend: setAuthHeaders,
     })
     .done(onScheduleChanged);
   }
@@ -298,7 +305,7 @@
     return $.ajax({
       url: apiBaseUrl + '/schedule/routes/' + routeId,
       type: 'DELETE',
-      beforeSend: setAuthorizationHeader,
+      beforeSend: setAuthHeaders,
     })
     .done(onScheduleChanged);
   }
