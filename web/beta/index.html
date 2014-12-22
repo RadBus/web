@@ -160,7 +160,7 @@
 
         <button class="am">AM</button>
         <button class="amdirection" data-direction-id="{{am.direction.id}}">{{am.direction.description}}</button>
-        <button class="addstop addstop-2" data-route-id="{{routeId}}" data-am="true">add stop</button>
+        <button class="addstop addstop-2" data-route-id="{{routeId}}" data-direction-id="{{am.direction.id}}" data-am="true">add stop</button>
         <div class="amstops clearfix">
         {{#each am.stops}}
           <div class="stop">
@@ -174,7 +174,7 @@
 
         <button class="pm">PM</button>
         <button class="pmdirection" data-direction-id="{{pm.direction.id}}">{{pm.direction.description}}</button>
-        <button class="addstop addstop-1" data-route-id="{{routeId}}" data-am="false">add stop</button>
+        <button class="addstop addstop-1" data-route-id="{{routeId}}" data-direction-id="{{pm.direction.id}}" data-am="false">add stop</button>
         <div class="pmstops clearfix">
         {{#each pm.stops}}
           <div class="stop">
