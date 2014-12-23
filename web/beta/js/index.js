@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   var $background = $('.js-background');
   var $busStopSign = $('.js-bus-stop-sign');
   var $bus = $('.js-bus');
@@ -37,10 +39,6 @@
   //
 
   (function () {
-
-    'use strict';
-
-
     // ----------------
     //
     // Authorization via Google Id
@@ -359,8 +357,8 @@
     //
 
     function showAuthenticatedUI(){
-      $("#authenticated").css("visibility", "visible")
-      $("#menu").css("visibility", "visible")
+      $("#authenticated").css("visibility", "visible");
+      $("#menu").css("visibility", "visible");
     }
 
     //
@@ -395,7 +393,7 @@
     $('#manageRoutesButton').click(showRoutes);
     $("#no-bus-schedule").click(showRoutes);
 
-    $('#selectFromListCancelButton').click(function(){$('#selectFromListModal').hide()});
+    $('#selectFromListCancelButton').click(function(){$('#selectFromListModal').hide();});
     $('#selectFromListAddButton').click(function(){
       var result = {
         name: $('#selectFromList option:selected').text(),
@@ -508,7 +506,7 @@
 
       console.log("am?", am);
 
-      if(am == true)
+      if(am === true)
         listClassName = ".amstops-removed";
 
       // send to the removed list...
@@ -553,7 +551,7 @@
 
         console.log("am?", am);
 
-        if(am == true)
+        if(am === true)
           listClassName = ".amstops";
 
         // add new stop to DOM
@@ -616,7 +614,7 @@
 
       $(target).parent().find(".removeroute").css("visibility", "visible");
       $(target).parent().find(".removeroute").show();
-    }
+    };
 
     function showRoutes(){
       hideMessages();
@@ -818,9 +816,9 @@
       $('#no-departures').hide();
       $('#no-departures').css("visibility", "none");
       $('#no-bus-schedule').hide();
-      $('#no-bus-schedule').css("visibility", "none");;
+      $('#no-bus-schedule').css("visibility", "none");
       $('#getting-departures').hide();
-      $('#getting-departures').css("visibility", "none");;
+      $('#getting-departures').css("visibility", "none");
     }
 
     function refreshSchedule(){
