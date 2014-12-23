@@ -8,7 +8,12 @@ exports.register = (server) ->
   server.get "/oauth2callback", (req, res) ->
     console.log "#{LOG_PREFIX} Getting OAuth2 info from API..."
 
-    request.get "#{process.env.RADBUS_API_BASE_URL}/oauth2", (err, response, body) ->
+    options =
+      url: "#{process.env.RADBUS_API_BASE_URL}/oauth2"
+      headers:
+        'API-Key': process.env.RADBUS_API_KEY
+
+    request.get options, (err, response, body) ->
       if (err) then throw err
 
       oAuth2Info = JSON.parse body
