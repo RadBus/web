@@ -299,7 +299,7 @@
         console.log("User has departures!");
 
         var source   = $("#departure-template").html();
-        var template = Handlebars.compile(source);
+        var departureTemplate = Handlebars.compile(source);
 
         $.each(data, function (index, departure) {
 
@@ -328,7 +328,7 @@
             "locationLong": _long
           };
           console.log("context", context);
-          var item = template(context);
+          var item = departureTemplate(context);
 
           $('#departures-list').append(item);
         });
@@ -367,6 +367,9 @@
 
     var selectFromListCallback = null;
 
+    // templates
+    var selectFromTemplate, routeTemplate, stopTemplate;
+
     $(document).ready(function(){
       $(".screens").hide();
       $placeholderDeparture.remove();
@@ -379,6 +382,14 @@
       $("#bus").transition({ "x": "500%" }, 0, function(){
         $("#bus").transition({ "x": "0%" }, 2000);
       });
+
+      // compile templates
+      var source = '<option value="{{id}}">{{description}}</option>';
+      selectFromTemplate = Handlebars.compile(source);
+      source = $("#route-template").html();
+      routeTemplate = Handlebars.compile(source);
+      source = $('#stop-template').html();
+      stopTemplate = Handlebars.compile(source);
     });
 
 
@@ -400,8 +411,6 @@
         value: $('#selectFromList').val()
       };
 
-      $('#selectFromListModal').hide();
-
       if(selectFromListCallback)
         selectFromListCallback(result);
     });
@@ -414,63 +423,88 @@
 
       $('#selectFromListModal').show();
 
-      selectFromListCallback = function(result){
+      selectFromListCallback = function(routeResult){
 
         // get data about this route
+        $('#selectFromListAddButton').text('select AM direction');
+        $('#selectFromList').empty();
+
         $.ajax({
-          url: apiBaseUrl + '/routes/' + result.value,
+          url: apiBaseUrl + '/routes/' + routeResult.value,
           type: 'GET',
           dataType: 'json',
           beforeSend: setAuthHeaders,
         }).done(function (route, textStatus, jqXHR) {
 
-          // render new route
-          var source   = $('#route-template').html();
-          var template = Handlebars.compile(source);
+          $('#selectFromListModal').show();
 
-          var context = {
-            "routeId": route.id,
-            "route": route.description,
-            "am": {
-              stops: [],
-              direction:{
-                id:route.directions[0].id,
-                description:route.directions[0].description
-              }
-            },
-            "pm": {
-              stops: [],
-              direction:{
-                id:route.directions[1].id,
-                description:route.directions[1].description
-              }
+          selectFromListCallback = function(directionResult) {
+
+            // determine am and pm directions from result
+            var amDirection, pmDirection;
+            if (directionResult === route.directions[0].id) {
+              amDirection = route.directions[0];
+              pmDirection = route.directions[1];
+            } else {
+              amDirection = route.directions[1];
+              pmDirection = route.directions[0];
             }
+
+            // render new route
+            var context = {
+              "routeId": route.id,
+              "route": route.description,
+              "am": {
+                stops: [],
+                direction: {
+                  id: amDirection.id,
+                  description: amDirection.description
+                }
+              },
+              "pm": {
+                stops: [],
+                direction: {
+                  id: pmDirection.id,
+                  description: pmDirection.description
+                }
+              }
+            };
+
+            console.log(context);
+
+            var item = routeTemplate(context);
+            var routesList = $('#routes-list');
+            routesList.append(item);
+
+            // add events to the new DOM items
+
+            // route
+            $('.routename').click(routeNameClick);
+            $('.doneroute').click(doneRouteClick);
+            $('.cancelroute').click(showRoutes);
+            $('.removeroute').click(removeRouteClick);
+
+            // stops
+            $('.addstop').click(addStopClick);
+            $('.removestop').click(removeStopClick);
+            $('.stopname').click(stopNameClick);
+
+            $('#selectFromListModal').hide();
           };
 
-          console.log(context);
+          // render directions
 
-          var item = template(context);
-          $('#routes-list').append(item);
-
-          // add events to the new DOM items
-
-          // route
-          $('.routename').click(routeNameClick);
-          $('.doneroute').click(doneRouteClick);
-          $('.cancelroute').click(showRoutes);
-          $('.removeroute').click(removeRouteClick);
-
-          // stops
-          $('.addstop').click(addStopClick);
-          $('.removestop').click(removeStopClick);
-          $('.stopname').click(stopNameClick);
+          $.each(route.directions, function (index, direction) {
+            var item = selectFromTemplate(direction);
+            $('#selectFromList').append(item);
+          });
 
         }); // complete ajax call
-
-
       };
 
       // fetch routes
+      $('#selectFromListAddButton').text('select route');
+      $('#selectFromList').empty();
       $.ajax({
         url: apiBaseUrl + '/routes',
         type: 'GET',
@@ -478,19 +512,10 @@
         beforeSend: setAuthHeaders,
       }).done(function (data, textStatus, jqXHR) {
 
-        $('#selectFromList').empty();
-
-        // render routes
-        var source   = '<option value="{{id}}">{{description}}</option>';
-        var template = Handlebars.compile(source);
-
         $.each(data, function (index, route) {
-
-          var item = template(route);
+          var item = selectFromTemplate(route);
           $('#selectFromList').append(item);
-
         });
-
       });
 
     }); // add route click
@@ -535,9 +560,6 @@
       selectFromListCallback = function(result){
 
         // render new stop
-        var source   = $('#stop-template').html();
-        var template = Handlebars.compile(source);
-
         var context = {
           routeId: routeId,
           directionId: directionId,
@@ -546,7 +568,7 @@
           description: result.name
         };
 
-        var item = template(context);
+        var item = stopTemplate(context);
         var listClassName = ".pmstops";
 
         console.log("am?", am);
@@ -561,17 +583,18 @@
         $('.removestop').click(removeStopClick);
         $('.stopname').click(stopNameClick);
 
+        $('#selectFromListModal').hide();
       };
 
       // fetch stops for given route
+      $('#selectFromListAddButton').text('select stop');
+      $('#selectFromList').empty();
       $.ajax({
         url: apiBaseUrl + '/routes/' + routeId,
         type: 'GET',
         dataType: 'json',
         beforeSend: setAuthHeaders,
       }).done(function (data, textStatus, jqXHR) {
-
-        $('#selectFromList').empty();
 
         // determine the direction to list stops
         var directionIndex = 0;
@@ -583,16 +606,10 @@
         var stops = data.directions[directionIndex].stops;
 
         // render stops
-        var source   = '<option value="{{id}}">{{description}}</option>';
-        var template = Handlebars.compile(source);
-
         $.each(stops, function (index, stop) {
-
-          var item = template(stop);
+          var item = selectFromTemplate(stop);
           $('#selectFromList').append(item);
-
         });
-
       });
 
     } // add stop click
@@ -652,10 +669,6 @@
 
         existingSchedule = data;
 
-        // render routes
-        var source   = $("#route-template").html();
-        var template = Handlebars.compile(source);
-
         $.each(data.routes, function (index, route) {
 
           var context = {
@@ -667,7 +680,7 @@
 
           console.log(context);
 
-          var item = template(context);
+          var item = routeTemplate(context);
           $('#routes-list').append(item);
 
         });
