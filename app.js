@@ -1,3 +1,4 @@
+require('newrelic');
 require('coffee-script/register');
 
 const LOG_PREFIX = 'APP: ';
